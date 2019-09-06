@@ -8,10 +8,16 @@ import { FormsModule } from '@angular/forms';
 import {MultiSelectModule} from 'primeng/multiselect';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { SalesMainscreenComponent } from './sales-mainscreen/sales-mainscreen.component';
+import {CardModule} from 'primeng/card';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavBarComponent,
+    SalesMainscreenComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +25,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ButtonModule,
     FormsModule,
     MultiSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CardModule,
+    TableModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
