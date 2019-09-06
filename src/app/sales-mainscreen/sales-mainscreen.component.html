@@ -1,0 +1,142 @@
+<h1 class="heading">SALES</h1>
+
+<hr
+  style="height: 1px; background-color: green; width: 80%; margin-left: 12%"
+/>
+
+<div class="ui-g">
+  <div class="ui-md-6 ui-lg-6 ui-sm-12">
+    <p-card
+      header=""
+      [style]="{
+        width: '95%',
+        'font-size': '15px',
+        'margin-left': '23.5%',
+        'text-align': 'left',
+        color: 'green'
+      }"
+    >
+      <h4 style="color: green; font-weight: bold">Point Of Sales Form :</h4>
+      <hr
+        style="height:2px;width:82%;background-color:green; margin-left: 1px;"
+      />
+
+      <div class="ui-g ui-fluid">
+        <form
+          style="width:100%;"
+          #myForm="ngForm"
+          (ngSubmit)="submitlab(); myForm.reset()"
+        >
+          <div class="ui-g">
+            <!-- <div class="ui-md-1 ui-lg-1"></div> -->
+            <div class="ui-md-10 ui-lg-10 ui-sm-12">
+              <div class="ui-inputgroup">
+                <span
+                  class="ui-inputgroup-addon"
+                  style="width:50%;font-size:15px;"
+                  >Product Name: <i style="color: red">*</i></span
+                >
+                <p-multiSelect
+                  required
+                  name="testname"
+                  pInputText
+                  [style]="{width: '380px', height: '40px'}"
+                ></p-multiSelect>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui-g">
+            <!-- <div class="ui-md-3 ui-lg-3"></div> -->
+            <div class="ui-md-10 ui-lg-10 ui-sm-12">
+              <div class="ui-inputgroup">
+                <span
+                  class="ui-inputgroup-addon"
+                  style="width: 50%;font-size:15px;"
+                  >Quantity: <i style="color: red">*</i></span
+                >
+                <input
+                  type="number"
+                  (keypress)="numberOnly($event)"
+                  required
+                  style="width: 100%"
+                  name="price"
+                  pInputText
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="ui-g">
+            <!-- <div class="ui-md-1 ui-lg-1"></div> -->
+            <div class="ui-md-10 ui-lg-10 ui-sm-12">
+              <div class="ui-inputgroup">
+                <span
+                  class="ui-inputgroup-addon"
+                  style="width:50%;font-size:15px;"
+                  >Price: <i style="color: red">*</i></span
+                >
+                <!-- <input type="text" required [(ngModel)]="test.details" name="details" pInputText> -->
+                <input
+                  type="number"
+                  (keypress)="numberOnly($event)"
+                  required
+                  style="width: 100%"
+                  name="price"
+                  pInputText
+                />
+              </div>
+            </div>
+          </div>
+          <div class="ui-g" style="margin-top:20px !important;">
+            <div class="ui-md-3 ui-lg-3"></div>
+            <div class="ui-md-5 ui-lg-5 ui-sm-12">
+              <button
+                pButton
+                type="submit"
+                label="Save"
+                [disabled]="myForm.form.invalid"
+                style="margin-top: 0px; background-color:#479761;width:100%;"
+                class="colorSetAllButtons"
+              ></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </p-card>
+  </div>
+  <div class="ui-md-5 ui-lg-5 ui-sm-12">
+    <p-card
+      [style]="{
+        width: '81%',
+        'font-size': '15px',
+        'margin-left': '21%',
+        'text-align': 'left',
+        color: 'green'
+      }"
+    >
+      <h4 style="color: green; font-weight: bold">View Sales :</h4>
+      <hr
+        style="height:2px;width:82%;background-color:green; margin-left: 1px;"
+      />
+
+      <!-- <p style="margin:10px" [hidden]="facilities.length">No Facility selected!</p> -->
+      <p-table  [ngStyle]="{textAlign:'center'}" [value]="facilities">
+          <ng-template pTemplate="header">
+              <tr>
+                  <th [ngStyle]="{textAlign:'center'}" *ngFor="let col of cols">
+                      {{col.header}}
+                  </th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-car>
+              <tr>
+                  <td *ngFor="let col of cols">
+                      {{car[col.field]}}
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+</div>
