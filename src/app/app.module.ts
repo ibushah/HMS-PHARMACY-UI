@@ -12,12 +12,14 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SalesMainscreenComponent } from './sales-mainscreen/sales-mainscreen.component';
 import {CardModule} from 'primeng/card';
 import {TableModule} from 'primeng/table';
+import { AddCompanyComponent } from './add-company/add-company.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    SalesMainscreenComponent
+    SalesMainscreenComponent,
+    AddCompanyComponent
   ],
   imports: [
     BrowserModule,
