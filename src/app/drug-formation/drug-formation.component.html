@@ -1,0 +1,63 @@
+<div class="ui-g">
+        <div class="ui-md-6 ui-lg-6 ui-sm-12">
+          <p-card
+            header=""
+            [style]="{
+              width: '95%',
+              'font-size': '15px',
+              'margin-left': '23.5%',
+              'text-align': 'left',
+              color: 'green'
+            }"
+          >
+            <h4 style="color: green; font-weight: bold">Add Drugs :</h4>
+            <hr
+              style="height:2px;width:82%;background-color:green; margin-left: 1px;"
+            />
+      
+            <div class="ui-g ui-fluid">
+              <form
+                style="width:100%;"
+                #myForm="ngForm"
+                (ngSubmit)="saveSales()"
+              >
+      
+                <div class="ui-g">
+                  <!-- <div class="ui-md-3 ui-lg-3"></div> -->
+                  <div class="ui-md-10 ui-lg-10 ui-sm-12">
+                    <div class="ui-inputgroup">
+                      <span
+                        class="ui-inputgroup-addon"
+                        style="width: 50%;font-size:15px;"
+                        >Drug Name: <i style="color: red">*</i></span
+                      >
+                      <input
+                        type="number"
+                        required
+                        style="width: 100%"
+                        name="quantity"
+                        
+                        pInputText
+                      />
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="ui-g" style="margin-top:20px !important;">
+                  <div class="ui-md-3 ui-lg-3"></div>
+                  <div class="ui-md-5 ui-lg-5 ui-sm-12">
+                    <button
+                      pButton
+                      type="submit"
+                      label="Save"
+                      [disabled]="myForm.form.invalid"
+                      style="margin-top: 0px; background-color:#479761;width:100%;"
+                   
+                    ></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </p-card>
+        </div>
+      
