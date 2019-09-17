@@ -17,6 +17,9 @@ import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
 import {DropdownModule} from 'primeng/dropdown';
 import { DrugFormationComponent } from './drug-formation/drug-formation.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {CalendarModule} from 'primeng/calendar';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import { DrugFormationComponent } from './drug-formation/drug-formation.componen
     NavBarComponent,
     SalesMainscreenComponent,
     AddCompanyComponent,
-    DrugFormationComponent
+    DrugFormationComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,10 @@ import { DrugFormationComponent } from './drug-formation/drug-formation.componen
     TableModule,
     ToastModule,
     HttpClientModule,
-    DropdownModule
+    DropdownModule,
+    CalendarModule,
+    ProgressSpinnerModule
+    
   
   ],
   providers: [MessageService],

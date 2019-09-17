@@ -14,7 +14,7 @@
 <nav class="main-menu" style="margin-top: 40px;">
   <ul>
     <li style="margin-top: 50px" (click)="routeToAddCompany()">
-      <a>
+      <a style="cursor: pointer">
         <div style="width: 63px">
           <img src="assets/icons8-company-64.png" class="imgClass" />
         </div>
@@ -25,7 +25,7 @@
     </li>
     <!-- icons8-syringe-48 -->
     <li style="margin-top: 13px !important;">
-      <a>
+      <a style="cursor: pointer">
         <div style="width: 63px">
           <img src="assets/icons8-account-48.png" class="imgClass" />
         </div>
@@ -35,7 +35,7 @@
       </a>
     </li>
     <li style="margin-top: 13px !important;">
-      <a>
+      <a style="cursor: pointer">
         <div style="width: 63px">
           <img src="assets/icons8-container-truck-48.png" class="imgClass" />
         </div>
@@ -45,7 +45,7 @@
       </a>
     </li>
     <li style="margin-top: 13px !important;" (click)="routeToAddDrugs()">
-      <a>
+      <a style="cursor: pointer">
         <div style="width: 63px">
           <img src="assets/icons8-pills-48.png" class="imgClass" />
         </div>
@@ -55,7 +55,7 @@
       </a>
     </li>
     <li style="margin-top: 13px !important;">
-      <a>
+      <a style="cursor: pointer">
         <div style="width: 63px">
           <img src="assets/icons8-graph-report-48.png" class="imgClass" />
         </div>
@@ -65,7 +65,7 @@
       </a>
     </li>
     <li style="margin-top: 13px !important;">
-      <a>
+      <a style="cursor: pointer">
         <div style="width: 63px">
           <img src="assets/icons8-user-40.png" class="imgClass" />
         </div>
@@ -74,8 +74,8 @@
         </span>
       </a>
     </li>
-    <li style="margin-top: 13px !important;">
-      <a>
+    <li (click)="routeToDashboard()" style="margin-top: 13px !important;">
+      <a style="cursor: pointer">
         <div style="width: 63px">
           <img src="assets/icons8-dashboard-64.png" class="imgClass" />
         </div>
@@ -85,7 +85,7 @@
       </a>
     </li>
     <li style="margin-top: 13px !important;">
-      <a>
+      <a style="cursor: pointer">
         <div style="width: 63px">
           <img src="assets/icons8-us-dollar-100.png" class="imgClass" />
         </div>
@@ -96,9 +96,9 @@
     </li>
   </ul>
 
-  <ul style="margin-top: 150px">
+  <ul style="margin-top: 50px">
     <li>
-      <a>
+      <a style="cursor: pointer">
         <div style="width: 63px">
           <img
             src="assets/icons8-shutdown-48.png"
