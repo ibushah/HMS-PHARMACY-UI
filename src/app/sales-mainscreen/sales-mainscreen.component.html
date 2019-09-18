@@ -3,6 +3,7 @@
 <hr
   style="height: 1px; background-color: green; width: 80%; margin-left: 12%"
 />
+<p-toast></p-toast>
 
 <div class="ui-g">
   <div class="ui-md-6 ui-lg-6 ui-sm-12">
@@ -25,7 +26,7 @@
         <form
           style="width:100%;"
           #myForm="ngForm"
-          (ngSubmit)="submitlab(); myForm.reset()"
+          (ngSubmit)="getDataInSalesTable()"
         >
           <div class="ui-g">
             <!-- <div class="ui-md-1 ui-lg-1"></div> -->
@@ -36,13 +37,14 @@
                   style="width:50%;font-size:15px;"
                   >Product Name: <i style="color: red">*</i></span
                 >
-                <p-multiSelect
-                  required
+                <p-dropdown 
+                  [options]="dropdownData"
+                  (onChange)="onProductChange()"
+                  [(ngModel)]="salesObj.productRegistration"
                   name="testname"
                   pInputText
                   [style]="{width: '380px', height: '40px'}"
-                
-                ></p-multiSelect>
+                ></p-dropdown>
               </div>
             </div>
           </div>
@@ -58,10 +60,10 @@
                 >
                 <input
                   type="number"
-                  (keypress)="numberOnly($event)"
                   required
                   style="width: 100%"
-                  name="price"
+                  name="quantity"
+                  [(ngModel)]="salesObj.productQuantity"
                   pInputText
                 />
               </div>
@@ -75,15 +77,16 @@
                 <span
                   class="ui-inputgroup-addon"
                   style="width:50%;font-size:15px;"
-                  >Price: <i style="color: red">*</i></span
+                  >Total: <i style="color: red">*</i></span
                 >
                 <!-- <input type="text" required [(ngModel)]="test.details" name="details" pInputText> -->
                 <input
                   type="number"
-                  (keypress)="numberOnly($event)"
+                  
                   required
                   style="width: 100%"
-                  name="price"
+                  name="total"
+                  [(ngModel)]=salesObj.total
                   pInputText
                 />
               </div>
@@ -95,10 +98,10 @@
               <button
                 pButton
                 type="submit"
-                label="Save"
+                label="Add to cart"
                 [disabled]="myForm.form.invalid"
                 style="margin-top: 0px; background-color:#479761;width:100%;"
-                class="colorSetAllButtons"
+             
               ></button>
             </div>
           </div>
@@ -116,28 +119,54 @@
         color: 'green'
       }"
     >
-      <h4 style="color: green; font-weight: bold">View Sales :</h4>
+    <div class="ui-g">
+        <div class="ui-g-2">
+      <h4 style="color: green; font-weight: bold">Cart :</h4>
+    </div>
+    <div class="ui-g-3">
+        <img src="assets/icons8-shopping-cart-30.png" >
+    </div>
+    <div class="ui-g-4"></div>
+    <div class="ui-g-3">
+            <button
+            pButton
+            type="button"
+            label="Save"
+            [disabled]="disablesavebutton"
+            (click)="saveSales()"
+            style="margin-top: 0px; background-color:#479761;width:100%;"        
+          ></button>
+    </div>
+    </div>
       <hr
-        style="height:2px;width:82%;background-color:green; margin-left: 1px;"
+        style="height:2px;width:100%;background-color:green; margin-left: 1px;"
       />
 
       <!-- <p style="margin:10px" [hidden]="facilities.length">No Facility selected!</p> -->
-      <p-table  [ngStyle]="{textAlign:'center'}" [value]="facilities">
+      <p-table [ngStyle]="{textAlign:'center'}" [totalRecords]="totalRecords" #dt [paginator]="true" [rows]="5" [value]="tableData">
           <ng-template pTemplate="header">
               <tr>
                   <th [ngStyle]="{textAlign:'center'}" *ngFor="let col of cols">
                       {{col.header}}
                   </th>
+                  <th style="text-align: center;" pResizableColumn>
+                        Actions
+                 </th>
               </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-car>
-              <tr>
-                  <td *ngFor="let col of cols">
+          <ng-template pTemplate="body" let-car  let-rowData let-rowIndex>
+              <tr [pSelectableRow]="rowData">
+                  <td *ngFor="let col of cols;">
                       {{car[col.field]}}
-                  </td>
+                  </td>  
+                  <td>
+                        <button pButton [ngStyle]="{width:'70px',margin:'6px'}" type="button" label="Delete" (click)="deleteProduct(tableData.indexOf(rowIndex))" class="ui-button-danger"></button>
+
+                  </td>               
               </tr>
           </ng-template>
       </p-table>
     </p-card>
   </div>
 </div>
+
