@@ -1,0 +1,67 @@
+<div class="ui-g-12 ui-g">
+        <div class="ui-lg-6 ui-md-6 ui-sm-12">
+            <button pButton type="button" class="backBtnStyle" (click)="backToMonitor()" style="width:45%;margin-left:30%;background: #479761;; "
+                label="Back"></button>
+        </div>
+
+        <div class="ui-lg-6 ui-md-6 ui-sm-12">
+                <button pButton type="button" class="backBtnStyle" (click)="routertoproductregistration()" style="width:45%;margin-left:30%;background: #479761;; "
+                    label="Register A New Product"></button>
+            </div>
+       </div>
+ <p-card header="Registered Product List" [style]="{  width: '90%',
+'font-size': '20px',
+'text-align': 'center',
+color: 'green',
+'margin-left':'5.5%',
+'margin-right':'5.5%'
+}">
+<div class="ui-g-12 ui-g">
+        <div class="ui-lg-6 ui-md-6 ui-sm-12">
+            <button pButton type="button" class="backBtnStyle" (click)="backToMonitor()" style="width:45%;margin-left:30%;background: #479761;; "
+                label="Back"></button>
+        </div>
+
+        <div class="ui-lg-6 ui-md-6 ui-sm-12">
+                <button pButton type="button" class="backBtnStyle" (click)="routetoaddcompany()" style="width:45%;margin-left:30%;background: #479761;; "
+                    label="Add New Company"></button>
+            </div>
+       </div>
+
+
+    
+    <p-table #dt [columns]="cols" [value]="companydata" [paginator]="true" [rows]="10" [totalRecords]="totalRecords">
+        <ng-template pTemplate="caption">
+            <div style="text-align: right">
+                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto" />
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{ col.header }}
+                </th>
+                <th style="text-align: center;">
+                    Actions
+                </th>
+            </tr>
+          
+        </ng-template>  
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns" style="overflow: auto;">
+                    {{ rowData[col.field] }}
+                </td>
+                <td>
+                        <button pButton [ngStyle]="{width:'80px',margin:'8px'}" type="button" label="Delete" class="ui-button-danger"  (click)="deletePanelByID(rowData['id'])"></button>
+                    <!-- <button pButton type="button" (click)="deletePanelByID(rowData['id'])" class="ui-button-danger" style="width:20%;height: 50px; margin-left: 40%; "> -->
+         
+          <!-- </button> -->
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+
