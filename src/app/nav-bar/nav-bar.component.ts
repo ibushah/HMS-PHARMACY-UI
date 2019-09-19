@@ -24,4 +24,8 @@ export class NavBarComponent implements OnInit {
   {
     this.router.navigate(['dashboard']);
   }
+  routeToGrn()
+  {
+    this.router.navigate(['grn']);
+  }
 }

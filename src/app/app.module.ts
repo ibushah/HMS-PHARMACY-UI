@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule} from '@angular/core';
-
+import {PanelModule} from 'primeng/panel';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ButtonModule} from 'primeng/button';
@@ -20,6 +20,7 @@ import { DrugFormationComponent } from './drug-formation/drug-formation.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {CalendarModule} from 'primeng/calendar';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { GrnFormComponent } from './grn-form/grn-form.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     SalesMainscreenComponent,
     AddCompanyComponent,
     DrugFormationComponent,
-    DashboardComponent
+    DashboardComponent,
+    GrnFormComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     HttpClientModule,
     DropdownModule,
     CalendarModule,
+    PanelModule,
     ProgressSpinnerModule
     
   
