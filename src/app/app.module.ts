@@ -27,7 +27,10 @@ import { DrugFormationListComponent } from './drug-formation-list/drug-formation
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
 import {DropdownModule} from 'primeng/dropdown';
-// import { DrugFormationComponent } from './drug-formation/drug-formation.component';
+
+
+import {NgxPrintModule} from 'ngx-print';
+
 
 
 @NgModule({
@@ -56,11 +59,13 @@ import {DropdownModule} from 'primeng/dropdown';
     RadioButtonModule,
     ToastModule,
     HttpClientModule,
+
     // HttpClientXsrfModule,
 
+    DropdownModule,
+    NgxPrintModule
     
-    ToastModule,
-    HttpClientModule,
+
 
   
   ],
