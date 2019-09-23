@@ -1,0 +1,10 @@
+.heading{
+    text-align: center;
+    color: green;
+    font-weight: bold;
+    margin-top: 1%;
+}
+
+.makeBold{
+    font-weight: bold !important;
+}

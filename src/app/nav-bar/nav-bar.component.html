@@ -13,7 +13,7 @@
 <div class="area"></div>
 <nav class="main-menu" style="margin-top: 40px;">
   <ul>
-    <li style="margin-top: 50px" (click)="routeToAddCompany()">
+    <li style="margin-top: 50px" (click)="routeToCompanylist()">
       <a>
         <div style="width: 63px">
           <img src="assets/icons8-company-64.png" class="imgClass" />
@@ -24,7 +24,7 @@
       </a>
     </li>
     <!-- icons8-syringe-48 -->
-    <li style="margin-top: 13px !important;">
+    <li (click)="routetoproductregistrationlist()" style="margin-top: 13px !important;">
       <a>
         <div style="width: 63px">
           <img src="assets/icons8-account-48.png" class="imgClass" />
@@ -44,7 +44,7 @@
         </span>
       </a>
     </li>
-    <li style="margin-top: 13px !important;" (click)="routeToAddDrugs()">
+    <li (click)=" routetodrugformationList()" style="margin-top: 13px !important;">
       <a>
         <div style="width: 63px">
           <img src="assets/icons8-pills-48.png" class="imgClass" />
