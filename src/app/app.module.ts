@@ -17,6 +17,7 @@ import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
 import {DropdownModule} from 'primeng/dropdown';
 import { DrugFormationComponent } from './drug-formation/drug-formation.component';
+import {NgxPrintModule} from 'ngx-print';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { DrugFormationComponent } from './drug-formation/drug-formation.componen
     TableModule,
     ToastModule,
     HttpClientModule,
-    DropdownModule
+    DropdownModule,
+    NgxPrintModule
   
   ],
   providers: [MessageService],
