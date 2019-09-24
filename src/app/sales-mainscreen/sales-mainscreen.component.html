@@ -48,6 +48,10 @@
                 ></p-dropdown>
               </div>
             </div>
+            <div class=" ui-md-2 ui-lg-2 ui-sm-12">
+              <button pButton type="button" class="backBtnStyle" (click)="routetoProductRegistration()" style="width:75%;background: #479761;; "
+              label="Add "></button>
+            </div>
           </div>
 
           <div class="ui-g">
@@ -136,7 +140,7 @@
             type="button"
             label="Print"
             ngxPrint
-            [disabled]="disablePrintButton"
+            [disabled]="disablePrintButton "
             (click)="emptyPrintDataArray()"
             printSectionId="print-section"
             style="margin-top: 0px; background-color:#479761;width:100%;"
@@ -234,7 +238,7 @@
 
         <hr style="border:1px solid black;width:100%;" />
         <span
-          ><b> Total: </b> <span style="float:right;">{{ total }}</span></span
+          ><b> Total: </b> <span style="float:right;">{{ printTotal }}</span></span
         >
         <hr style="border:1px solid black;width:100%;" />
       </div>
