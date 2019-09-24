@@ -3,6 +3,7 @@ import { SalesService } from "../Services/sales.service";
 import { Sales } from "./sales";
 import { MessageService } from "primeng/api";
 import { TableHeaderCheckbox } from "primeng/table";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-sales-mainscreen",
@@ -25,10 +26,12 @@ export class SalesMainscreenComponent implements OnInit {
   printSlipDate: Date;
   obj: any[];
   total = 0;
+  printTotal: number = 0;
 
   constructor(
     private salesservice: SalesService,
-    private mesgService: MessageService
+    private mesgService: MessageService,
+    private router:Router
   ) {}
 
   ngOnInit() {
@@ -57,15 +60,15 @@ export class SalesMainscreenComponent implements OnInit {
     ];
   }
 
+
   saveSales() {
     this.tableData = [];
-
+    this.neArray = []; 
+    this.total = 0;  
     this.salesservice.saveSales(this.neArray).subscribe(
       data => {
         this.disablePrintButton = false;
         this.disableSaveButton();
-        this.neArray = []; 
-        this.total = 0;  
         this.mesgService.add({
           severity: "success",
           summary: "Successfull",
@@ -83,8 +86,14 @@ export class SalesMainscreenComponent implements OnInit {
   }
 
   emptyPrintDataArray() {
-    // this.printData = [];
+    if(this.printData.length == 0){
+      this.disablePrintButton = true;
+    }
+    this.printData = [];
+    this.printTotal = 0;
+   
   }
+
 
   getProductsIndropdown() {
     this.obj = [];
@@ -114,7 +123,7 @@ export class SalesMainscreenComponent implements OnInit {
   getDataInSalesTable() {
     this.output = [];
     this.total = this.total + this.priceIntoQuantity;
-
+    this.printTotal = this.total; 
     this.disablesavebutton = false;
     this.index += 1;
 
@@ -198,11 +207,9 @@ export class SalesMainscreenComponent implements OnInit {
     return true;
   }
 
-  // for (var i in this.printData) {
-  //   if (this.printData[i].name == this.salesObj.productRegistration['productName']) {
-  //      this.printData[i].quantity +=  this.salesObj.productQuantity;
 
-  //      break; //Stop this loop, we found it!
-  //   }
-  // }
+  routetoProductRegistration(){
+    this.router.navigate(['productreg']);
+  }
+
 }
