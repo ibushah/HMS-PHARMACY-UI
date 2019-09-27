@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {GrnService} from '../Services/grn.service'
+import { GrnService } from '../Services/grn.service';
+import { CompanyServiceService } from '../Services/company-service.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Grn } from './Grn';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-grn-form',
@@ -9,29 +13,71 @@ import {GrnService} from '../Services/grn.service'
 export class GrnFormComponent implements OnInit {
 
   status = [];
-  constructor(private service:GrnService) { }
+  companies = [];
+  id: any;
+  grn: Grn;
+
+  constructor(private messageService: MessageService, private service: GrnService, private companyService: CompanyServiceService, private router: Router, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.status = [
-      { label: 'Select status', value: null },
-      { label: 'active', value: 'ative' },
-      { label: 'not active', value: 'not ative' },
+    this.grn = new Grn();
+    this.id = this.activateRoute.snapshot.params['id'];
 
-    ]
+
+    this.getCompanies();
+    if (this.id)
+      this.getGrn(this.id);
 
   }
 
+  getGrn(id) {
 
-  getCompanies()
-  {
-    
-  }
+    this.service.getGrnById(id).subscribe((response) => {
+      // console.log(response)
+      this.grn = response;
 
-  submitGrn(data) {
-    console.log(data)
-    this.service.postGrn(data).subscribe((response)=>
-    {
-      console.log(response)
+
     })
+  }
+  getCompanies() {
+    this.companies = [{ label: 'Select company', value: null }]
+    this.companyService.getallcompany().subscribe((response) => {
+
+      response.map(company => this.companies.push({ label: company.name, value: company }))
+
+    })
+  }
+
+  submitGrn(data, myForm) {
+
+    if (this.id) {
+      this.service.updateGrnById(this.id, this.grn).subscribe((response) => {
+        this.messageService.add({ severity: 'success', summary: 'Service Message', detail: response });
+
+      }, error => {
+        this.messageService.add({ severity: 'error', summary: 'Service Message', detail: error.error });
+      })
+    }
+    else {
+      this.service.postGrn(data).subscribe((response) => {
+        this.messageService.add({ severity: 'success', summary: 'Service Message', detail: response });
+        myForm.reset();
+      }, error => {
+        this.messageService.add({ severity: 'error', summary: 'Service Message', detail: error.error });
+      })
+    }
+
+  }
+
+  numberOnly(event): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+
+  routeToGrnList() {
+    this.router.navigate(['grnlist'])
   }
 }
