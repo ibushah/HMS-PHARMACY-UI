@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { SalesService } from "../Services/sales.service";
-import { Sales } from "./sales";
+import { Sales, Products } from "./sales";
 import { MessageService } from "primeng/api";
 import { TableHeaderCheckbox } from "primeng/table";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-sales-mainscreen",
@@ -16,6 +16,7 @@ export class SalesMainscreenComponent implements OnInit {
   dropdownData: any[] = [];
   salesObj: Sales = new Sales();
   tableData: any[] = [];
+  productArray:any[] = [];
   output = [{ productName: String, unitPrice: Number }];
   printData: any[] = [];
   totalRecords;
@@ -27,11 +28,13 @@ export class SalesMainscreenComponent implements OnInit {
   obj: any[];
   total = 0;
   printTotal: number = 0;
+  productObj: Products = new Products();
+  addInTable:Boolean = true;
 
   constructor(
     private salesservice: SalesService,
     private mesgService: MessageService,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -39,7 +42,7 @@ export class SalesMainscreenComponent implements OnInit {
 
     this.getProductsIndropdown();
 
-    this.dropdownData = [{ label: "None", value: null }];
+    // this.dropdownData = [{ label: "None", value: null }];
     console.log("table data =>", this.tableData);
   }
 
@@ -48,7 +51,7 @@ export class SalesMainscreenComponent implements OnInit {
       this.disablesavebutton = false;
     } else if (this.tableData.length == 0) {
       this.disablesavebutton = true;
-    }    
+    }
   }
 
   populateCols() {
@@ -60,11 +63,10 @@ export class SalesMainscreenComponent implements OnInit {
     ];
   }
 
-
   saveSales() {
     this.tableData = [];
-    this.neArray = []; 
-    this.total = 0;  
+    this.neArray = [];
+    this.total = 0;
     this.salesservice.saveSales(this.neArray).subscribe(
       data => {
         this.disablePrintButton = false;
@@ -86,14 +88,12 @@ export class SalesMainscreenComponent implements OnInit {
   }
 
   emptyPrintDataArray() {
-    if(this.printData.length == 0){
+    if (this.printData.length == 0) {
       this.disablePrintButton = true;
     }
     this.printData = [];
     this.printTotal = 0;
-   
   }
-
 
   getProductsIndropdown() {
     this.obj = [];
@@ -117,13 +117,31 @@ export class SalesMainscreenComponent implements OnInit {
         unitPrice: d["unitPrice"]
       });
     });
-    console.log("hello=====>>>", this.output);
+    // this.productArray = [];
+    // Object.values(this.obj).map(d => {
+    //   this.productArray.push(d);
+    // });
+
+    this.productObj.id = this.salesObj.productRegistration["id"];
+    this.productObj.maxStock = this.salesObj.productRegistration["maxStock"]
+    console.log("pppppp",this.productObj)
+  }
+
+  getProductQuantity() {
+    this.productObj.productQuantity = this.salesObj.productQuantity;
   }
 
   getDataInSalesTable() {
+    console.log("Product", this.productObj);
+
+    //call
+   this.callForChangeInProductStocks();
+    console.log(this.addInTable);
+    
+    if(this.addInTable){
     this.output = [];
     this.total = this.total + this.priceIntoQuantity;
-    this.printTotal = this.total; 
+    this.printTotal = this.total;
     this.disablesavebutton = false;
     this.index += 1;
 
@@ -155,11 +173,11 @@ export class SalesMainscreenComponent implements OnInit {
       productPrice: this.priceIntoQuantity
     });
 
-    let updatedPrintSlipObj = this.printData.find(obj => 
-      obj['name'] == this.salesObj.productRegistration["productName"]
+    let updatedPrintSlipObj = this.printData.find(
+      obj => obj["name"] == this.salesObj.productRegistration["productName"]
     );
     if (updatedPrintSlipObj) {
-      console.log("=====>",updatedPrintSlipObj)
+      console.log("=====>", updatedPrintSlipObj);
       updatedPrintSlipObj["quantity"] += this.salesObj.productQuantity;
       updatedPrintSlipObj["total"] += this.priceIntoQuantity;
       this.printData.map(d => {
@@ -181,6 +199,7 @@ export class SalesMainscreenComponent implements OnInit {
     console.log("in get table", this.tableData);
     this.totalRecords = this.tableData.length;
   }
+}
 
   calculatePriceQuantityProduct() {
     this.priceIntoQuantity =
@@ -191,11 +210,10 @@ export class SalesMainscreenComponent implements OnInit {
   }
 
   deleteProduct(val: any) {
-    console.log(val, "===========");
-
     this.tableData.splice(val, 1);
     this.printData.splice(val, 1);
     this.neArray.splice(val, 1);
+    this.total = this.total - this.priceIntoQuantity;
     this.disableSaveButton();
   }
 
@@ -207,9 +225,38 @@ export class SalesMainscreenComponent implements OnInit {
     return true;
   }
 
+  callForChangeInProductStocks(){
+    this.salesservice.postQuantity(this.productObj).subscribe(
+      d => {
+        console.log(d);
+        if (d=="maxStock Updated successfully ") {
+          this.addInTable = true;
+          this.mesgService.add({
+            severity: "success",
+            summary: "Successfull",
+            detail: "Sales submitted successfully"
+          });
+        } else if (d=="PRODUCTOUTOFSTOCK") {
+          this.addInTable = false;
+          this.mesgService.add({
+            severity: "warn",
+            summary: "Out Of Stock",
+            detail: "Product Out Of Stock or You entered greater quantity than availaible stocks"
+          });
+        }
+      },
+      error => {
+        this.addInTable = false;
+        this.mesgService.add({
+          severity: "error",
+          summary: "Error",
+          detail: "Error submitting Sales"
+        });
+      }
+    );
 
-  routetoProductRegistration(){
-    this.router.navigate(['productreg']);
   }
-
+  routetoProductRegistration() {
+    this.router.navigate(["productreg"]);
+  }
 }

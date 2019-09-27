@@ -18,4 +18,8 @@
     public getProductRegistrations():Observable<any>{
       return this.http.get(environment.baseUrl + "api/productRegistration/getAll");
     }
+
+    public postQuantity(quantityObj: any):Observable<any>{
+      return this.http.put(environment.baseUrl + "api/productRegistration/update",quantityObj);
+    }
   }
