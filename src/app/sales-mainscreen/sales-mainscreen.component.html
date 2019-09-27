@@ -23,11 +23,19 @@
             <!-- <div class="ui-md-1 ui-lg-1"></div> -->
             <div class="ui-md-12 ui-lg-10 ui-sm-12">
               <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon" style="width:50%;font-size:15px;">Product Name: <i
-                    style="color: red">*</i></span>
-                <p-dropdown [options]="dropdownData" (onChange)="onProductChange()"
-                  [(ngModel)]="salesObj.productRegistration" name="testname" pInputText [style]="{height: '40px' }"
-                  style="width: 100%"></p-dropdown>
+
+               
+                <p-dropdown
+                  [options]="dropdownData"
+                  (onChange)="onProductChange()"
+                  [(ngModel)]="salesObj.productRegistration"
+                  name="testname"
+                  placeholder="Select Product"
+                  pInputText
+                  [style]="{height: '40px' }"
+                  style="width: 100%"
+                ></p-dropdown>
+
               </div>
             </div>
             <div class=" ui-md-2 ui-lg-2 ui-sm-12">
@@ -40,10 +48,23 @@
             <!-- <div class="ui-md-3 ui-lg-3"></div> -->
             <div class="ui-md-12 ui-lg-10 ui-sm-12">
               <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Quantity: <i
-                    style="color: red">*</i></span>
-                <input type="number" required (keypress)="numberOnly($event)" style="width: 100%" name="quantity"
-                  (input)=" calculatePriceQuantityProduct()" [(ngModel)]="salesObj.productQuantity" pInputText />
+
+                <span
+                  class="ui-inputgroup-addon"
+                  style="width: 50%;font-size:15px;"
+                  >Quantity: <i style="color: red">*</i></span
+                >
+                <input
+                  type="number"
+                  required
+                  (keypress)="numberOnly($event)"
+                  style="width: 100%"
+                  name="quantity"
+                  (input)=" calculatePriceQuantityProduct(); getProductQuantity()"
+                  [(ngModel)]="salesObj.productQuantity"
+                  pInputText
+                />
+
               </div>
             </div>
           </div>

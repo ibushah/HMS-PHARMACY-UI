@@ -4,3 +4,10 @@ export class Sales{
     productQuantity: number;
     total: number;
 }
+
+export class Products{
+        id: number;
+        maxStock : number;       
+        productQuantity: number;
+       
+}
