@@ -47,6 +47,9 @@ export class GrnListComponent implements OnInit {
         this.grnData = [...this.grnData, obj]
       })
 
+    },error=>
+    {
+      this.loader=false;
     })
   }
 

@@ -28,6 +28,10 @@ import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
 import {DropdownModule} from 'primeng/dropdown';
 
+import {NgxPrintModule} from 'ngx-print';
+
+
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {CalendarModule} from 'primeng/calendar';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
@@ -65,17 +69,23 @@ import { GrnDetailComponent } from './grn-detail/grn-detail.component';
     BrowserAnimationsModule,
     CardModule,
     TableModule,
-    DropdownModule,
     RadioButtonModule,
     ToastModule,
     HttpClientModule,
 
-    DropdownModule,
+
     CalendarModule,
     PanelModule,
     ProgressSpinnerModule, 
     ToastModule,
-    HttpClientModule
+    HttpClientModule,
+
+    // HttpClientXsrfModule,
+
+    DropdownModule,
+    NgxPrintModule
+    
+
   
   ],
   providers: [MessageService],
