@@ -13,20 +13,30 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  routeToCompanylist(){
-    this.router.navigate(['companylist']);
+  routeToCompanylist() {
+    this.router.navigate(['/companylist']);
   }
-  routetoproductregistrationlist(){
-    this.router.navigate(['productregistrationlist']);
+  routetoproductregistrationlist() {
+    this.router.navigate(['/productregistrationlist']);
   }
-  routetodrugformationList(){
-    this.router.navigate(['drugformationlist']);
+  routetodrugformationList() {
+    this.router.navigate(['/drugformationlist']);
   }
 
-  routeToAddDrugs(){
-    this.router.navigate(['addDrugs']);
+  routeToAddDrugs() {
+    this.router.navigate(['/addDrugs']);
   }
-  routetoSales(){
-    this.router.navigate([''])
+  routetoSales() {
+    this.router.navigate(['/sales'])
+
+
   }
+  routeToDashboard() {
+    this.router.navigate(['dashboard']);
+  }
+  routeToGrn() {
+    this.router.navigate(['grnlist']);
+  }
+
+
 }

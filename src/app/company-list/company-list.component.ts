@@ -37,7 +37,7 @@ companydata:any[];
           id:p.id,
           name:p.name,
           discount:p.discount,
-          productRegistrationList:p.productRegistrationList['productName']
+        
 
  })
       })
@@ -85,5 +85,7 @@ companydata:any[];
 
  
 
-
+  backToMonitor() {
+    history.go(-1);
+  }
 }

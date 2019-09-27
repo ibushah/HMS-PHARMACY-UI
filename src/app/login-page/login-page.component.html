@@ -1,0 +1,85 @@
+<!-- <app-nav-bar></app-nav-bar> -->
+
+<p-toast></p-toast>
+<div class="wrap">
+    <div class="ui-g">
+        <div class="ui-lg-4 ui-md-4 ui-sm-12 col-lg-offset-6 col-md-offset-6">
+            <div class="limiter">
+                <div class="container-login100">
+                    <div class="wrap-login100">
+                        <form class="login100-form validate-form">
+                            <span class="login100-form-title p-b-34 p-t-27">
+                                <b>Log in</b>
+                            </span>
+
+                            <div class="wrap-input100 validate-input"
+                                data-validate="Enter username">
+                                <input class="input100"
+                                    type="text"
+                                    name="username"
+                                    #u1
+                                    placeholder="Username">
+                                <span class="focus-input100"
+                                    data-placeholder="&#xf207;"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input"
+                                data-validate="Enter password">
+                                <input class="input100"
+                                    type="password"
+                                    name="pass"
+                                    #p2
+                                    placeholder="Password">
+                                <span class="focus-input100"
+                                    data-placeholder="&#xf191;"></span>
+                            </div>
+
+
+                            <div class="container-login100-form-btn">
+                                <button (click)="check(u1.value, p2.value)"
+                                    class="login100-form-btn">
+                                    <b>Login</b>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="ui-lg-8 ui-md-8 ui-sm-12">
+            <div class="ui-g">
+                <div class="ui-lg-10 ui-sm-12"
+                    style="margin-top: 13%;">
+                    <h1 class="entry-title h1"><b>WELCOME TO BARKHIA HOSPITAL</b></h1><br>
+                    <h2 style="margin-left: 18%"
+                        class="entry-title h2"><b>PHARMACY APPLICATION</b></h2>
+                </div>
+            </div>
+
+            <div class="ui-g makeItCenter">
+                <div class="ui-lg-4 ui-md-4 ui-sm-12 col-lg-offset-2">
+                    <!-- <br><br><br> -->
+                    <a href="{{opdUrl}}"
+                        
+                        class="bttnOpd">OPD</a>
+                </div>
+                <div class="ui-lg-4 ui-md-4 ui-sm-12 ui-offset-sm-6 col-offset-lg-2">
+                    <!-- <br><br><br> -->
+                    <a href="{{labUrl}}"
+                        
+                        class="bttnlab">LAB</a>
+                </div>
+                <div class="ui-lg-4 ui-md-4 ui-sm-12 col-lg-offset-2">
+                    <!-- <br><br><br> -->
+                    <a href="{{pharmacyUrl}}"
+                        
+                        class="bttnPharmacy">PHARMACY</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

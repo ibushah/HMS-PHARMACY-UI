@@ -30,4 +30,8 @@ this.router.navigate(['productreg'])
     
   }
 
+  backToMonitor(){
+    history.go(-1);
+  }
+
 }

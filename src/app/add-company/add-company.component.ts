@@ -51,6 +51,11 @@ export class AddCompanyComponent implements OnInit {
   routeToCompanylist(){
     this.router.navigate(['companylist']);
   }
+
+
+  backToMonitor() {
+    history.go(-1);
+  }
   }
 
 

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule} from '@angular/core';
-
+import {PanelModule} from 'primeng/panel';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ButtonModule} from 'primeng/button';
@@ -29,9 +29,16 @@ import { HttpClientModule } from '@angular/common/http';
 import {DropdownModule} from 'primeng/dropdown';
 
 
-import {NgxPrintModule} from 'ngx-print';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
+
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {CalendarModule} from 'primeng/calendar';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { GrnFormComponent } from './grn-form/grn-form.component';
+import { GrnListComponent } from './grn-list/grn-list.component';
+import { GrnDetailComponent } from './grn-detail/grn-detail.component';
 
 @NgModule({
   declarations: [
@@ -39,12 +46,21 @@ import {NgxPrintModule} from 'ngx-print';
     NavBarComponent,
     SalesMainscreenComponent,
     AddCompanyComponent,
+
+    DrugFormationComponent,
+    DashboardComponent,
+    GrnFormComponent,
+
     ProductRegistrationComponent,
     CompanyListComponent,
     ProductRegistrationListComponent,
     DrugFormationComponent,
     DrugFormationListComponent,
-    DrugFormationComponent
+    DrugFormationComponent,
+    LoginPageComponent,
+    GrnListComponent,
+    GrnDetailComponent
+
   ],
   imports: [
     BrowserModule,
@@ -55,17 +71,22 @@ import {NgxPrintModule} from 'ngx-print';
     BrowserAnimationsModule,
     CardModule,
     TableModule,
-    DropdownModule,
     RadioButtonModule,
+    ToastModule,
+    HttpClientModule,
+
+
+    CalendarModule,
+    PanelModule,
+    ProgressSpinnerModule, 
     ToastModule,
     HttpClientModule,
 
     // HttpClientXsrfModule,
 
     DropdownModule,
-    NgxPrintModule
     
-
+    
 
   
   ],

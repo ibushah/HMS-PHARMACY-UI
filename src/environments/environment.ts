@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8081/'
+  
+  tokenURL: 'http://localhost:8080/',
+  baseUrl: 'http://localhost:8081/',
+  opdUrl: 'http://localhost:4200/opd',
+  labUrl: 'http://localhost:4201/lab',
+  pharmacyUrl: 'http://localhost:4202/pharmacy'
 };
 
 /*
