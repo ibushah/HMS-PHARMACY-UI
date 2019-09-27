@@ -30,6 +30,7 @@ import {DropdownModule} from 'primeng/dropdown';
 
 
 import {NgxPrintModule} from 'ngx-print';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 
@@ -44,7 +45,8 @@ import {NgxPrintModule} from 'ngx-print';
     ProductRegistrationListComponent,
     DrugFormationComponent,
     DrugFormationListComponent,
-    DrugFormationComponent
+    DrugFormationComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

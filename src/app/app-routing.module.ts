@@ -7,12 +7,19 @@ import { CompanyListComponent } from './company-list/company-list.component';
 import { ProductRegistrationListComponent } from './product-registration-list/product-registration-list.component';
 import { DrugFormationComponent } from './drug-formation/drug-formation.component';
 import { DrugFormationListComponent } from './drug-formation-list/drug-formation-list.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 // import { DrugFormationComponent } from './drug-formation/drug-formation.component';
 
 
 const routes: Routes = [
-  {path: '', component: SalesMainscreenComponent},
+  {
+    path:'',redirectTo:'/pharmacy',pathMatch:'full'
+  },
+  {
+    path:'pharmacy',component:LoginPageComponent
+  },
+  {path: 'sales', component: SalesMainscreenComponent},
   {
     path:"addcompany",component:AddCompanyComponent
   },
