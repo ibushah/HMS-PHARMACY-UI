@@ -1,0 +1,92 @@
+<div style="margin-left:10%;width:80%;">
+    <div class="ui-g">
+
+
+        <div class="ui-g-12">
+            <p-toast></p-toast>
+            <p-card header="Dashboard" [style]="{
+          width: '100%',
+          'font-size': '24px',
+          'text-align': 'center',
+          'color': 'green',
+          'padding-bottom': '5px'
+        }">
+                <div class="ui-g-fluid ">
+                    <hr style="height:2px;width:100%;background-color:green" />
+                    <div style="width: 100%" class="ui-g">
+                        <div class="ui-g-3 ui-sm-12  ui-md-4   ui-lg-4">
+                            <label style="font-size: 25px !important "> Today: </label>
+                            <label
+                                style="font-size:22px !important;color:black;margin-left:10px; text-decoration:underline  ">
+                                {{ showdate }}</label>
+                        </div>
+                        <div class="ui-g-9 ui-sm-12  ui-md-8   ui-lg-8"></div>
+
+
+                        <div style="width: 100%" class="ui-g ui-inputgroup ">
+                            <div class="ui-g-1 ui-sm-12  ui-md-1   ui-lg-1"></div>
+                            <div class="ui-g-5 ui-sm-12  ui-md-5   ui-lg-5">
+                                <span class="ui-inputgroup-addon " style="font-size:14px">From </span>
+                                <p-calendar name="filterByDate" required [monthNavigator]="true" [yearNavigator]="true"
+                                    yearRange="1947:2090" showButtonBar="true" placeholder="Select Date">
+                                </p-calendar>
+                            </div>
+                            <div class="ui-g-1 ui-sm-12  ui-md-1   ui-lg-1"></div>
+                            <div class="ui-g-5 ui-sm-12  ui-md-5   ui-lg-5">
+                                <span class="ui-inputgroup-addon " style="font-size:14px;padding-right:20px">Till  </span>
+                                <p-calendar name="filterByDate" required [monthNavigator]="true" [yearNavigator]="true"
+                                    yearRange="1947:2090" showButtonBar="true" placeholder="Select Date">
+                                </p-calendar>
+                            </div>
+                        </div>
+
+                        <div style="width: 100%" class="ui-g">
+                            <div class="ui-g-3 ui-sm-12  ui-md-3   ui-lg-4"></div>
+                            <div class="ui-g-3 ui-sm-12  ui-md-6   ui-lg-4">
+                                <button pButton type="button" class="backBtnStyle"
+                                    style="width:90%;margin-left:5%;  height:40px;" label="Filter"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-card>
+        </div>
+
+        <div class="ui-g-12">
+            <p-card [style]="{
+          width: '100%',
+          overflow: 'hidden',
+          'margin-top': '0px'
+        }">
+                <div class="row mb-3">
+                    <div class="col-xl-4 col-sm-6 py-2">
+                        <div class="card bg-success text-white h-100">
+                            <div class="card-body bg-success">
+                                <h6 class="text-uppercase">Total Sales:</h6>
+                                <h1 class="display-4">{{ 343223 }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-6 py-2">
+                        <div class="card text-white bg-success h-100">
+                            <div class="card-body bg-danger">
+                                <h6 class="text-uppercase">Out of stock Products:</h6>
+                                <h1 class="display-4">{{ 12 }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-6 py-2">
+                        <div class="card text-white bg-info h-100">
+                            <div class="card-body">
+                                <h6 class="text-uppercase">Running Products:</h6>
+                                <h1 class="display-4">{{ 34 }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </p-card>
+        </div>
+    </div>
+</div>
