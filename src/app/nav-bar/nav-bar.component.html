@@ -1,11 +1,7 @@
 <nav class="navbar navbarCss" style="padding:0px;">
   <div class="container-fluid" style="background-color:#479761">
     <div class="navbar-header">
-      <a
-        class="navbar-brand"
-        style="color:white;font-weight: bold;text-align: center;"
-        >BARKHIA HOSPITAL</a
-      >
+      <a class="navbar-brand" style="color:white;font-weight: bold;text-align: center;">BARKHIA HOSPITAL</a>
     </div>
   </div>
 </nav>
@@ -13,7 +9,8 @@
 <div class="area"></div>
 <nav class="main-menu" style="margin-top: 40px;">
   <ul>
-    <li style="margin-top: 50px" (click)="routeToCompanylist()">
+
+    <li style="margin-top: 50px;cursor: pointer;" (click)="routeToCompanylist()">
       <a>
         <div style="width: 63px">
           <img src="assets/icons8-company-64.png" class="imgClass" />
@@ -23,9 +20,11 @@
         </span>
       </a>
     </li>
-    <!-- icons8-syringe-48 -->
-    <li (click)="routetoproductregistrationlist()" style="margin-top: 13px !important;">
+   
+
+    <li (click)="routetoproductregistrationlist()" style="margin-top: 13px !important;cursor: pointer;">
       <a>
+
         <div style="width: 63px">
           <img src="assets/icons8-account-48.png" class="imgClass" />
         </div>
@@ -34,8 +33,8 @@
         </span>
       </a>
     </li>
-    <li style="margin-top: 13px !important;">
-      <a>
+    <li (click)="routeToGrn()" style="margin-top: 13px !important;cursor: pointer;">
+      <a style="cursor: pointer">
         <div style="width: 63px">
           <img src="assets/icons8-container-truck-48.png" class="imgClass" />
         </div>
@@ -44,8 +43,15 @@
         </span>
       </a>
     </li>
-    <li (click)=" routetodrugformationList()" style="margin-top: 13px !important;">
+
+    <!-- <li style="margin-top: 13px !important;" (click)="routeToAddDrugs()">
+      <a style="cursor: pointer">
+        </a>
+    </li> -->
+
+    <li (click)=" routetodrugformationList()" style="margin-top: 13px !important;cursor: pointer;">
       <a>
+
         <div style="width: 63px">
           <img src="assets/icons8-pills-48.png" class="imgClass" />
         </div>
@@ -63,8 +69,10 @@
           Add Stocks
         </span>
       </a>
+
     </li> -->
     <!-- <li style="margin-top: 13px !important;">
+
       <a>
         <div style="width: 63px">
           <img src="assets/icons8-user-40.png" class="imgClass" />
@@ -84,7 +92,7 @@
         </span>
       </a>
     </li>
-    <li (click)="routetoSales()" style="margin-top: 13px !important;">
+    <li (click)="routeToSales()" style="margin-top: 13px !important;cursor: pointer;">
       <a>
         <div style="width: 63px">
           <img src="assets/icons8-us-dollar-100.png" class="imgClass" />
@@ -100,12 +108,7 @@
     <li>
       <a>
         <div style="width: 63px">
-          <img
-            src="assets/icons8-shutdown-48.png"
-            width="30px"
-            height="30px"
-            style="margin-left: 15px"
-          />
+          <img src="assets/icons8-shutdown-48.png" width="30px" height="30px" style="margin-left: 15px" />
         </div>
         <span class="nav-text">
           Logout

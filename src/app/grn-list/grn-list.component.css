@@ -1,0 +1,21 @@
+.hoverGrn:hover{
+background-color:#479761 !important;
+color: white;
+}
+
+@keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #386310;
+    }
+    40% {
+        stroke: #00e7ad;
+    }
+    66% {
+        stroke: rgb(196, 238, 234);
+    }
+    80%,
+    90% {
+        stroke: #29614e;
+    }
+}

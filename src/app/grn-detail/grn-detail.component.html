@@ -1,0 +1,151 @@
+<div class="ui-g">
+    <div class="ui-lg-6 ui-md-6 ui-sm-12">
+        <button pButton type="button" class="backBtnStyle" (click)="routeToGrnList()"
+            style="width:45%;margin-left:30%;background: #479761;; " label="Back"></button>
+    </div>
+</div>
+
+<div class="ui-g">
+    <div class="ui-g-1">
+    </div>
+    <div class="ui-g-11">
+
+        <p-card [style]="{
+                width: '100%',
+                'font-size': '16px',
+                color: 'green',
+                'margin-top':'20px'
+              }">
+
+            <h4 style="text-align: center;color: green; font-weight: bold">GRN DETAILS:</h4>
+            <hr style="height:2px;width:100%;background-color:green; margin-left: 1px;" />
+
+            <form class="ui-g ui-fluid" #myForm="ngForm" (ngSubmit)="submitGrn(myForm.value,myForm);">
+
+
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Company
+                              </span>
+                        <input [disabled]="true" style="width: 80%;text-indent:5px" type="text" required pInputText
+                            placeholder=" Company" [(ngModel)]="grn.company.name" name="company" />
+                    </div>
+
+
+                </div>
+
+
+
+
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Invoice</span>
+                        <input  style="width: 80%;text-indent:5px" type="text" [disabled]="true"  pInputText
+                            placeholder=" Invoice No" [(ngModel)]="grn.invoice" name="invoice" />
+                    </div>
+
+
+                </div>
+
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Received By:</span>
+                        <input [disabled]="true" style="width:80%;text-indent:5px" [(ngModel)]="grn.receivedBy"
+                            type="text"  pInputText name="receivedBy" placeholder=" Received By" />
+                    </div>
+
+
+                </div>
+
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Product Name</span>
+                        <input [disabled]="true" style="width:80%;text-indent:5px" [(ngModel)]="grn.productName"
+                            type="text" pInputText placeholder=" Product Name" name="productName" />
+                    </div>
+
+                </div>
+
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Packing:</span>
+                        <input [disabled]="true" style="width: 80%;text-indent:5px" [(ngModel)]="grn.packing"
+                            type="text" pInputText required placeholder=" Packing" name="packing" />
+                    </div>
+
+                </div>
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth">Req Quantity: </span>
+                        <input [disabled]="true" style="width: 80%;text-indent:5px" [(ngModel)]="grn.requiredQuantity"
+                            type="text" pInputText required placeholder=" Required Quantity" name="requiredQuantity" />
+                    </div>
+
+                </div>
+
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth">Bonus Quantity: </span>
+                        <input [disabled]="true" style="width: 80%;text-indent:5px" [(ngModel)]="grn.bonusQuantity"
+                            type="text" pInputText required placeholder=" Bonus Quantity:" name="bonusQuantity" />
+                    </div>
+
+                </div>
+
+
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Box Tip: </span>
+                        <input [disabled]="true" style="width: 80%;text-indent:5px" [(ngModel)]="grn.boxTip" type="text"
+                            pInputText required placeholder=" Box Tip" name="boxTip" />
+                    </div>
+
+                </div>
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Discount: <i
+                                style="color: red">*</i></span>
+                        <input [disabled]="true" style="width: 80%;text-indent:5px" [(ngModel)]="grn.discount"
+                            type="text" pInputText required placeholder=" Discount" name="discount" />
+                    </div>
+
+                </div>
+
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Disc Amount:</span>
+                        <input [disabled]="true" style="width: 80%;text-indent:5px" type="text"
+                            [(ngModel)]="grn.discountedAmount" pInputText required placeholder=" Discounted Amount"
+                            name="discountedAmount" />
+                    </div>
+
+                </div>
+
+
+
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Box Rate:</span>
+                        <input [disabled]="true" style="width:80%;text-indent:5px" [(ngModel)]="grn.boxRate" type="text"
+                            pInputText required placeholder=" Box Rate" name="boxRate" />
+                    </div>
+
+                </div>
+                <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Product TotalAmount:
+                            </span>
+                        <input [disabled]="true" style="width:80%;text-indent:5px" type="text"
+                            [(ngModel)]="grn.productTotalAmount" pInputText required placeholder=" Product TotalAmount"
+                            name="productTotalAmount" />
+                    </div>
+
+                </div>
+
+
+
+            </form>
+
+        </p-card>
+    </div>
+</div>
