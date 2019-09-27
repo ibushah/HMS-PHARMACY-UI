@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  
+  tokenURL: 'http://localhost:8080/',
   baseUrl: 'http://localhost:8081/',
   opdUrl: 'http://localhost:4200/opd',
   labUrl: 'http://localhost:4201/lab',
