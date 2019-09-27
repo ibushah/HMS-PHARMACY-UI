@@ -83,6 +83,8 @@ this.showallDrugFormation();
   }
 
  
-
+  backToMonitor() {
+    history.go(-1);
+  }
 
 }

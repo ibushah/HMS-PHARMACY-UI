@@ -44,7 +44,9 @@ export class DrugFormationComponent implements OnInit {
     
   }
 
-
+  backToMonitor() {
+    history.go(-1);
+  }
 
   
 

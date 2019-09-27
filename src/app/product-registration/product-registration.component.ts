@@ -118,4 +118,8 @@ export class ProductRegistrationComponent implements OnInit {
     }
     return true;
   }
+
+  backToMonitor() {
+    history.go(-1);
+  }
 }

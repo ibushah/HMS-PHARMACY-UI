@@ -29,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {DropdownModule} from 'primeng/dropdown';
 
 import {NgxPrintModule} from 'ngx-print';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 
@@ -56,6 +57,7 @@ import { GrnDetailComponent } from './grn-detail/grn-detail.component';
     DrugFormationComponent,
     DrugFormationListComponent,
     DrugFormationComponent,
+    LoginPageComponent,
     GrnListComponent,
     GrnDetailComponent
 
