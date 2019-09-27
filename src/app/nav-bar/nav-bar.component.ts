@@ -14,19 +14,19 @@ export class NavBarComponent implements OnInit {
   }
 
   routeToCompanylist(){
-    this.router.navigate(['companylist']);
+    this.router.navigate(['/companylist']);
   }
   routetoproductregistrationlist(){
-    this.router.navigate(['productregistrationlist']);
+    this.router.navigate(['/productregistrationlist']);
   }
   routetodrugformationList(){
-    this.router.navigate(['drugformationlist']);
+    this.router.navigate(['/drugformationlist']);
   }
 
   routeToAddDrugs(){
-    this.router.navigate(['addDrugs']);
+    this.router.navigate(['/addDrugs']);
   }
   routetoSales(){
-    this.router.navigate([''])
+    this.router.navigate(['/sales'])
   }
 }

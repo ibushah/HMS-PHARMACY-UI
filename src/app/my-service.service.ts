@@ -16,7 +16,7 @@ export class MyServiceService {
       password: pwd
     }
 
-    return this.http.post(environment.tokenURL + "token/generate-token", JSON.stringify(user));
+    return this.http.post(environment.tokenURL + "token/generate-token",user);
 
   }
 }

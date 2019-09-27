@@ -62,11 +62,7 @@ export class LoginPageComponent implements OnInit {
 
 
 
-  goToOpd() {
-    setTimeout(() => {
-      this.router.navigate(['mainscreen'])
-    }, 1000);
-  }
+  
 
   goToPharmacy() {
     setTimeout(() => {

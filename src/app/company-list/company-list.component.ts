@@ -85,5 +85,7 @@ companydata:any[];
 
  
 
-
+  backToMonitor() {
+    history.go(-1);
+  }
 }
