@@ -38,5 +38,12 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['grnlist']);
   }
 
-
+  logout(){
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('userType');
+    console.log(sessionStorage.getItem('token'));
+    // this.isHide = false;
+    this.router.navigate(['']);
+  }
 }
