@@ -55,7 +55,7 @@
                     type="text"
                     required
                     style="width: 100%"
-                    name="productname"
+                    name="productName"
                     required
                     pInputText
                     [(ngModel)]="productRegistration.productName"
@@ -72,7 +72,7 @@
                   >
                   <p-dropdown
                     [options]="company"
-                    name="company"
+                    name="companyProd"
                     placeholder="Select Company"
                     [(ngModel)]="productRegistration.companyProd"
                     [filter]="true"
@@ -111,7 +111,7 @@
                     type="text"
                     required
                     style="width: 100%"
-                    name="productname"
+                    name="formula"
                     pInputText
                     [(ngModel)]="productRegistration.formula"
                     required
@@ -128,7 +128,7 @@
                   >
                   <p-dropdown
                     [options]="drugformation"
-                    name="drugformation"
+                    name="drugFormation"
                     placeholder="Select drugFormation"
                     [(ngModel)]="productRegistration.drugFormation"
                     [filter]="true"
@@ -186,7 +186,7 @@
                     type="text"
                     required
                     style="width: 100%"
-                    name="BoxRate"
+                    name="boxRate"
                     pInputText
                     (keypress)="numberOnly($event)"
                     [(ngModel)]="productRegistration.boxRate"
@@ -209,7 +209,7 @@
                     type="text"
                     required
                     style="width: 100%"
-                    name="MinStock"
+                    name="minStock"
                     (change)="onchangeUnitPrice()"
                     pInputText
                     (keypress)="numberOnly($event)"
@@ -243,7 +243,7 @@
                   <p-radioButton
                     required
                     class="makeBold"
-                    name="activeproduct"
+                    name="activeProduct"
                     label="Active Product"
                     [(ngModel)]="productRegistration.activeProduct"
                     (click)="changeStatus1()"
@@ -255,7 +255,7 @@
                   <p-radioButton
                     required
                     class="makeBold"
-                    name="runningproduct"
+                    name="runningProduct"
                     label="Running Product"
                     [(ngModel)]="productRegistration.runningProduct"
                     (click)="changeStatus2()"

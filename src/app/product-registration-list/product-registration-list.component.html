@@ -18,6 +18,7 @@ color: 'green',
 'margin-left':'5.5%',
 'margin-right':'5.5%'
 }">
+<p-toast> </p-toast>
 <div class="ui-g-12 ui-g">
         <div class="ui-lg-6 ui-md-6 ui-sm-12">
             <button pButton type="button" class="backBtnStyle" (click)="backToMonitor()" style="width:45%;margin-left:30%;background: #479761;; "
@@ -32,7 +33,7 @@ color: 'green',
 
 
     
-    <p-table #dt [columns]="cols" [value]="companydata" [paginator]="true" [rows]="10" [totalRecords]="totalRecords">
+    <p-table #dt [columns]="cols" [value]="productRegistration" [paginator]="true" [rows]="10" [totalRecords]="totalRecords">
         <ng-template pTemplate="caption">
             <div style="text-align: right">
                 <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -57,7 +58,8 @@ color: 'green',
                     {{ rowData[col.field] }}
                 </td>
                 <td>
-                        <button pButton [ngStyle]="{width:'80px',margin:'8px'}" type="button" label="Delete" class="ui-button-danger"  (click)="deletePanelByID(rowData['id'])"></button>
+                    <button pButton [ngStyle]="{width:'80px',margin:'8px'}" type="button" label="Delete" class="ui-button-danger"  (click)="deleteproductregistrationbyid(rowData['id'])"></button>        
+            <button pButton [ngStyle]="{width:'80px',margin:'8px'}" type="button" label="Edit" class="ui-button-success"  (click)="updatebyid(rowData['id'])"></button>
                     <!-- <button pButton type="button" (click)="deletePanelByID(rowData['id'])" class="ui-button-danger" style="width:20%;height: 50px; margin-left: 40%; "> -->
          
           <!-- </button> -->

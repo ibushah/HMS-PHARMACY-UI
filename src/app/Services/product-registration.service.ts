@@ -13,8 +13,8 @@ export class ProductRegistrationService {
 private  postproductregistrationURL=environment.baseUrl+"api/productRegistration/post";
 private getallproductregistrationURL=environment.baseUrl+"api/productRegistration/getAll";
 private deleteproductregistrationbyidURL=environment.baseUrl+"api/productRegistration/delete/";
-private updateproductregistrationURL=environment.baseUrl+"api/productRegistration";
-
+private updateproductregistrationURL=environment.baseUrl+"api/productRegistration/update/";
+private getbyidURL=environment.baseUrl+"api/productRegistration/getOne/";
 public postproductregistration(productregistration:any):Observable<any>{
   return this.http.post(this.postproductregistrationURL,productregistration);
 
@@ -26,10 +26,12 @@ public postproductregistration(productregistration:any):Observable<any>{
    return this.http.delete(this.deleteproductregistrationbyidURL+id);
  }
 
- public updatebyid(id:any,company:any):Observable<any>{
-   return this.http.put(this.updateproductregistrationURL+id,company);
+ public updatebyid(id:any,productRegistration:any):Observable<any>{
+   return this.http.put(this.updateproductregistrationURL+id,productRegistration);
  }
-
+ public getbyid(id:any):Observable<any>{
+  return this.http.get(this.getbyidURL+id);
+}
 
 
 }

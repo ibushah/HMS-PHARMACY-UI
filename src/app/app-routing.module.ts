@@ -48,6 +48,7 @@ const routes: Routes = [
     path: "addcompany", component: AddCompanyComponent
   },
   { path: 'productreg', component: ProductRegistrationComponent },
+  { path: 'productreg/:id', component: ProductRegistrationComponent },
   { path: "companylist", component: CompanyListComponent },
   { path: "productregistrationlist", component: ProductRegistrationListComponent },
   { path: "drugformation", component: DrugFormationComponent },
