@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Grn } from './Grn';
 import { MessageService } from 'primeng/api';
 
+
 @Component({
   selector: 'app-grn-form',
   templateUrl: './grn-form.component.html',
@@ -16,6 +17,7 @@ export class GrnFormComponent implements OnInit {
   companies = [];
   id: any;
   grn: Grn;
+  disable=false;
 
   constructor(private messageService: MessageService, private service: GrnService, private companyService: CompanyServiceService, private router: Router, private activateRoute: ActivatedRoute) { }
 
@@ -48,6 +50,20 @@ export class GrnFormComponent implements OnInit {
     })
   }
 
+  amountDetector()
+  {
+    this.grn.packing=this.grn.packing?this.grn.packing:0;
+    this.grn.boxRate=this.grn.boxRate?this.grn.boxRate:0;
+    this.disable=this.grn.discount>100?true:false;
+    this.grn.discount=this.grn.discount?this.grn.discount:0;
+   
+   
+    
+    this.grn.productTotalAmount=this.grn.boxRate*this.grn.packing;
+    this.grn.discountedAmount=this.grn.productTotalAmount-((this.grn.discount/100)*this.grn.productTotalAmount);
+  
+   
+  }
   submitGrn(data, myForm) {
 
     if (this.id) {
