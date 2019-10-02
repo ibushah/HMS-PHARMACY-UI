@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router,ActivatedRoute } from "@angular/router";
 import { CompanyServiceService } from "../Services/company-service.service";
 import { DrugformationService } from "../Services/drugformation.service";
 import { productRegistration } from "./product-registration";
 import { ProductRegistrationService } from "../Services/product-registration.service";
 import { MessageService } from "primeng/api";
+import { isFulfilled } from 'q';
 
 @Component({
   selector: "app-product-registration",
@@ -14,6 +15,7 @@ import { MessageService } from "primeng/api";
 export class ProductRegistrationComponent implements OnInit {
   productRegistration: productRegistration = new productRegistration();
   company: any[];
+  productid:any;
   unitprice: any;
   drugformation: any[];
   value1: Boolean = false;
@@ -21,15 +23,23 @@ export class ProductRegistrationComponent implements OnInit {
   constructor(
     private messageservice: MessageService,
     private router: Router,
+    private activateroute:ActivatedRoute,
     private companyservice: CompanyServiceService,
     private drugformationservice: DrugformationService,
     private productRegistrationservice: ProductRegistrationService
   ) {}
 
   ngOnInit() {
+    this.productid=this.activateroute.snapshot.params['id'];
     this.getcompaniesdropdown();
-
     this.getdrugFormationdropdown();
+
+    if(this.productid!=null)
+    {
+      this.getbyid(this.productid);
+    }
+
+    
   }
 
   changeStatus1() {
@@ -87,7 +97,28 @@ export class ProductRegistrationComponent implements OnInit {
 
   saveproductregistrtion() {
     console.log(this.productRegistration);
+    if(this.productid!=null){
+      this.productRegistrationservice.updatebyid(this.productid,this.productRegistration).subscribe(
+        data => {
+          
+          this.messageservice.add({
+            severity: "success",
+            summary: "Succesfully",
+            detail: "product Registration updated successfully!"
+          });
+        },
+        error => {
+          console.log(error);
+          this.messageservice.add({
+            severity: "error",
+            summary: "Error Found",
+            detail: "Something went wrong check your internet connection "
+          });
+        }
+      );
 
+    }
+else{
     this.productRegistrationservice
       .postproductregistration(this.productRegistration)
       .subscribe(
@@ -109,6 +140,7 @@ export class ProductRegistrationComponent implements OnInit {
           });
         }
       );
+}
   }
 
   numberOnly(event): boolean {
@@ -122,4 +154,25 @@ export class ProductRegistrationComponent implements OnInit {
   backToMonitor() {
     history.go(-1);
   }
+
+  getbyid(id:any){
+    this.productRegistrationservice.getbyid(id).subscribe(data=>{
+      console.log(data);
+      this.productRegistration.productName=data.productName;
+      this.productRegistration.companyProd=data.companyProd;
+      this.productRegistration.formula=data.formula;
+      this.productRegistration.drugFormation=data.drugFormation;
+      this.productRegistration.packing=data.packing;
+      this.productRegistration.boxRate=data.boxRate;
+      this.productRegistration.minStock=data.minStock;
+      this.productRegistration.maxStock=data.maxStock;
+      this.productRegistration.activeProduct=data.activeProduct;
+      this.productRegistration.runningProduct=data.runningProduct;
+      this.productRegistration.unitPrice=data.unitPrice;
+      this.unitprice=data.unitPrice;
+
+    })
+
+  }
+
 }

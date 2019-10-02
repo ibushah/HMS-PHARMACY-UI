@@ -55,6 +55,10 @@ export class GrnListComponent implements OnInit {
 
 
 
+  backToMonitor(){
+    history.go(-1);
+  }
+
   deleteGrn(id) {
     this.service.deleteGrn(id).subscribe((response) => { this.getGrnList(); 
       this.messageService.add({severity:'error', summary:'Service Message', detail:response}); })

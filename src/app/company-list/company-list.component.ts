@@ -64,12 +64,13 @@ companydata:any[];
       console.log(data);
       if(data){
         this.showallcompanies();
-      }
+      
       this.messageservice.add({
         severity: "success",
         summary: "Succesfully",
         detail: "company succesfully deleted!"
       });
+    }
     },
     error => {
       console.log(error);
