@@ -15,6 +15,10 @@ export class LoginPageComponent implements OnInit {
   labUrl;
   opdUrl;
   pharmacyUrl;
+  token;
+  userName;
+  userType;
+  getType
   constructor(
     private router: Router,
     private messageService: MessageService,
@@ -23,7 +27,7 @@ export class LoginPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.deleteAllHistory = this._location.isCurrentPathEqualTo('opd');
+    this.deleteAllHistory = this._location.isCurrentPathEqualTo('pharmacy');
     this.labUrl = environment.labUrl;
     this.opdUrl = environment.opdUrl;
     this.pharmacyUrl = environment.pharmacyUrl;
@@ -34,22 +38,44 @@ export class LoginPageComponent implements OnInit {
       res => {
         console.log('toker', res);
 
-        sessionStorage.setItem('token', res.result.token);
-        var username = sessionStorage.setItem('username', res.result.username);
-        var userType = sessionStorage.setItem('userType', res.result.userType);
-        var getType = sessionStorage.getItem('userType').toUpperCase();
-        this.succesMethod();
-        this.goToPharmacy();
+        // sessionStorage.setItem('token', res.result.token);
+        // var username = sessionStorage.setItem('username', res.result.username);
+        // var userType = sessionStorage.setItem('userType', res.result.userType);
+        // var getType = sessionStorage.getItem('userType').toUpperCase();
+
+
+        var getType = res.result.userType.toUpperCase();
+
+        if (getType == "LAB" || getType == "PHARMACY") {
+          this.errorMethod("Unauthorized for " + getType + " application")
+        }
+
+        else if (getType = "ADMIN" || getType == "PHARMACY") {
+          this.credentials(res);
+          this.succesMethod();
+          this.goToPharmacy();
+        }
+
+        else {
+
+          this.errorMethod("Not Authorized");
+        }
+
       },
       error => {
         console.log(error);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Service Message',
-          detail: 'Wrong username and password'
-        });
+        this.errorMethod("Not Authorized")
       }
     );
+  }
+
+
+  credentials(res) {
+    sessionStorage.setItem('token', res.result.token);
+    this.userName = sessionStorage.setItem('username', res.result.username);
+    this.userType = sessionStorage.setItem('userType', res.result.userType);
+    this.getType = sessionStorage.getItem('userType').toUpperCase();
+
   }
 
   succesMethod() {
@@ -62,13 +88,25 @@ export class LoginPageComponent implements OnInit {
 
 
 
-  
+  errorMethod(msg: String) {
+    this.messageService.add({
+      severity: 'error',
+      summary: msg.toString(),
+      detail: 'retry login'
+    });
+  }
+
 
   goToPharmacy() {
     setTimeout(() => {
       this.router.navigate(['/sales'])
     }, 1000);
   }
+  // goToLab() {
+  //   setTimeout(() => {
+  //     window.location.href = "http://localhost:4201/showOrProcessReports"
+  //   }, 1000);
+  // }
 
 
 }
