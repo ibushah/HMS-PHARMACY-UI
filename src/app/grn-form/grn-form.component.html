@@ -62,8 +62,8 @@
                 <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
                     <div class="ui-inputgroup">
                         <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Product Name</span>
-                        <input style="width:80%;text-indent:5px" required [(ngModel)]="grn.productName" type="text" pInputText
-                            placeholder=" Product Name" name="productName" />
+                        <input style="width:80%;text-indent:5px" required [(ngModel)]="grn.productName" type="text"
+                            pInputText placeholder=" Product Name" name="productName" />
                     </div>
 
                 </div>
@@ -72,45 +72,48 @@
                     <div class="ui-inputgroup">
                         <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Packing: <i
                                 style="color: red">*</i></span>
-                        <input (keypress)="numberOnly($event)" style="width: 80%;text-indent:5px"
-                            [(ngModel)]="grn.packing" type="text" pInputText required placeholder=" Packing"
-                            name="packing" />
+                        <input (input)="amountDetector()" (keypress)="numberOnly($event)"
+                            style="width: 80%;text-indent:5px" [(ngModel)]="grn.packing" type="text" pInputText required
+                            placeholder=" Packing" name="packing" />
                     </div>
 
                 </div>
 
-               
+
 
 
                 <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
                     <div class="ui-inputgroup">
                         <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Box Rate: <i
                                 style="color: red">*</i></span>
-                        <input (keypress)="numberOnly($event)" style="width:80%;text-indent:5px"
-                            [(ngModel)]="grn.boxRate" type="text" pInputText required placeholder=" Box Rate"
-                            name="boxRate" />
+                        <input (input)="amountDetector()" (keypress)="numberOnly($event)"
+                            style="width:80%;text-indent:5px" [(ngModel)]="grn.boxRate" type="text" pInputText required
+                            placeholder=" Box Rate" name="boxRate" />
                     </div>
 
                 </div>
-              
+
                 <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
                     <div class="ui-inputgroup">
                         <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Product TotalAmount:
                             <i style="color: red">*</i></span>
-                        <input (keypress)="numberOnly($event)" style="width:80%;text-indent:5px" type="text"
-                            [(ngModel)]="grn.productTotalAmount" pInputText required placeholder=" Product TotalAmount"
+                        <input [disabled]="true" (keypress)="numberOnly($event)" style="width:80%;text-indent:5px"
+                            type="text" [(ngModel)]="grn.productTotalAmount" pInputText required placeholder="0"
                             name="productTotalAmount" />
                     </div>
 
                 </div>
-                 
+
                 <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
                     <div class="ui-inputgroup">
                         <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Discount: <i
                                 style="color: red">*</i></span>
-                        <input (keypress)="numberOnly($event)" style="width: 80%;text-indent:5px"
-                            [(ngModel)]="grn.discount" type="text" pInputText required placeholder=" Discount"
-                            name="discount" />
+                        <input (input)="amountDetector()" (keypress)="numberOnly($event)"
+                            style="width: 80%;text-indent:5px" [(ngModel)]="grn.discount" type="text" pInputText
+                            required placeholder=" Discount in %" name="discount" />
+                    </div>
+                    <div style="padding:0px;margin-bottom:0px !important" *ngIf="disable" class="alert alert-danger">
+                        Discount cannot be more than 100%
                     </div>
 
                 </div>
@@ -119,9 +122,9 @@
                     <div class="ui-inputgroup">
                         <span style="width: 40%" class="ui-inputgroup-addon spanWidth"> Disc Amount: <i
                                 style="color: red">*</i></span>
-                        <input (keypress)="numberOnly($event)" style="width: 80%;text-indent:5px" type="text"
-                            [(ngModel)]="grn.discountedAmount" pInputText required placeholder=" Discounted Amount"
-                            name="discountedAmount" />
+                        <input [disabled]="true" (keypress)="numberOnly($event)" style="width: 80%;text-indent:5px"
+                            type="text" [(ngModel)]="grn.discountedAmount" pInputText required
+                            placeholder=" Discounted Amount" name="discountedAmount" />
                     </div>
 
                 </div>
@@ -138,8 +141,8 @@
 
 
 
-              
-              
+
+
 
 
                 <div class="ui-g-6 ui-lg-6 ui-sm-12 ui-md-12">
@@ -166,7 +169,7 @@
                 </div>
 
                 <div style="width:100%" class="ui-g-12">
-                    <button style="width: 100%;" type="submit" [disabled]="myForm.invalid"
+                    <button style="width: 100%;" type="submit" [disabled]="myForm.invalid || disable"
                         class="btn btn-success btn-block submitBtnStyle">
                         Submit
                     </button>

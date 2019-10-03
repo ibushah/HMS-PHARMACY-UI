@@ -2,14 +2,14 @@ export class Grn {
     invoice: Number;
     receivedBy: String;
     productName: String;
-    packing: Number;
+    packing: any;
     requiredQuantity: Number;
     bonusQuantity: Number;
     boxTip: Number;
-    Discount: Number;
-    DiscountedAmount: Number;
-    boxRate: Number;
-    productTotalAmount: Number;
+    discount: any;
+    discountedAmount: any;
+    boxRate: any;
+    productTotalAmount: any;
     company:Object={
         name:String
     };
