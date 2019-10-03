@@ -40,6 +40,7 @@ import { GrnFormComponent } from './grn-form/grn-form.component';
 import { GrnListComponent } from './grn-list/grn-list.component';
 import { GrnDetailComponent } from './grn-detail/grn-detail.component';
 import {NgxPrintModule} from 'ngx-print';
+import { SalesListComponent } from './sales-list/sales-list.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import {NgxPrintModule} from 'ngx-print';
     DrugFormationComponent,
     LoginPageComponent,
     GrnListComponent,
-    GrnDetailComponent
+    GrnDetailComponent,
+    SalesListComponent
 
   ],
   imports: [
