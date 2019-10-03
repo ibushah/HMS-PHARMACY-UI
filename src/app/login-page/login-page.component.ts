@@ -19,6 +19,7 @@ export class LoginPageComponent implements OnInit {
   userName;
   userType;
   getType
+  showErrorMessage: Boolean = false;
   constructor(
     private router: Router,
     private messageService: MessageService,
@@ -38,31 +39,30 @@ export class LoginPageComponent implements OnInit {
       res => {
         console.log('toker', res);
 
-        // sessionStorage.setItem('token', res.result.token);
-        // var username = sessionStorage.setItem('username', res.result.username);
-        // var userType = sessionStorage.setItem('userType', res.result.userType);
-        // var getType = sessionStorage.getItem('userType').toUpperCase();
-
+        
 
         var getType = res.result.userType.toUpperCase();
 
         if (getType == "LAB" || getType == "PHARMACY") {
           this.errorMethod("Unauthorized for PHARMACY application")
+          this.showErrorMessage = true;
         }
 
         else if (getType = "ADMIN" || getType == "PHARMACY") {
           this.credentials(res);
           this.succesMethod();
+          this.showErrorMessage = false;
           this.goToPharmacy();
         }
 
         else {
-
+           this.showErrorMessage = true;
           this.errorMethod("Not Authorized");
         }
 
       },
       error => {
+        this.showErrorMessage = true;
         console.log(error);
         this.errorMethod("Not Authorized")
       }
