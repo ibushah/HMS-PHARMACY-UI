@@ -47,7 +47,7 @@ export class LoginPageComponent implements OnInit {
         var getType = res.result.userType.toUpperCase();
 
         if (getType == "LAB" || getType == "PHARMACY") {
-          this.errorMethod("Unauthorized for " + getType + " application")
+          this.errorMethod("Unauthorized for PHARMACY application")
         }
 
         else if (getType = "ADMIN" || getType == "PHARMACY") {
