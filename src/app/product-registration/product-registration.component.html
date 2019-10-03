@@ -169,6 +169,7 @@
                     style="width: 100%"
                     name="packing"
                     pInputText
+                    
                     (keypress)="numberOnly($event)"
                     [(ngModel)]="productRegistration.packing"
                   />
@@ -212,6 +213,7 @@
                     name="minStock"
                     (change)="onchangeUnitPrice()"
                     pInputText
+                    [disabled]="disableMaxAndMinStock()"
                     (keypress)="numberOnly($event)"
                     [(ngModel)]="productRegistration.minStock"
                   />
@@ -231,6 +233,7 @@
                     style="width: 100%"
                     name="maxStock"
                     pInputText
+                    [disabled]="disableMaxAndMinStock()"
                     (keypress)="numberOnly($event)"
                     [(ngModel)]="productRegistration.maxStock"
                   />
@@ -265,12 +268,12 @@
               <div class="ui-md-4 ui-lg-4 ui-sm-12">
                 <div class="ui-g-12">
                   <label class="makeBold" style="font-size:16px;"
-                    >Unit Price:{{ unitprice }}
+                    >Unit Price:{{ unitprice | number : '1.2-2' }}
                   </label>
                 </div>
               </div>
             </div>
-
+            
             <div class="ui-g">
               <div class="ui-md-3 ui-lg-3 ui-sm-12"></div>
               <div class="ui-md-6 ui-lg-6 ui-sm-12">

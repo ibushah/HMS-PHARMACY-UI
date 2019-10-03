@@ -39,6 +39,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { GrnFormComponent } from './grn-form/grn-form.component';
 import { GrnListComponent } from './grn-list/grn-list.component';
 import { GrnDetailComponent } from './grn-detail/grn-detail.component';
+import {NgxPrintModule} from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { GrnDetailComponent } from './grn-detail/grn-detail.component';
     // HttpClientXsrfModule,
 
     DropdownModule,
+    NgxPrintModule
     
     
 

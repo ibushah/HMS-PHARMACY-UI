@@ -61,7 +61,7 @@ export class GrnListComponent implements OnInit {
 
   deleteGrn(id) {
     this.service.deleteGrn(id).subscribe((response) => { this.getGrnList(); 
-      this.messageService.add({severity:'error', summary:'Service Message', detail:response}); })
+      this.messageService.add({severity:'success', summary:'Service Message', detail:response}); })
   }
   gotoDetails(id) {
     this.router.navigate(['grndetail/' + id])

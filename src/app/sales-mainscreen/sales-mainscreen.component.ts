@@ -1,8 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 import { SalesService } from "../Services/sales.service";
 import { Sales, Products } from "./sales";
 import { MessageService } from "primeng/api";
-import { TableHeaderCheckbox } from "primeng/table";
 import { Router } from "@angular/router";
 
 @Component({
@@ -16,21 +15,22 @@ export class SalesMainscreenComponent implements OnInit {
   dropdownData: any[] = [];
   salesObj: Sales = new Sales();
   tableData: any[] = [];
-  productArray:any[] = [];
+  productArray: any[] = [];
   output = [{ productName: String, unitPrice: Number }];
   printData: any[] = [];
   totalRecords;
   priceIntoQuantity = 1;
   disablesavebutton: Boolean = true;
   disablePrintButton: Boolean = true;
+  disableAddToCartButton: Boolean = true;
   index = 0;
   printSlipDate: Date;
   obj: any[];
   total = 0;
   printTotal: number = 0;
   productObj: Products = new Products();
-  addInTable:Boolean = true;
-
+  addInTable: Boolean = true;
+  
   constructor(
     private salesservice: SalesService,
     private mesgService: MessageService,
@@ -42,7 +42,6 @@ export class SalesMainscreenComponent implements OnInit {
 
     this.getProductsIndropdown();
 
-    // this.dropdownData = [{ label: "None", value: null }];
     console.log("table data =>", this.tableData);
   }
 
@@ -51,6 +50,15 @@ export class SalesMainscreenComponent implements OnInit {
       this.disablesavebutton = false;
     } else if (this.tableData.length == 0) {
       this.disablesavebutton = true;
+    }
+  }
+
+  disableUnit(){
+    if(this.salesObj.productRegistration){
+      return false;
+    }
+    else{
+      return true;
     }
   }
 
@@ -65,12 +73,14 @@ export class SalesMainscreenComponent implements OnInit {
 
   saveSales() {
     this.tableData = [];
-    this.neArray = [];
     this.total = 0;
     this.salesservice.saveSales(this.neArray).subscribe(
       data => {
         this.disablePrintButton = false;
         this.disableSaveButton();
+        this.disableAddToCartButton = true;
+
+        this.neArray = [];
         this.mesgService.add({
           severity: "success",
           summary: "Successfull",
@@ -87,12 +97,15 @@ export class SalesMainscreenComponent implements OnInit {
     );
   }
 
+
+  
+
   emptyPrintDataArray() {
-    if (this.printData.length == 0) {
-      this.disablePrintButton = true;
-    }
     this.printData = [];
     this.printTotal = 0;
+    if (this.printData.length == 0) {
+      this.disablePrintButton = true;
+    }   
   }
 
   getProductsIndropdown() {
@@ -117,34 +130,25 @@ export class SalesMainscreenComponent implements OnInit {
         unitPrice: d["unitPrice"]
       });
     });
-    // this.productArray = [];
-    // Object.values(this.obj).map(d => {
-    //   this.productArray.push(d);
-    // });
 
     this.productObj.id = this.salesObj.productRegistration["id"];
-    this.productObj.maxStock = this.salesObj.productRegistration["maxStock"]
-    console.log("pppppp",this.productObj)
+    this.productObj.maxStock = this.salesObj.productRegistration["maxStock"];
   }
 
   getProductQuantity() {
     this.productObj.productQuantity = this.salesObj.productQuantity;
+    if (this.salesObj.productQuantity > this.productObj.maxStock)
+      this.addInTable = false;
+    else this.addInTable = true;
   }
 
   getDataInSalesTable() {
     console.log("Product", this.productObj);
-
-    //call
-   this.callForChangeInProductStocks();
-    console.log(this.addInTable);
-    
-    if(this.addInTable){
     this.output = [];
     this.total = this.total + this.priceIntoQuantity;
     this.printTotal = this.total;
     this.disablesavebutton = false;
     this.index += 1;
-
     //updateeeeee
     let updatedObj = this.tableData.find(
       d => d.name == this.salesObj.productRegistration["productName"]
@@ -158,7 +162,9 @@ export class SalesMainscreenComponent implements OnInit {
           return updatedObj;
         else t;
       });
-    } else {
+    }
+    //clear Form when there is data in table
+    else {
       this.tableData.push({
         sno: this.index,
         name: this.salesObj.productRegistration["productName"],
@@ -194,26 +200,32 @@ export class SalesMainscreenComponent implements OnInit {
     }
 
     this.printSlipDate = new Date();
-    console.log("haasdjhjshaashjkas", this.neArray);
-    console.log("print data =====>", this.printData);
-    console.log("in get table", this.tableData);
     this.totalRecords = this.tableData.length;
   }
-}
 
   calculatePriceQuantityProduct() {
-    this.priceIntoQuantity =
-      this.salesObj.productRegistration["unitPrice"] *
-      this.salesObj.productQuantity;
+    this.priceIntoQuantity = parseFloat(
+      (
+        this.salesObj.productRegistration["unitPrice"] *
+        this.salesObj.productQuantity
+      ).toFixed(2)
+    );
     console.log(this.priceIntoQuantity);
-    this.salesObj.total = this.priceIntoQuantity;
+    this.salesObj.total = parseFloat(this.priceIntoQuantity.toFixed(2));
   }
 
-  deleteProduct(val: any) {
+  deleteProduct(val: any, price: any) {
+    console.log(price);
+
+    this.salesservice.addMaxStocks(this.productObj).subscribe(d=>{
+      console.log(d);
+    })
+
     this.tableData.splice(val, 1);
     this.printData.splice(val, 1);
     this.neArray.splice(val, 1);
-    this.total = this.total - this.priceIntoQuantity;
+    this.total = this.total - price.toFixed(2);
+    this.total = parseInt(this.total.toFixed(2));
     this.disableSaveButton();
   }
 
@@ -225,28 +237,35 @@ export class SalesMainscreenComponent implements OnInit {
     return true;
   }
 
-  callForChangeInProductStocks(){
+  clearForm() {
+    this.salesObj.productRegistration = "";
+    this.salesObj.total = 0;
+    this.salesObj.productQuantity = 0;
+  }
+
+  callForChangeInProductStocks() {
     this.salesservice.postQuantity(this.productObj).subscribe(
       d => {
-        console.log(d);
-        if (d=="maxStock Updated successfully ") {
-          this.addInTable = true;
+        let maxStock = Object.values(d).toString();
+        if (maxStock == "MAXSTOCKUPDATED") {
+          this.getDataInSalesTable();
+          this.clearForm();
           this.mesgService.add({
             severity: "success",
             summary: "Successfull",
             detail: "Sales submitted successfully"
           });
-        } else if (d=="PRODUCTOUTOFSTOCK") {
-          this.addInTable = false;
+        } else if (maxStock == "PRODUCTOUTOFSTOCK") {
+          this.clearForm();
           this.mesgService.add({
             severity: "warn",
             summary: "Out Of Stock",
-            detail: "Product Out Of Stock or You entered greater quantity than availaible stocks"
+            detail:
+              "Product Out Of Stock or You entered greater quantity than availaible stocks"
           });
         }
       },
       error => {
-        this.addInTable = false;
         this.mesgService.add({
           severity: "error",
           summary: "Error",
@@ -254,7 +273,6 @@ export class SalesMainscreenComponent implements OnInit {
         });
       }
     );
-
   }
   routetoProductRegistration() {
     this.router.navigate(["productreg"]);

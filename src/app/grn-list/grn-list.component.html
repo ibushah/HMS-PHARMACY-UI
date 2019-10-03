@@ -66,10 +66,10 @@ color: 'green',
                     </td>
                     <td>
 
-                        <button pButton [ngStyle]="{width:'100px',margin:'2px'}" type="button" label="Update"
-                            class="ui-button-info" (click)="updateGrn(rowData['id'])"></button>
                         <button pButton [ngStyle]="{width:'100px',margin:'2px'}" type="button" label="Delete"
                             class="ui-button-danger" (click)="deleteGrn(rowData['id'])"></button>
+                            <button pButton [ngStyle]="{width:'100px',margin:'2px'}" type="button" label="Edit"
+                            class="ui-button-success" (click)="updateGrn(rowData['id'])"></button>
 
                     </td>
                 </tr>

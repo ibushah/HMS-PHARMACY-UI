@@ -22,4 +22,8 @@
     public postQuantity(quantityObj: any):Observable<any>{
       return this.http.put(environment.baseUrl + "api/productRegistration/update",quantityObj);
     }
+
+    public addMaxStocks(addmaxobj: any): Observable<any>{
+      return this.http.put(environment.baseUrl + "api/productRegistration/addmaxstock",addmaxobj);
+    }
   }
