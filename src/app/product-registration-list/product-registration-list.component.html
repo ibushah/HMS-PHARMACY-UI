@@ -1,5 +1,5 @@
 <app-nav-bar></app-nav-bar>
-
+<div class="ui-g">
 <div class="ui-g-12 ui-g">
         <div class="ui-lg-6 ui-md-6 ui-sm-12">
             <button pButton type="button" class="backBtnStyle" (click)="backToMonitor()" style="width:45%;margin-left:30%;background: #479761;; "
@@ -11,7 +11,8 @@
                     label="Register A New Product"></button>
             </div>
        </div>
- <p-card header="Registered Product List" [style]="{  width: '90%',
+       </div>
+ <p-card header="" [style]="{  width: '90%',
 'font-size': '20px',
 'text-align': 'center',
 color: 'green',
@@ -19,22 +20,13 @@ color: 'green',
 'margin-right':'5.5%'
 }">
 <p-toast> </p-toast>
-<div class="ui-g-12 ui-g">
-        <div class="ui-lg-6 ui-md-6 ui-sm-12">
-            <button pButton type="button" class="backBtnStyle" (click)="backToMonitor()" style="width:45%;margin-left:30%;background: #479761;; "
-                label="Back"></button>
-        </div>
-
-        <div class="ui-lg-6 ui-md-6 ui-sm-12">
-                <button pButton type="button" class="backBtnStyle" (click)="routetoaddcompany()" style="width:45%;margin-left:30%;background: #479761;; "
-                    label="Add New Company"></button>
-            </div>
-       </div>
-
-
     
     <p-table #dt [columns]="cols" [value]="productRegistration" [paginator]="true" [rows]="10" [totalRecords]="totalRecords">
         <ng-template pTemplate="caption">
+                <div class="ui-g-12">
+                        <h2 style="font-weight:bold;color: green;">REGISTER PRODUCT LIST</h2>
+                        <hr style="background-color:rgb(11, 92, 58);height:3px;" />
+                    </div>
             <div style="text-align: right">
                 <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
                 <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto" />
