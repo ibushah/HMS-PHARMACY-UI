@@ -5,8 +5,9 @@ export class productRegistration{
     boxRate:number;
     minStock:number;
     maxStock:number;
-    activeProduct:boolean=false;
-    runningProduct:boolean=false;
+    state:String="activeProduct"
+    // activeProduct:String="runningProduct";
+    // runningProduct:String="activeProduct";
     companyProd:{};
     drugFormation:{};
     unitPrice:number;

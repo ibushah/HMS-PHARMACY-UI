@@ -43,10 +43,10 @@ export class ProductRegistrationComponent implements OnInit {
   }
 
   changeStatus1() {
-    this.productRegistration.activeProduct = true;
+    this.productRegistration.state ="activeProduct";
   }
   changeStatus2() {
-    this.productRegistration.runningProduct = true;
+    this.productRegistration.state ="runningProduct";
   }
 
   onchangeUnitPrice() {
@@ -179,8 +179,7 @@ else{
       this.productRegistration.boxRate=data.boxRate;
       this.productRegistration.minStock=data.minStock;
       this.productRegistration.maxStock=data.maxStock;
-      this.productRegistration.activeProduct=data.activeProduct;
-      this.productRegistration.runningProduct=data.runningProduct;
+      this.productRegistration.state=data.state;
       this.productRegistration.unitPrice=data.unitPrice;
       this.unitprice=data.unitPrice;
 

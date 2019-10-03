@@ -248,7 +248,8 @@
                     class="makeBold"
                     name="activeProduct"
                     label="Active Product"
-                    [(ngModel)]="productRegistration.activeProduct"
+                    value="activeProduct"
+                    [(ngModel)]="productRegistration.state"
                     (click)="changeStatus1()"
                   ></p-radioButton>
                 </div>
@@ -259,8 +260,9 @@
                     required
                     class="makeBold"
                     name="runningProduct"
+                    value="runningProduct"
                     label="Running Product"
-                    [(ngModel)]="productRegistration.runningProduct"
+                    [(ngModel)]="productRegistration.state"
                     (click)="changeStatus2()"
                   ></p-radioButton>
                 </div>
