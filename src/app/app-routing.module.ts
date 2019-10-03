@@ -15,6 +15,8 @@ import { GrnDetailComponent } from './grn-detail/grn-detail.component'
 import { DrugFormationListComponent } from './drug-formation-list/drug-formation-list.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AuthGuardService } from './guard/auth-guard.service';
+import { SalesListComponent } from './sales-list/sales-list.component';
 
 
 
@@ -26,41 +28,27 @@ const routes: Routes = [
   {
     path: 'pharmacy', component: LoginPageComponent
   },
-  // {
-  //   path: '',component:NavBarComponent,
-  //   children:[
-  //     { path: 'sales', component: SalesMainscreenComponent },
-  //     {
-  //       path: "addcompany", component: AddCompanyComponent
-  //     },
-  //     { path: 'productreg', component: ProductRegistrationComponent },
-  //     { path: "companylist", component: CompanyListComponent },
-  //     { path: "productregistrationlist", component: ProductRegistrationListComponent },
-  //     { path: "drugformation", component: DrugFormationComponent },
-  //     { path: "drugformationlist", component: DrugFormationListComponent },
-  //     {
-  //       path: "addDrugs", component: DrugFormationComponent
-  //     }
-  //   ]
-  // },
-  { path: 'sales', component: SalesMainscreenComponent },
+
+  { path: 'sales', canActivate: [AuthGuardService], component: SalesMainscreenComponent },
   {
-    path: "addcompany", component: AddCompanyComponent
+    path: "addcompany", canActivate: [AuthGuardService], component: AddCompanyComponent
   },
-  { path: 'productreg', component: ProductRegistrationComponent },
-  { path: 'productreg/:id', component: ProductRegistrationComponent },
-  { path: "companylist", component: CompanyListComponent },
-  { path: "productregistrationlist", component: ProductRegistrationListComponent },
-  { path: "drugformation", component: DrugFormationComponent },
-  { path: "drugformationlist", component: DrugFormationListComponent },
+  { path: 'productreg', canActivate: [AuthGuardService], component: ProductRegistrationComponent },
+  { path: 'productreg/:id', canActivate: [AuthGuardService], component: ProductRegistrationComponent },
+  { path: "companylist", canActivate: [AuthGuardService], component: CompanyListComponent },
+  { path: "productregistrationlist", canActivate: [AuthGuardService], component: ProductRegistrationListComponent },
+  { path: "drugformation", canActivate: [AuthGuardService], component: DrugFormationComponent },
+  { path: "drugformationlist", canActivate: [AuthGuardService], component: DrugFormationListComponent },
   {
-    path: "addDrugs", component: DrugFormationComponent
+    path: "addDrugs", canActivate: [AuthGuardService], component: DrugFormationComponent
   },
-  { path: "dashboard", component: DashboardComponent },
-  { path: "grn/:id", component: GrnFormComponent },
-  { path: "grn", component: GrnFormComponent },
-  { path: "grnlist", component: GrnListComponent },
-  { path: "grndetail/:id", component: GrnDetailComponent }
+  { path: "dashboard", canActivate: [AuthGuardService], component: DashboardComponent },
+  { path: "grn/:id", canActivate: [AuthGuardService], component: GrnFormComponent },
+  { path: "grn", canActivate: [AuthGuardService], component: GrnFormComponent },
+  { path: "grnlist", canActivate: [AuthGuardService], component: GrnListComponent },
+  { path: "grndetail/:id", canActivate: [AuthGuardService], component: GrnDetailComponent },
+  { path: 'salesList', canActivate: [AuthGuardService], component: SalesListComponent },
+
 
 
 

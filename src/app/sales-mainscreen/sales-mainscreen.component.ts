@@ -101,11 +101,11 @@ export class SalesMainscreenComponent implements OnInit {
   
 
   emptyPrintDataArray() {
-    if (this.printData.length == 0) {
-      this.disablePrintButton = true;
-    }
     this.printData = [];
     this.printTotal = 0;
+    if (this.printData.length == 0) {
+      this.disablePrintButton = true;
+    }   
   }
 
   getProductsIndropdown() {
