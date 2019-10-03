@@ -16,6 +16,7 @@ import { DrugFormationListComponent } from './drug-formation-list/drug-formation
 import { LoginPageComponent } from './login-page/login-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AuthGuardService } from './guard/auth-guard.service';
+import { SalesListComponent } from './sales-list/sales-list.component';
 
 
 
@@ -45,7 +46,9 @@ const routes: Routes = [
   { path: "grn/:id", canActivate: [AuthGuardService], component: GrnFormComponent },
   { path: "grn", canActivate: [AuthGuardService], component: GrnFormComponent },
   { path: "grnlist", canActivate: [AuthGuardService], component: GrnListComponent },
-  { path: "grndetail/:id", canActivate: [AuthGuardService], component: GrnDetailComponent }
+  { path: "grndetail/:id", canActivate: [AuthGuardService], component: GrnDetailComponent },
+  { path: 'salesList', canActivate: [AuthGuardService], component: SalesListComponent },
+
 
 
 
