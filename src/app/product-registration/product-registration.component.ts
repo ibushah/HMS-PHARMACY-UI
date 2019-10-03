@@ -95,6 +95,18 @@ export class ProductRegistrationComponent implements OnInit {
     });
   }
 
+
+  disableMaxAndMinStock(){
+
+    if(this.productRegistration.packing && this.productRegistration.boxRate){
+      return false;
+    }
+    else{
+      return true;
+    }
+
+  }
+
   saveproductregistrtion() {
     console.log(this.productRegistration);
     if(this.productid!=null){
@@ -123,6 +135,7 @@ else{
       .postproductregistration(this.productRegistration)
       .subscribe(
         data => {
+          this.unitprice = 0;
           this.productRegistration.companyProd = "";
           console.log(this.company);
           this.messageservice.add({

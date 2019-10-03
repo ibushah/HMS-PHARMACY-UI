@@ -49,7 +49,7 @@ this.router.navigate(['productreg'])
           boxrate:p.boxRate,
           minstock:p.minStock,
           maxstock:p.maxStock,
-          unitprice:p.unitPrice
+          unitprice:p.unitPrice.toFixed(2)
         
 
  })
