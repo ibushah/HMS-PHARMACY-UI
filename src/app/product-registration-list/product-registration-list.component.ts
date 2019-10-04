@@ -35,9 +35,9 @@ this.router.navigate(['productreg'])
     this.productRegistration=[];
 
     this.productregistrationservice.getallproductregistration().subscribe(data=>{
-      console.log(data);
+      // console.log(data);
       data.map(p=>{
-        console.log("fmkmfa",p.productRegistrationList);
+        // console.log("fmkmfa",p.productRegistrationList);
         this.productRegistration.push({
           
           id:p.id,
@@ -87,7 +87,7 @@ this.router.navigate(['productreg'])
     this.productregistrationservice.deletebyid(id).subscribe(
       data=>{
 
-      console.log(data);
+      // console.log(data);
       if(data){
         this.showallproductregistration();
       
@@ -99,7 +99,7 @@ this.router.navigate(['productreg'])
     }
     },
     error => {
-      console.log(error);
+      // console.log(error);
       this.messageservice.add({
         severity: "error",
         summary: "Error Found",

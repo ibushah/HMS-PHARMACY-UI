@@ -3,6 +3,7 @@ import { Company } from './company';
 import { CompanyServiceService } from '../Services/company-service.service';
 import { Router } from '@angular/router';
 import { MessageService, SelectItem } from 'primeng/api';
+import { ToastServiceService } from '../toast-service.service';
 
 @Component({
   selector: 'app-add-company',
@@ -15,7 +16,7 @@ export class AddCompanyComponent implements OnInit {
   company:Company=new Company();
 
   constructor(private companyservice:CompanyServiceService, private router: Router,
-    private messageService: MessageService) { }
+    private messageService: MessageService,private msgService:ToastServiceService) { }
 
   ngOnInit() {
 
@@ -23,11 +24,12 @@ export class AddCompanyComponent implements OnInit {
   }
 
   submitcompany(){
-    console.log(this.company);
+    // console.log(this.company);
     
     this.companyservice.postcompany(this.company).subscribe(
       data => {
-        console.log(this.company);
+        // this.msgService.succesMethod
+        // console.log(this.company);
         this.messageService.add({
           severity: "success",
           summary: "Succesfully",
@@ -36,7 +38,7 @@ export class AddCompanyComponent implements OnInit {
         
       },
       error => {
-        console.log(error);
+        // console.log(error);
         this.messageService.add({
           severity: "error",
           summary: "Error Found",

@@ -28,10 +28,10 @@ this.showallDrugFormation();
   
 
     this.drugservice.getallDrugFormation().subscribe(data=>{
-      console.log(data);
+      // console.log(data);
       this.drugFormationData=[];
       data.map(p=>{
-        console.log("fmkmfa",p.productRegistrationList);
+        // console.log("fmkmfa",p.productRegistrationList);
         this.drugFormationData.push({
           
           id:p.id,
@@ -60,7 +60,7 @@ this.showallDrugFormation();
     this.drugservice.deletebyid(id).subscribe(
       data=>{
 
-      console.log(data);
+      // console.log(data);
       if(data){
         this.showallDrugFormation();
       }
@@ -71,7 +71,7 @@ this.showallDrugFormation();
       });
     },
     error => {
-      console.log(error);
+      // console.log(error);
       this.messageservice.add({
         severity: "error",
         summary: "Error Found",

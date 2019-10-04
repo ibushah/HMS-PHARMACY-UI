@@ -37,7 +37,7 @@ export class LoginPageComponent implements OnInit {
     // var output = this.service.checkUserandPass(uname, p);
     this.service.checkUserandPass(uname, p).subscribe(
       res => {
-        console.log('toker', res);
+        // console.log('toker', res);
 
         
 
@@ -63,7 +63,7 @@ export class LoginPageComponent implements OnInit {
       },
       error => {
         this.showErrorMessage = true;
-        console.log(error);
+        // console.log(error);
         this.errorMethod("Not Authorized")
       }
     );
