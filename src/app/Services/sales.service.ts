@@ -26,4 +26,12 @@
     public addMaxStocks(addmaxobj: any): Observable<any>{
       return this.http.put(environment.baseUrl + "api/productRegistration/addmaxstock",addmaxobj);
     }
+
+    public getSales():Observable<any>{
+      return this.http.get(environment.baseUrl + "api/sales/get");
+    }
+
+    public getFilteredDates(salesListObj : any):Observable<any>{
+      return this.http.post(environment.baseUrl + "api/sales/getfilteredsales",salesListObj);
+    }
   }
