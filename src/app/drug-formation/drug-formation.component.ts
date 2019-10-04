@@ -20,11 +20,11 @@ export class DrugFormationComponent implements OnInit {
     this.router.navigate(['drugformationlist']);
   }
   submitdrugFormation(){
-    console.log(this.drugformation);
+    // console.log(this.drugformation);
     
     this.drugservice.postDrugFormation(this.drugformation).subscribe(
       data => {
-        console.log(this.drugformation);
+        // console.log(this.drugformation);
         this.messageservice.add({
           severity: "success",
           summary: "Succesfully",
@@ -33,7 +33,7 @@ export class DrugFormationComponent implements OnInit {
         
       },
       error => {
-        console.log(error);
+        // console.log(error);
         this.messageservice.add({
           severity: "error",
           summary: "Error Found",

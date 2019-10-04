@@ -67,7 +67,7 @@ export class ProductRegistrationComponent implements OnInit {
   getcompaniesdropdown() {
     this.company = [];
     this.companyservice.getallcompany().subscribe(data => {
-      console.log(data);
+      // console.log(data);
       if (data) {
         data.forEach(e => {
           this.company.push({
@@ -82,7 +82,7 @@ export class ProductRegistrationComponent implements OnInit {
   getdrugFormationdropdown() {
     this.drugformation = [];
     this.drugformationservice.getallDrugFormation().subscribe(data => {
-      console.log("fuckkkkkkkkkkkk", data);
+      // console.log("fuckkkkkkkkkkkk", data);
 
       if (data) {
         data.forEach(e => {
@@ -108,7 +108,7 @@ export class ProductRegistrationComponent implements OnInit {
   }
 
   saveproductregistrtion() {
-    console.log(this.productRegistration);
+    // console.log(this.productRegistration);
     if(this.productid!=null){
       this.productRegistrationservice.updatebyid(this.productid,this.productRegistration).subscribe(
         data => {
@@ -120,7 +120,7 @@ export class ProductRegistrationComponent implements OnInit {
           });
         },
         error => {
-          console.log(error);
+          // console.log(error);
           this.messageservice.add({
             severity: "error",
             summary: "Error Found",
@@ -137,7 +137,7 @@ else{
         data => {
           this.unitprice = 0;
           this.productRegistration.companyProd = "";
-          console.log(this.company);
+          // console.log(this.company);
           this.messageservice.add({
             severity: "success",
             summary: "Succesfully",
@@ -145,7 +145,7 @@ else{
           });
         },
         error => {
-          console.log(error);
+          // console.log(error);
           this.messageservice.add({
             severity: "error",
             summary: "Error Found",
@@ -170,7 +170,7 @@ else{
 
   getbyid(id:any){
     this.productRegistrationservice.getbyid(id).subscribe(data=>{
-      console.log(data);
+      // console.log(data);
       this.productRegistration.productName=data.productName;
       this.productRegistration.companyProd=data.companyProd;
       this.productRegistration.formula=data.formula;

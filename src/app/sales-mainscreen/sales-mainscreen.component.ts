@@ -42,7 +42,7 @@ export class SalesMainscreenComponent implements OnInit {
 
     this.getProductsIndropdown();
 
-    console.log("table data =>", this.tableData);
+    // console.log("table data =>", this.tableData);
   }
 
   disableSaveButton() {
@@ -120,7 +120,7 @@ export class SalesMainscreenComponent implements OnInit {
       });
     });
 
-    console.log("i am object", this.obj);
+    // console.log("i am object", this.obj);
   }
   onProductChange() {
     this.output = [];
@@ -143,7 +143,7 @@ export class SalesMainscreenComponent implements OnInit {
   }
 
   getDataInSalesTable() {
-    console.log("Product", this.productObj);
+    // console.log("Product", this.productObj);
     this.output = [];
     this.total = this.total + this.priceIntoQuantity;
     this.printTotal = this.total;
@@ -183,7 +183,7 @@ export class SalesMainscreenComponent implements OnInit {
       obj => obj["name"] == this.salesObj.productRegistration["productName"]
     );
     if (updatedPrintSlipObj) {
-      console.log("=====>", updatedPrintSlipObj);
+      // console.log("=====>", updatedPrintSlipObj);
       updatedPrintSlipObj["quantity"] += this.salesObj.productQuantity;
       updatedPrintSlipObj["total"] += this.priceIntoQuantity;
       this.printData.map(d => {
@@ -210,15 +210,15 @@ export class SalesMainscreenComponent implements OnInit {
         this.salesObj.productQuantity
       ).toFixed(2)
     );
-    console.log(this.priceIntoQuantity);
+    // console.log(this.priceIntoQuantity);
     this.salesObj.total = parseFloat(this.priceIntoQuantity.toFixed(2));
   }
 
   deleteProduct(val: any, price: any) {
-    console.log(price);
+    // console.log(price);
 
     this.salesservice.addMaxStocks(this.productObj).subscribe(d=>{
-      console.log(d);
+      // console.log(d);
     })
 
     this.tableData.splice(val, 1);

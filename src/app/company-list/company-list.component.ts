@@ -31,7 +31,7 @@ companydata:any[];
     this.companyservice.getallcompany().subscribe(data=>{
       this.companydata=[];
       data.map(p=>{
-        console.log("fmkmfa",p.productRegistrationList);
+        // console.log("fmkmfa",p.productRegistrationList);
         this.companydata.push({
           
           id:p.id,
@@ -61,7 +61,7 @@ companydata:any[];
     this.companyservice.deletebyid(id).subscribe(
       data=>{
 
-      console.log(data);
+      // console.log(data);
       if(data){
         this.showallcompanies();
       
@@ -73,7 +73,7 @@ companydata:any[];
     }
     },
     error => {
-      console.log(error);
+      // console.log(error);
       this.messageservice.add({
         severity: "error",
         summary: "Error Found",

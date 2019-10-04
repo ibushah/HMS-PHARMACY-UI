@@ -23,11 +23,11 @@ export class AddCompanyComponent implements OnInit {
   }
 
   submitcompany(){
-    console.log(this.company);
+    // console.log(this.company);
     
     this.companyservice.postcompany(this.company).subscribe(
       data => {
-        console.log(this.company);
+        // console.log(this.company);
         this.messageService.add({
           severity: "success",
           summary: "Succesfully",
@@ -36,7 +36,7 @@ export class AddCompanyComponent implements OnInit {
         
       },
       error => {
-        console.log(error);
+        // console.log(error);
         this.messageService.add({
           severity: "error",
           summary: "Error Found",

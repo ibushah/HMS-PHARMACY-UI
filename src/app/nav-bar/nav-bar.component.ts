@@ -42,7 +42,7 @@ export class NavBarComponent implements OnInit {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('userType');
-    console.log(sessionStorage.getItem('token'));
+    // console.log(sessionStorage.getItem('token'));
     // this.isHide = false;
     this.router.navigate(['']);
   }
