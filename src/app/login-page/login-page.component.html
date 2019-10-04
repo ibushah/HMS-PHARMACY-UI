@@ -11,6 +11,9 @@
               <span class="login100-form-title p-b-34 p-t-27">
                 <b>Log in</b>
               </span>
+               <div *ngIf="showErrorMessage">
+                 <p style="color:red;font-size:small;text-align: center">Wrong Email or Password</p>
+               </div>
 
               <div class="wrap-input100 validate-input"
                 data-validate="Enter username">
@@ -47,9 +50,9 @@
                   <b>Login</b>
                 </button>
               </div>
-              <div *ngIf="showErrorMessage">
+              <!-- <div *ngIf="showErrorMessage">
                 <p style="color:red;font-size:small;text-align: center">Wrong Email or Password</p>
-              </div>
+              </div> -->
             </form>
           </div>
         </div>
