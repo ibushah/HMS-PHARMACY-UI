@@ -3,6 +3,7 @@ import { Company } from './company';
 import { CompanyServiceService } from '../Services/company-service.service';
 import { Router } from '@angular/router';
 import { MessageService, SelectItem } from 'primeng/api';
+import { ToastServiceService } from '../toast-service.service';
 
 @Component({
   selector: 'app-add-company',
@@ -15,7 +16,7 @@ export class AddCompanyComponent implements OnInit {
   company:Company=new Company();
 
   constructor(private companyservice:CompanyServiceService, private router: Router,
-    private messageService: MessageService) { }
+    private messageService: MessageService,private msgService:ToastServiceService) { }
 
   ngOnInit() {
 
@@ -27,6 +28,7 @@ export class AddCompanyComponent implements OnInit {
     
     this.companyservice.postcompany(this.company).subscribe(
       data => {
+        // this.msgService.succesMethod
         // console.log(this.company);
         this.messageService.add({
           severity: "success",

@@ -41,6 +41,7 @@ import { GrnListComponent } from './grn-list/grn-list.component';
 import { GrnDetailComponent } from './grn-detail/grn-detail.component';
 import {NgxPrintModule} from 'ngx-print';
 import { SalesListComponent } from './sales-list/sales-list.component';
+import { ToastServiceService } from './toast-service.service';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,7 @@ import { SalesListComponent } from './sales-list/sales-list.component';
 
   
   ],
-  providers: [MessageService],
+  providers: [MessageService,ToastServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
