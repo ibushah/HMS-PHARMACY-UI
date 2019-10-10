@@ -97,8 +97,19 @@ export class ProductRegistrationComponent implements OnInit {
 
 
   disableMaxAndMinStock(){
+if(this.productid!=null){
+  if(this.productRegistration.packing && this.productRegistration.boxRate){
+    return true;
+  }
+  else{
+    return true;
 
-    if(this.productRegistration.packing && this.productRegistration.boxRate){
+  
+  }
+
+}
+
+    else if(this.productRegistration.packing && this.productRegistration.boxRate){
       return false;
     }
     else{

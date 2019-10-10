@@ -1,22 +1,28 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="ui-g-12 ui-g">
+
     <div class="ui-lg-6 ui-md-6 ui-sm-12">
-        <button pButton type="button" class="backBtnStyle" (click)="backToMonitor()"
-            style="width:45%;margin-left:30%;background: #479761;; " label="Back"></button>
-    </div>
+          <p-card [style]="{ width: '60%','margin-left':'18%','background-color':'#479761','color':'white'}">
+                <h6 class="text-uppercase" style="padding-top: 6px;text-align: center" >Total Amount of goods recieved</h6>
+                <hr style="width: 80%;height:2px;background-color: honeydew">
+                <h3 style="text-align: center">{{ totalamount }} Rs</h3>
+              </p-card>
+
+        </div>
+      
 
     <div class="ui-lg-6 ui-md-6 ui-sm-12">
         <button pButton type="button" class="backBtnStyle" (click)="routeToGrn()"
-            style="width:45%;margin-left:30%;background: #479761;; " label="Add New GRN"></button>
+            style="width:45%;margin-left:30%;background: #479761; " label="Add New GRN"></button>
     </div>
 </div>
 <p-card header="" [style]="{  width: '84%',
 'font-size': '20px',
 'text-align': 'center',
 color: 'green',
-'margin-left':'8%',
-'margin-top':'100px'
+'margin-left':'10%',
+'margin-top':'150px'
 }">
     <p-toast></p-toast>
 

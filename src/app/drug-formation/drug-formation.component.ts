@@ -16,6 +16,9 @@ export class DrugFormationComponent implements OnInit {
 
   ngOnInit() {
   }
+  goBack() {
+    window.history.go(-1);
+  }
   routetodrugformationList(){
     this.router.navigate(['drugformationlist']);
   }

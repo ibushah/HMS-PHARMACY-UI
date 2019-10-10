@@ -19,6 +19,7 @@ export class DrugFormationListComponent implements OnInit {
 this.showallDrugFormation();
   }
 
+  
 
   routetoDrugFormation(){
     this.router.navigate(['drugformation']);

@@ -12,6 +12,7 @@ import { MessageService } from 'primeng/api';
 })
 export class GrnFormComponent implements OnInit {
 
+  disable:any=false;
   status = [];
   companies = [];
   id: any;
@@ -47,6 +48,20 @@ export class GrnFormComponent implements OnInit {
 
     })
   }
+  amountDetector()
+  {
+    this.grn.packing=this.grn.packing?this.grn.packing:0;
+    this.grn.boxRate=this.grn.boxRate?this.grn.boxRate:0;
+    this.disable=this.grn.discount>100?true:false;
+    this.grn.discount=this.grn.discount?this.grn.discount:0;
+   
+   
+    
+    this.grn.productTotalAmount=this.grn.boxRate*this.grn.packing;
+    this.grn.discountedAmount=this.grn.productTotalAmount-((this.grn.discount/100)*this.grn.productTotalAmount);
+  
+   
+  }
 
   submitGrn(data, myForm) {
 
@@ -59,7 +74,9 @@ export class GrnFormComponent implements OnInit {
       })
     }
     else {
-      this.service.postGrn(data).subscribe((response) => {
+      console.log(this.grn);
+
+      this.service.postGrn(this.grn).subscribe((response) => {
         this.messageService.add({ severity: 'success', summary: 'Service Message', detail: response });
         myForm.reset();
       }, error => {
@@ -80,4 +97,5 @@ export class GrnFormComponent implements OnInit {
   routeToGrnList() {
     this.router.navigate(['grnlist'])
   }
+
 }
