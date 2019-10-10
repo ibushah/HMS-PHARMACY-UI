@@ -18,6 +18,7 @@ companydata:any[];
   ngOnInit() {
     this.showallcompanies();
   }
+  
 
   routetoaddcompany(){
 
