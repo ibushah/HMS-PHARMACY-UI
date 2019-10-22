@@ -27,12 +27,8 @@ import { DrugFormationListComponent } from './drug-formation-list/drug-formation
 import { MessageService } from 'primeng/api';
 import { HttpClientModule } from '@angular/common/http';
 import {DropdownModule} from 'primeng/dropdown';
-
-
 import { LoginPageComponent } from './login-page/login-page.component';
-
-
-
+import { NgQrScannerModule } from 'angular2-qrscanner';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {CalendarModule} from 'primeng/calendar';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
@@ -42,7 +38,8 @@ import { GrnDetailComponent } from './grn-detail/grn-detail.component';
 import {NgxPrintModule} from 'ngx-print';
 import { SalesListComponent } from './sales-list/sales-list.component';
 import { ToastServiceService } from './toast-service.service';
-
+import { QrcodeComponent } from './sales-mainscreen/qrcode/qrcode.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +60,8 @@ import { ToastServiceService } from './toast-service.service';
     LoginPageComponent,
     GrnListComponent,
     GrnDetailComponent,
-    SalesListComponent
+    SalesListComponent,
+    QrcodeComponent
 
   ],
   imports: [
@@ -75,11 +73,11 @@ import { ToastServiceService } from './toast-service.service';
     BrowserAnimationsModule,
     CardModule,
     TableModule,
+    ZXingScannerModule,
     RadioButtonModule,
     ToastModule,
     HttpClientModule,
-
-
+    NgQrScannerModule,
     CalendarModule,
     PanelModule,
     ProgressSpinnerModule, 

@@ -30,19 +30,19 @@ export class SalesMainscreenComponent implements OnInit {
   printTotal: number = 0;
   productObj: Products = new Products();
   addInTable: Boolean = true;
-  
+
   constructor(
     private salesservice: SalesService,
     private mesgService: MessageService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.populateCols();
 
     this.getProductsIndropdown();
+    this.salesObj.productQuantity = 1;
 
-    // console.log("table data =>", this.tableData);
   }
 
   disableSaveButton() {
@@ -53,11 +53,11 @@ export class SalesMainscreenComponent implements OnInit {
     }
   }
 
-  disableUnit(){
-    if(this.salesObj.productRegistration){
+  disableUnit() {
+    if (this.salesObj.productRegistration) {
       return false;
     }
-    else{
+    else {
       return true;
     }
   }
@@ -98,14 +98,14 @@ export class SalesMainscreenComponent implements OnInit {
   }
 
 
-  
+
 
   emptyPrintDataArray() {
     this.printData = [];
     this.printTotal = 0;
     if (this.printData.length == 0) {
       this.disablePrintButton = true;
-    }   
+    }
   }
 
   getProductsIndropdown() {
@@ -133,6 +133,8 @@ export class SalesMainscreenComponent implements OnInit {
 
     this.productObj.id = this.salesObj.productRegistration["id"];
     this.productObj.maxStock = this.salesObj.productRegistration["maxStock"];
+    this.calculatePriceQuantityProduct();
+    this.getProductQuantity()
   }
 
   getProductQuantity() {
@@ -183,7 +185,7 @@ export class SalesMainscreenComponent implements OnInit {
       obj => obj["name"] == this.salesObj.productRegistration["productName"]
     );
     if (updatedPrintSlipObj) {
-      // console.log("=====>", updatedPrintSlipObj);
+
       updatedPrintSlipObj["quantity"] += this.salesObj.productQuantity;
       updatedPrintSlipObj["total"] += this.priceIntoQuantity;
       this.printData.map(d => {
@@ -215,10 +217,9 @@ export class SalesMainscreenComponent implements OnInit {
   }
 
   deleteProduct(val: any, price: any) {
-    // console.log(price);
 
-    this.salesservice.addMaxStocks(this.productObj).subscribe(d=>{
-      // console.log(d);
+    this.salesservice.addMaxStocks(this.productObj).subscribe(d => {
+
     })
 
     this.tableData.splice(val, 1);
@@ -228,17 +229,19 @@ export class SalesMainscreenComponent implements OnInit {
     this.total = parseInt(this.total.toFixed(2));
     this.disableSaveButton();
   }
+  productEmitter(product) {
+  
+    let selectedObj=this.obj.find((v)=> v.id=product.id);
+    this.salesObj.productRegistration = selectedObj;
+    this.productObj = product;
+    this.calculatePriceQuantityProduct();
+    this.getProductQuantity()
 
-  numberOnly(event): boolean {
-    const charCode = event.which ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode < 44)) {
-      return false;
-    }
-    return true;
   }
 
+
   clearForm() {
-    this.salesObj.productRegistration = "";
+    this.salesObj.productRegistration = null;
     this.salesObj.total = 0;
     this.salesObj.productQuantity = 0;
   }
@@ -249,14 +252,16 @@ export class SalesMainscreenComponent implements OnInit {
         let maxStock = Object.values(d).toString();
         if (maxStock == "MAXSTOCKUPDATED") {
           this.getDataInSalesTable();
-          this.clearForm();
+        this.clearForm()
+         this.salesObj.productQuantity=1;
           this.mesgService.add({
             severity: "success",
             summary: "Successfull",
             detail: "Sales submitted successfully"
           });
         } else if (maxStock == "PRODUCTOUTOFSTOCK") {
-          this.clearForm();
+        this.clearForm();
+          this.salesObj.productQuantity=1;
           this.mesgService.add({
             severity: "warn",
             summary: "Out Of Stock",
@@ -274,6 +279,15 @@ export class SalesMainscreenComponent implements OnInit {
       }
     );
   }
+
+  numberOnly(event): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode < 44)) {
+      return false;
+    }
+    return true;
+  }
+
   routetoProductRegistration() {
     this.router.navigate(["productreg"]);
   }

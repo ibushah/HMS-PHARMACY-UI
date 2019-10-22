@@ -47,7 +47,7 @@ const routes: Routes = [
   { path: "grn", canActivate: [AuthGuardService], component: GrnFormComponent },
   { path: "grnlist", canActivate: [AuthGuardService], component: GrnListComponent },
   { path: "grndetail/:id", canActivate: [AuthGuardService], component: GrnDetailComponent },
-  { path: 'salesList', canActivate: [AuthGuardService], component: SalesListComponent },
+  { path: 'salesList', component: SalesListComponent },
 
 
 
