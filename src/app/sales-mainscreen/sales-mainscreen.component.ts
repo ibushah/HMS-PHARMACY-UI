@@ -30,7 +30,12 @@ export class SalesMainscreenComponent implements OnInit {
   printTotal: number = 0;
   productObj: Products = new Products();
   addInTable: Boolean = true;
-  
+  sidebarWidth: string;
+  discount: number;
+  price:number=0;
+  showDiv: boolean = true;
+  totalFieldInForm: number = 0;
+
   constructor(
     private salesservice: SalesService,
     private mesgService: MessageService,
@@ -53,22 +58,35 @@ export class SalesMainscreenComponent implements OnInit {
     }
   }
 
-  disableUnit(){
-    if(this.salesObj.productRegistration){
-      return false;
-    }
-    else{
-      return true;
-    }
+  disableUnit() {
+    if (this.salesObj.productRegistration) return false;
+    else return true;
   }
+
+  disableCost() {
+    if (this.salesObj.productQuantity) return false;
+    else return true;
+  }
+
+  disableDiscount() {
+    if (this.salesObj.totalSellingPrice) return false;
+    else return true;
+  }
+
+  resetForm(myForm){
+    myForm.reset();
+  }
+
 
   populateCols() {
     this.cols = [
-      { field: "sno", header: "Serial No" },
       { field: "name", header: "Product Name" },
-      { field: "quantity", header: "Quantity" },
+      { field: "quantity", header: "quantity" },   
+      { field: "actualCost", header: "Actual Cost" },
+      { field: "productPrice", header: "Product Price" },
       { field: "total", header: "Price" }
-    ];
+
+      ];
   }
 
   saveSales() {
@@ -97,15 +115,12 @@ export class SalesMainscreenComponent implements OnInit {
     );
   }
 
-
-  
-
   emptyPrintDataArray() {
     this.printData = [];
     this.printTotal = 0;
     if (this.printData.length == 0) {
       this.disablePrintButton = true;
-    }   
+    }
   }
 
   getProductsIndropdown() {
@@ -130,7 +145,7 @@ export class SalesMainscreenComponent implements OnInit {
         unitPrice: d["unitPrice"]
       });
     });
-
+    
     this.productObj.id = this.salesObj.productRegistration["id"];
     this.productObj.maxStock = this.salesObj.productRegistration["maxStock"];
   }
@@ -145,17 +160,16 @@ export class SalesMainscreenComponent implements OnInit {
   getDataInSalesTable() {
     // console.log("Product", this.productObj);
     this.output = [];
-    this.total = this.total + this.priceIntoQuantity;
+    this.total = this.total + this.totalFieldInForm;
     this.printTotal = this.total;
     this.disablesavebutton = false;
-    this.index += 1;
-    //updateeeeee
+   
     let updatedObj = this.tableData.find(
       d => d.name == this.salesObj.productRegistration["productName"]
     );
     if (updatedObj) {
       updatedObj["quantity"] += this.salesObj.productQuantity;
-      updatedObj["total"] += this.priceIntoQuantity;
+      updatedObj["total"] += this.totalFieldInForm;
 
       this.tableData.map(t => {
         if (t.name == this.salesObj.productRegistration["productName"])
@@ -166,17 +180,21 @@ export class SalesMainscreenComponent implements OnInit {
     //clear Form when there is data in table
     else {
       this.tableData.push({
-        sno: this.index,
         name: this.salesObj.productRegistration["productName"],
         quantity: this.salesObj.productQuantity,
-        total: this.priceIntoQuantity
+        total: this.totalFieldInForm,
+        productPrice:(this.salesObj.productRegistration['unitPrice']).toFixed(2),
+        actualCost:(this.priceIntoQuantity).toFixed(2)
+
       });
     }
 
     this.neArray.push({
       productRegistration: this.salesObj.productRegistration,
       productQuantity: this.salesObj.productQuantity,
-      productPrice: this.priceIntoQuantity
+      productPrice: this.salesObj.productRegistration['unitPrice'],
+      totalSellingPrice:this.totalFieldInForm,
+      costPrice:this.salesObj.total
     });
 
     let updatedPrintSlipObj = this.printData.find(
@@ -185,7 +203,7 @@ export class SalesMainscreenComponent implements OnInit {
     if (updatedPrintSlipObj) {
       // console.log("=====>", updatedPrintSlipObj);
       updatedPrintSlipObj["quantity"] += this.salesObj.productQuantity;
-      updatedPrintSlipObj["total"] += this.priceIntoQuantity;
+      updatedPrintSlipObj["total"] += this.totalFieldInForm;
       this.printData.map(d => {
         if (d.name == this.salesObj.productRegistration["productName"]) {
           return updatedPrintSlipObj;
@@ -195,7 +213,7 @@ export class SalesMainscreenComponent implements OnInit {
       this.printData.push({
         name: this.salesObj.productRegistration["productName"],
         quantity: this.salesObj.productQuantity,
-        total: this.priceIntoQuantity
+        total: this.totalFieldInForm
       });
     }
 
@@ -217,9 +235,9 @@ export class SalesMainscreenComponent implements OnInit {
   deleteProduct(val: any, price: any) {
     // console.log(price);
 
-    this.salesservice.addMaxStocks(this.productObj).subscribe(d=>{
+    this.salesservice.addMaxStocks(this.productObj).subscribe(d => {
       // console.log(d);
-    })
+    });
 
     this.tableData.splice(val, 1);
     this.printData.splice(val, 1);
@@ -237,26 +255,20 @@ export class SalesMainscreenComponent implements OnInit {
     return true;
   }
 
-  clearForm() {
-    this.salesObj.productRegistration = "";
-    this.salesObj.total = 0;
-    this.salesObj.productQuantity = 0;
-  }
-
-  callForChangeInProductStocks() {
+  callForChangeInProductStocks(myForm) {
     this.salesservice.postQuantity(this.productObj).subscribe(
       d => {
         let maxStock = Object.values(d).toString();
         if (maxStock == "MAXSTOCKUPDATED") {
           this.getDataInSalesTable();
-          this.clearForm();
+          myForm.reset();
           this.mesgService.add({
             severity: "success",
             summary: "Successfull",
             detail: "Sales submitted successfully"
           });
         } else if (maxStock == "PRODUCTOUTOFSTOCK") {
-          this.clearForm();
+          myForm.reset();
           this.mesgService.add({
             severity: "warn",
             summary: "Out Of Stock",
@@ -276,5 +288,35 @@ export class SalesMainscreenComponent implements OnInit {
   }
   routetoProductRegistration() {
     this.router.navigate(["productreg"]);
+  }
+
+  discountOnSellingPrice() {
+    this.discount = this.discount ? this.discount : 0;
+    console.log(this.price)
+    if(this.discount < this.totalFieldInForm){
+      this.totalFieldInForm = this.price - this.discount;
+      this.showDiv = true;
+    }
+    else{
+      this.showDiv = false;
+    }
+
+  }
+
+  addPrice(){  
+    this.totalFieldInForm = this.salesObj.totalSellingPrice; 
+   this.price=(this.totalFieldInForm)?this.totalFieldInForm:0
+   console.log(this.price)
+  }
+
+ 
+
+  restrictSellingPrice(){
+    if(this.salesObj.total>this.salesObj.totalSellingPrice){
+      return false;      
+    }
+    else{
+      return true;   
+    }
   }
 }

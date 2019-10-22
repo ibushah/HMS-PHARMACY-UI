@@ -31,8 +31,8 @@ export class SalesListComponent implements OnInit {
   }
 
   getDefaultTodayBulkSales(){
-   this.salesListObj.from = this.convertDateFrom(this.date);
-   this.salesListObj.till = this.convertDateTill(this.date);
+   this.salesListObj.from = this.convertDate(this.date);
+   this.salesListObj.till = this.convertDate(this.date);
 
    console.log(this.salesListObj);
 
@@ -54,15 +54,18 @@ export class SalesListComponent implements OnInit {
 
 
   onfilter(){
-    if(this.dateFrom == undefined ){
-      this.salesListObj.from = this.convertDateFrom(this.dateFrom);
+    if(this.dateFrom == undefined || this.dateFrom == null){
+      this.salesListObj.from = this.convertDate(this.date);
+      console.log("from date",this.salesListObj.from)
     }
-    if(this.dateTill == undefined){
-      this.salesListObj.till = this.convertDateTill(this.dateTill);
+    if(this.dateTill == undefined || this.dateTill == null){
+      this.salesListObj.till = this.convertDate(this.date);
+      console.log("till date",this.salesListObj.till)
+
     }
     else{
-      this.salesListObj.from = this.convertDateFrom(this.dateFrom);
-      this.salesListObj.till = this.convertDateTill(this.dateTill);
+      this.salesListObj.from = this.convertDate(this.dateFrom);
+      this.salesListObj.till = this.convertDate(this.dateTill);
     }
     this.bulksaveData = [];
     this.salesService.getFilteredDates(this.salesListObj).subscribe(response=>{
@@ -80,14 +83,14 @@ export class SalesListComponent implements OnInit {
 
   }
 
-  convertDateFrom(date: Date){
+  convertDate(date: Date){
 
-    return this.convertedDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate()-1);
+    return this.convertedDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
   }
-  convertDateTill(date: Date){
+  // convertDateTill(date: Date){
 
-    return this.convertedDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate()+1);
-  }
+  //   return this.convertedDate = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + (date.getDate());
+  // }
   
 
 

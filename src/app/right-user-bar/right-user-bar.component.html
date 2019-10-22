@@ -1,0 +1,44 @@
+<div>
+  <span
+    style="font-size:20px;cursor:pointer;color: #ffffff;"
+    (click)="openNavBar()"
+    >&#9776; User Details
+  </span>
+</div>
+
+<div id="mySidenav" [style.width]="sideBarWidth" class="sidenav">
+  <div style="text-align: left;margin-left: 5%; " (click)="closeNavBar()">
+    <p style="color: white;font-weight: bold">X</p>
+  </div>
+  <hr style="background-color: white; width: 86%; height:2px" />
+  <div class="ui-g" style="margin-left: 28%">
+    <div class="ui-lg-3 ui-md-3 ui-sm-12">
+      <img src="assets/icons8-user-100.png" class="imgClass" />
+    </div>
+  </div>
+  <hr style="background-color: white; width: 86%; height:1px" />
+  <p-card
+    [style]="{
+      width: '90%',
+      'font-size': '15px',
+      'margin-left': '5%',
+      'text-align': 'left',
+      color: 'green',
+      height: '200px'
+    }"
+  >
+    <div class="ui-g">
+      <label style="text-align: left; font-weight: bold"
+        >Username:
+      </label>
+      <p style=" margin-left: 4%">{{ username }}</p>
+    </div>
+    <div class="ui-g">
+        <label style="text-align: left; font-weight: bold"
+          >Sales:
+        </label>
+        <p style=" margin-left: 4%">{{ username }}</p>
+      </div>
+  
+  </p-card>
+</div>
