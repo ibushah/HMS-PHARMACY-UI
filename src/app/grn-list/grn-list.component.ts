@@ -10,6 +10,7 @@ import {MessageService} from 'primeng/api';
 })
 export class GrnListComponent implements OnInit {
 
+  totalamount:any=0;
   cols: any;
   grnData = [];
   id;
@@ -33,9 +34,10 @@ export class GrnListComponent implements OnInit {
     this.grnData = [];
 
     this.service.getGrnList().subscribe((response) => {
-
+console.log(response);
       this.loader=false;
       response.map((grn) => {
+        this.totalamount=this.totalamount+grn.productTotalAmount;
         var obj = {
           id: grn.id,
           invoice: grn.invoice,
@@ -45,6 +47,7 @@ export class GrnListComponent implements OnInit {
           company: grn.company.name
         }
         this.grnData = [...this.grnData, obj]
+        console.log("yeh raha total amount",this.totalamount)
       })
 
     },error=>
@@ -55,9 +58,6 @@ export class GrnListComponent implements OnInit {
 
 
 
-  backToMonitor(){
-    history.go(-1);
-  }
 
   deleteGrn(id) {
     this.service.deleteGrn(id).subscribe((response) => { this.getGrnList(); 

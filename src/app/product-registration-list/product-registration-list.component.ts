@@ -22,6 +22,10 @@ productRegistration:any[];
 this.router.navigate(['productreg'])
 
   }
+  
+  goBack() {
+    window.history.go(-1);
+  }
 
   showallproductregistration(){
     this.cols = [

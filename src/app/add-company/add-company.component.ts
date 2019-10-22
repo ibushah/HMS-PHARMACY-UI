@@ -22,6 +22,9 @@ export class AddCompanyComponent implements OnInit {
 
 
   }
+  goBack() {
+    window.history.go(-1);
+  }
 
   submitcompany(){
     // console.log(this.company);
