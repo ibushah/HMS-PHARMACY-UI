@@ -20,6 +20,7 @@ export class LoginPageComponent implements OnInit {
   userType;
   getType
   showErrorMessage: Boolean = false;
+  email;
   constructor(
     private router: Router,
     private messageService: MessageService,
@@ -73,6 +74,7 @@ export class LoginPageComponent implements OnInit {
   credentials(res) {
     sessionStorage.setItem('token', res.result.token);
     this.userName = sessionStorage.setItem('username', res.result.username);
+    this.email = sessionStorage.setItem('email',res.result.email);
     this.userType = sessionStorage.setItem('userType', res.result.userType);
     this.getType = sessionStorage.getItem('userType').toUpperCase();
 

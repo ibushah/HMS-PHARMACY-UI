@@ -42,6 +42,7 @@ import { GrnDetailComponent } from './grn-detail/grn-detail.component';
 import {NgxPrintModule} from 'ngx-print';
 import { SalesListComponent } from './sales-list/sales-list.component';
 import { ToastServiceService } from './toast-service.service';
+import { RightUserBarComponent } from './right-user-bar/right-user-bar.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ToastServiceService } from './toast-service.service';
     LoginPageComponent,
     GrnListComponent,
     GrnDetailComponent,
-    SalesListComponent
+    SalesListComponent,
+    RightUserBarComponent
 
   ],
   imports: [
