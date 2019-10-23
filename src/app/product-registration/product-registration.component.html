@@ -2,99 +2,55 @@
 
 <div class="ui-g-12 ui-g">
   <div class="ui-lg-6 ui-md-6 ui-sm-12">
-    <button
-      pButton
-      type="button"
-      class="backBtnStyle"
-      (click)="routetoproductregistrationlist()"
-      style="width:45%;margin-left:30%;background: #479761;; "
-      label="Back"
-    ></button>
+    <button pButton type="button" class="backBtnStyle" (click)="routetoproductregistrationlist()"
+      style="width:45%;margin-left:30%;background: #479761;; " label="Back"></button>
   </div>
 </div>
 
 <h1 class="heading">Product Registration</h1>
 
-<hr
-  style="height: 1px; background-color: green; width: 80%; margin-left: 12%"
-/>
+<hr style="height: 1px; background-color: green; width: 80%; margin-left: 12%" />
 <div class="container">
   <div class="ui-g">
     <div class="ui-md-12 ui-lg-12 ui-sm-12">
-      <p-card
-        header=""
-        [style]="{
+      <p-card header="" [style]="{
           width: '95%',
           'font-size': '15px',
           'margin-left': '5.5%',
           'text-align': 'left',
           color: 'green'
-        }"
-      >
+        }">
         <p-toast> </p-toast>
         <h4 style="color: green; font-weight: bold">Register Product :</h4>
-        <hr
-          style="height:2px;width:100%;background-color:green; margin-left: 1px;"
-        />
+        <hr style="height:2px;width:100%;background-color:green; margin-left: 1px;" />
         <div class="ui-g ui-fluid">
-          <form
-            style="width:100%;"
-            #myForm="ngForm"
-            (ngSubmit)="saveproductregistrtion(); myForm.reset()"
-          >
+          <form style="width:100%;" #myForm="ngForm" (ngSubmit)="saveproductregistrtion(); myForm.reset()">
             <div class="ui-g">
               <!-- <div class="ui-md-3 ui-lg-3"></div> -->
               <div class="ui-md-5 ui-lg-5 ui-sm-12">
                 <div class="ui-inputgroup">
-                  <span
-                    class="ui-inputgroup-addon"
-                    style="width: 50%;font-size:15px;"
-                    >Product Name: <i style="color: red">*</i></span
-                  >
-                  <input
-                    type="text"
-                    required
-                    style="width: 100%"
-                    name="productName"
-                    required
-                    pInputText
-                    [(ngModel)]="productRegistration.productName"
-                  />
+                  <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Product Name: <i
+                      style="color: red">*</i></span>
+                  <input type="text" required style="width: 100%" name="productName" required pInputText
+                    [(ngModel)]="productRegistration.productName" />
                 </div>
               </div>
 
               <div class="ui-md-5 ui-lg-5 ui-sm-12">
                 <div class="ui-inputgroup">
-                  <span
-                    class="ui-inputgroup-addon"
-                    style="width: 50%;font-size:15px;"
-                    >Company <i style="color: red">*</i></span
-                  >
-                  <p-dropdown
-                    [options]="company"
-                    name="companyProd"
-                    placeholder="Select Company"
-                    [(ngModel)]="productRegistration.companyProd"
-                    [filter]="true"
-                    [style]="{
+                  <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Company <i
+                      style="color: red">*</i></span>
+                  <p-dropdown [options]="company" name="companyProd" placeholder="Select Company"
+                    [(ngModel)]="productRegistration.companyProd" [filter]="true" [style]="{
                       width: '100%',
                       height: '100%',
                       'font-size': '20px'
-                    }"
-                    [ngStyle]="{ width: '100%', 'font-size': '20px' }"
-                    required
-                  ></p-dropdown>
+                    }" [ngStyle]="{ width: '100%', 'font-size': '20px' }" required></p-dropdown>
                 </div>
               </div>
               <div class=" ui-md-2 ui-lg-2 ui-sm-12">
-                <button
-                  pButton
-                  type="button"
-                  class="backBtnStyle"
-                  (click)="routetoaddcompany()"
-                  style="width:75%;background: #479761;; "
-                  label="Add "
-                ></button>
+                <button pButton type="button" class="backBtnStyle" (click)="routetoaddcompany()"
+                  style="width:75%;background: #479761;; " label="Add "></button>
               </div>
             </div>
 
@@ -102,55 +58,28 @@
               <!-- <div class="ui-md-3 ui-lg-3"></div> -->
               <div class="ui-md-5 ui-lg-5 ui-sm-12">
                 <div class="ui-inputgroup">
-                  <span
-                    class="ui-inputgroup-addon"
-                    style="width: 50%;font-size:15px;"
-                    >Formula <i style="color: red">*</i></span
-                  >
-                  <input
-                    type="text"
-                    required
-                    style="width: 100%"
-                    name="formula"
-                    pInputText
-                    [(ngModel)]="productRegistration.formula"
-                    required
-                  />
+                  <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Formula <i
+                      style="color: red">*</i></span>
+                  <input type="text" required style="width: 100%" name="formula" pInputText
+                    [(ngModel)]="productRegistration.formula" required />
                 </div>
               </div>
 
               <div class="ui-md-5 ui-lg-5 ui-sm-12">
                 <div class="ui-inputgroup">
-                  <span
-                    class="ui-inputgroup-addon"
-                    style="width: 50%;font-size:15px;"
-                    >Drug Formation <i style="color: red">*</i></span
-                  >
-                  <p-dropdown
-                    [options]="drugformation"
-                    name="drugFormation"
-                    placeholder="Select drugFormation"
-                    [(ngModel)]="productRegistration.drugFormation"
-                    [filter]="true"
-                    [style]="{
+                  <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Drug Formation <i
+                      style="color: red">*</i></span>
+                  <p-dropdown [options]="drugformation" name="drugFormation" placeholder="Select drugFormation"
+                    [(ngModel)]="productRegistration.drugFormation" [filter]="true" [style]="{
                       width: '100%',
                       height: '100%',
                       'font-size': '20px'
-                    }"
-                    [ngStyle]="{ width: '100%', 'font-size': '20px' }"
-                    required
-                  ></p-dropdown>
+                    }" [ngStyle]="{ width: '100%', 'font-size': '20px' }" required></p-dropdown>
                 </div>
               </div>
               <div class=" ui-md-2 ui-lg-2 ui-sm-12">
-                <button
-                  pButton
-                  type="button"
-                  class="backBtnStyle"
-                  (click)="routetoDrugFormation()"
-                  style="width:75%;background: #479761;; "
-                  label="Add "
-                ></button>
+                <button pButton type="button" class="backBtnStyle" (click)="routetoDrugFormation()"
+                  style="width:75%;background: #479761;; " label="Add "></button>
               </div>
             </div>
 
@@ -158,136 +87,88 @@
               <!-- <div class="ui-md-3 ui-lg-3"></div> -->
               <div class="ui-md-5 ui-lg-5 ui-sm-12">
                 <div class="ui-inputgroup">
-                  <span
-                    class="ui-inputgroup-addon"
-                    style="width: 50%;font-size:15px;"
-                    >Packing: <i style="color: red">*</i></span
-                  >
-                  <input
-                    type="text"
-                    required
-                    style="width: 100%"
-                    name="packing"
-                    pInputText
-                    
-                    (keypress)="numberOnly($event)"
-                    [(ngModel)]="productRegistration.packing"
-                  />
+                  <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Packing: <i
+                      style="color: red">*</i></span>
+                  <input type="text" required style="width: 100%" name="packing" pInputText
+                    (keypress)="numberOnly($event)" [(ngModel)]="productRegistration.packing" />
                 </div>
               </div>
               <div class="ui-md-5 ui-lg-5 ui-sm-12">
                 <div class="ui-inputgroup">
-                  <span
-                    class="ui-inputgroup-addon"
-                    style="width: 50%;font-size:15px;"
-                  >
-                    BoxRate<i style="color: red">*</i></span
-                  >
-                  <input
-                    type="text"
-                    required
-                    (input)="onchangeUnitPrice()"
-                    style="width: 100%"
-                    name="boxRate"
-                    pInputText
-                    (keypress)="numberOnly($event)"
-                    [(ngModel)]="productRegistration.boxRate"
-                  />
+                  <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">
+                    BoxRate<i style="color: red">*</i></span>
+                  <input type="text" required (input)="onchangeUnitPrice()" style="width: 100%" name="boxRate"
+                    pInputText (keypress)="numberOnly($event)" [(ngModel)]="productRegistration.boxRate" />
                 </div>
               </div>
             </div>
+            <div class="ui-g">
+              <div class="ui-md-5 ui-lg-5 ui-sm-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">
+                    Unit Price</span>
+                  <input [disabled]="true" type="text" required style="width: 100%" name="unitPrice" pInputText
+                    (keypress)="numberOnly($event)" [(ngModel)]="unitprice" />
+                </div>
+              </div>
+              <div class="ui-md-5 ui-lg-5 ui-sm-12">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">
+                    Selling Price<i style="color: red">*</i></span>
+                  <input type="text" required (input)="onchangeUnitPrice()" style="width: 100%" name="sellingPrice"
+                    pInputText (keypress)="numberOnly($event)" [(ngModel)]="productRegistration.sellingPrice" />
 
+                </div>
+                <div style="padding:0px;margin-bottom:0px" *ngIf="sellingBtn" class="alert alert-danger">
+                  Sale price must be greater than Unit price
+                </div>
+              </div>
+            </div>
             <div class="ui-g">
               <!-- <div class="ui-md-3 ui-lg-3"></div> -->
               <div class="ui-md-5 ui-lg-5 ui-sm-12">
                 <div class="ui-inputgroup">
-                  <span
-                    class="ui-inputgroup-addon"
-                    style="width: 50%;font-size:15px;"
-                  >
-                    MinStock<i style="color: red">*</i></span
-                  >
-                  <input
-                    type="text"
-                    required
-                    style="width: 100%"
-                    name="minStock"
-                    (change)="onchangeUnitPrice()"
-                    pInputText
-                    [disabled]="disableMaxAndMinStock()"
-                    (keypress)="numberOnly($event)"
-                    [(ngModel)]="productRegistration.minStock"
-                  />
+                  <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">
+                    MinStock<i style="color: red">*</i></span>
+                  <input type="text" required style="width: 100%" name="minStock" (change)="onchangeUnitPrice()"
+                    pInputText [disabled]="disableMaxAndMinStock()" (keypress)="numberOnly($event)"
+                    [(ngModel)]="productRegistration.minStock" />
                 </div>
               </div>
 
               <div class="ui-md-5 ui-lg-5 ui-sm-12">
                 <div class="ui-inputgroup">
-                  <span
-                    class="ui-inputgroup-addon"
-                    style="width: 50%;font-size:15px;"
-                    >maxStock <i style="color: red">*</i></span
-                  >
-                  <input
-                    type="text"
-                    required
-                    style="width: 100%"
-                    name="maxStock"
-                    pInputText
-                    [disabled]="disableMaxAndMinStock()"
-                    (keypress)="numberOnly($event)"
-                    [(ngModel)]="productRegistration.maxStock"
-                  />
+                  <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">maxStock <i
+                      style="color: red">*</i></span>
+                  <input type="text" required style="width: 100%" name="maxStock" pInputText
+                    [disabled]="disableMaxAndMinStock()" (keypress)="numberOnly($event)"
+                    [(ngModel)]="productRegistration.maxStock" />
                 </div>
               </div>
             </div>
             <div class="ui-g">
-              <div class="ui-md-4 ui-lg-4 ui-sm-12">
+              <div class="ui-md-6 ui-lg-4 ui-lg-offset-1 ui-sm-12">
                 <div class="ui-g-12">
-                  <p-radioButton
-                    required
-                    class="makeBold"
-                    name="activeProduct"
-                    label="Active Product"
-                    value="activeProduct"
-                    [(ngModel)]="productRegistration.state"
-                    (click)="changeStatus1()"
-                  ></p-radioButton>
+                  <p-radioButton required class="makeBold" name="activeProduct" label="Active Product"
+                    value="activeProduct" [(ngModel)]="productRegistration.state" (click)="changeStatus1()">
+                  </p-radioButton>
                 </div>
               </div>
-              <div class="ui-md-4 ui-lg-4 ui-sm-12">
+              <div class="ui-md-6 ui-lg-4 ui-lg-offset-1 ui-sm-12">
                 <div class="ui-g-12">
-                  <p-radioButton
-                    required
-                    class="makeBold"
-                    name="runningProduct"
-                    value="runningProduct"
-                    label="Running Product"
-                    [(ngModel)]="productRegistration.state"
-                    (click)="changeStatus2()"
-                  ></p-radioButton>
+                  <p-radioButton required class="makeBold" name="runningProduct" value="runningProduct"
+                    label="Running Product" [(ngModel)]="productRegistration.state" (click)="changeStatus2()">
+                  </p-radioButton>
                 </div>
               </div>
-              <div class="ui-md-4 ui-lg-4 ui-sm-12">
-                <div class="ui-g-12">
-                  <label class="makeBold" style="font-size:16px;"
-                    >Unit Price:{{ unitprice | number : '1.2-2' }}
-                  </label>
-                </div>
-              </div>
+
             </div>
-            
+
             <div class="ui-g">
-              <div class="ui-md-3 ui-lg-3 ui-sm-12"></div>
+              <div class="ui-md-3 ui-lg-2 ui-sm-12"></div>
               <div class="ui-md-6 ui-lg-6 ui-sm-12">
-                <button
-                  pButton
-                  type="submit"
-                  label="Save"
-                  [disabled]="myForm.form.invalid"
-                  style="margin-top: 0px; background-color:#479761;width:100%;"
-                  class="colorSetAllButtons"
-                ></button>
+                <button pButton type="submit" label="Save" [disabled]="myForm.form.invalid || sellingBtn"
+                  style="margin-top: 0px; background-color:#479761;width:100%;" class="colorSetAllButtons"></button>
               </div>
               <div class="ui-md-3 ui-lg-3 ui-sm-12"></div>
             </div>
@@ -297,4 +178,3 @@
     </div>
   </div>
 </div>
-

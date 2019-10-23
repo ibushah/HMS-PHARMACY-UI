@@ -7,9 +7,7 @@ import {ButtonModule} from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {RadioButtonModule} from 'primeng/radiobutton';
-// import {DropdownModule} from 'primeng/dropdown';
-// import { MessageService, SelectItem } from 'primeng/api';
-// import {ToastModule} from 'primeng/toast';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SalesMainscreenComponent } from './sales-mainscreen/sales-mainscreen.component';
@@ -17,8 +15,6 @@ import {CardModule} from 'primeng/card';
 import {TableModule} from 'primeng/table';
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { ProductRegistrationComponent } from './product-registration/product-registration.component';
-// import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
-
 import {ToastModule} from 'primeng/toast';
 import { CompanyListComponent } from './company-list/company-list.component';
 import { ProductRegistrationListComponent } from './product-registration-list/product-registration-list.component';
@@ -40,6 +36,9 @@ import { SalesListComponent } from './sales-list/sales-list.component';
 import { ToastServiceService } from './toast-service.service';
 import { QrcodeComponent } from './sales-mainscreen/qrcode/qrcode.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { RightUserBarComponent } from './right-user-bar/right-user-bar.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +60,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     GrnListComponent,
     GrnDetailComponent,
     SalesListComponent,
-    QrcodeComponent
+    QrcodeComponent,
+    RightUserBarComponent
 
   ],
   imports: [
