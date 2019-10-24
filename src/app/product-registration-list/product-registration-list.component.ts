@@ -39,7 +39,7 @@ this.router.navigate(['productreg'])
     this.productRegistration=[];
 
     this.productregistrationservice.getallproductregistration().subscribe(data=>{
-      // console.log(data);
+       console.log(data);
       data.map(p=>{
         // console.log("fmkmfa",p.productRegistrationList);
         this.productRegistration.push({

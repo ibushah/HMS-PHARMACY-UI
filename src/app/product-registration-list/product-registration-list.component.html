@@ -20,7 +20,7 @@ color: 'green',
 }">
 <p-toast> </p-toast>
     
-    <p-table #dt [columns]="cols" [value]="productRegistration" [paginator]="true" [rows]="10" [totalRecords]="totalRecords">
+    <p-table [responsive]="true" #dt [columns]="cols" [value]="productRegistration" [paginator]="true" [rows]="10" [totalRecords]="totalRecords">
         <ng-template pTemplate="caption">
                 <div class="ui-g-12">
                         <h2 style="font-weight:bold;color: green;">REGISTER PRODUCT LIST</h2>

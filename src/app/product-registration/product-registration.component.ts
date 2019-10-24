@@ -6,6 +6,7 @@ import { productRegistration } from "./product-registration";
 import { ProductRegistrationService } from "../Services/product-registration.service";
 import { MessageService } from "primeng/api";
 import { isFulfilled } from 'q';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: "app-product-registration",
@@ -20,6 +21,7 @@ export class ProductRegistrationComponent implements OnInit {
   drugformation: any[];
   value1: Boolean = false;
   value2: Boolean = false;
+  qrCodeUrl="data:image/png;base64,";
   sellingBtn = false;
   constructor(
     private messageservice: MessageService,
@@ -27,7 +29,8 @@ export class ProductRegistrationComponent implements OnInit {
     private activateroute: ActivatedRoute,
     private companyservice: CompanyServiceService,
     private drugformationservice: DrugformationService,
-    private productRegistrationservice: ProductRegistrationService
+    private productRegistrationservice: ProductRegistrationService,
+    public _DomSanitizationService: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -116,7 +119,7 @@ export class ProductRegistrationComponent implements OnInit {
     if (this.productid != null) {
       this.productRegistrationservice.updatebyid(this.productid, this.productRegistration).subscribe(
         data => {
-
+          console.log(data)
           this.messageservice.add({
             severity: "success",
             summary: "Succesfully",
@@ -139,6 +142,7 @@ export class ProductRegistrationComponent implements OnInit {
         .postproductregistration(this.productRegistration)
         .subscribe(
           data => {
+            console.log(data)
             this.unitprice = 0;
             this.productRegistration.companyProd = "";
             // console.log(this.company);
@@ -174,7 +178,8 @@ export class ProductRegistrationComponent implements OnInit {
 
   getbyid(id: any) {
     this.productRegistrationservice.getbyid(id).subscribe(data => {
-      // console.log(data);
+       console.log(data);
+       this.qrCodeUrl+=data.qrcode;
       this.productRegistration.productName = data.productName;
       this.productRegistration.companyProd = data.companyProd;
       this.productRegistration.formula = data.formula;
