@@ -30,9 +30,10 @@ export class SalesMainscreenComponent implements OnInit {
   printTotal: number = 0;
   productObj: Products = new Products();
   addInTable: Boolean = true;
+
   sidebarWidth: string;
   discount: number;
-  price:number=0;
+  price: number = 0;
   showDiv: boolean = true;
   totalFieldInForm: number = 0;
 
@@ -40,14 +41,14 @@ export class SalesMainscreenComponent implements OnInit {
     private salesservice: SalesService,
     private mesgService: MessageService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.populateCols();
 
     this.getProductsIndropdown();
+    this.salesObj.productQuantity = 1;
 
-    // console.log("table data =>", this.tableData);
   }
 
   disableSaveButton() {
@@ -59,6 +60,7 @@ export class SalesMainscreenComponent implements OnInit {
   }
 
   disableUnit() {
+
     if (this.salesObj.productRegistration) return false;
     else return true;
   }
@@ -73,7 +75,7 @@ export class SalesMainscreenComponent implements OnInit {
     else return true;
   }
 
-  resetForm(myForm){
+  resetForm(myForm) {
     myForm.reset();
   }
 
@@ -81,12 +83,12 @@ export class SalesMainscreenComponent implements OnInit {
   populateCols() {
     this.cols = [
       { field: "name", header: "Product Name" },
-      { field: "quantity", header: "quantity" },   
+      { field: "quantity", header: "quantity" },
       { field: "actualCost", header: "Actual Cost" },
       { field: "productPrice", header: "Product Price" },
       { field: "total", header: "Price" }
 
-      ];
+    ];
   }
 
   saveSales() {
@@ -114,6 +116,7 @@ export class SalesMainscreenComponent implements OnInit {
       }
     );
   }
+
 
   emptyPrintDataArray() {
     this.printData = [];
@@ -145,9 +148,11 @@ export class SalesMainscreenComponent implements OnInit {
         unitPrice: d["unitPrice"]
       });
     });
-    
+
     this.productObj.id = this.salesObj.productRegistration["id"];
     this.productObj.maxStock = this.salesObj.productRegistration["maxStock"];
+    this.calculatePriceQuantityProduct();
+    this.getProductQuantity()
   }
 
   getProductQuantity() {
@@ -163,7 +168,7 @@ export class SalesMainscreenComponent implements OnInit {
     this.total = this.total + this.totalFieldInForm;
     this.printTotal = this.total;
     this.disablesavebutton = false;
-   
+
     let updatedObj = this.tableData.find(
       d => d.name == this.salesObj.productRegistration["productName"]
     );
@@ -183,8 +188,8 @@ export class SalesMainscreenComponent implements OnInit {
         name: this.salesObj.productRegistration["productName"],
         quantity: this.salesObj.productQuantity,
         total: this.totalFieldInForm,
-        productPrice:(this.salesObj.productRegistration['unitPrice']).toFixed(2),
-        actualCost:(this.priceIntoQuantity).toFixed(2)
+        productPrice: (this.salesObj.productRegistration['unitPrice']).toFixed(2),
+        actualCost: (this.priceIntoQuantity).toFixed(2)
 
       });
     }
@@ -193,15 +198,15 @@ export class SalesMainscreenComponent implements OnInit {
       productRegistration: this.salesObj.productRegistration,
       productQuantity: this.salesObj.productQuantity,
       productPrice: this.salesObj.productRegistration['unitPrice'],
-      totalSellingPrice:this.totalFieldInForm,
-      costPrice:this.salesObj.total
+      totalSellingPrice: this.totalFieldInForm,
+      costPrice: this.salesObj.total
     });
 
     let updatedPrintSlipObj = this.printData.find(
       obj => obj["name"] == this.salesObj.productRegistration["productName"]
     );
     if (updatedPrintSlipObj) {
-      // console.log("=====>", updatedPrintSlipObj);
+
       updatedPrintSlipObj["quantity"] += this.salesObj.productQuantity;
       updatedPrintSlipObj["total"] += this.totalFieldInForm;
       this.printData.map(d => {
@@ -233,7 +238,6 @@ export class SalesMainscreenComponent implements OnInit {
   }
 
   deleteProduct(val: any, price: any) {
-    // console.log(price);
 
     this.salesservice.addMaxStocks(this.productObj).subscribe(d => {
       // console.log(d);
@@ -246,22 +250,33 @@ export class SalesMainscreenComponent implements OnInit {
     this.total = parseInt(this.total.toFixed(2));
     this.disableSaveButton();
   }
+  productEmitter(product) {
 
-  numberOnly(event): boolean {
-    const charCode = event.which ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode < 44)) {
-      return false;
-    }
-    return true;
+    let selectedObj = this.obj.find((v) => v.id = product.id);
+    this.salesObj.productRegistration = selectedObj;
+    this.productObj = product;
+    this.calculatePriceQuantityProduct();
+    this.getProductQuantity()
+
   }
 
+
+  clearForm() {
+    this.salesObj.productRegistration = null;
+    this.salesObj.total = 0;
+    this.salesObj.productQuantity = 0;
+  }
+
+
   callForChangeInProductStocks(myForm) {
+
     this.salesservice.postQuantity(this.productObj).subscribe(
       d => {
         let maxStock = Object.values(d).toString();
         if (maxStock == "MAXSTOCKUPDATED") {
           this.getDataInSalesTable();
           myForm.reset();
+          this.salesObj.productQuantity = 1;
           this.mesgService.add({
             severity: "success",
             summary: "Successfull",
@@ -269,6 +284,7 @@ export class SalesMainscreenComponent implements OnInit {
           });
         } else if (maxStock == "PRODUCTOUTOFSTOCK") {
           myForm.reset();
+          this.salesObj.productQuantity = 1;
           this.mesgService.add({
             severity: "warn",
             summary: "Out Of Stock",
@@ -286,6 +302,15 @@ export class SalesMainscreenComponent implements OnInit {
       }
     );
   }
+
+  numberOnly(event): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode < 44)) {
+      return false;
+    }
+    return true;
+  }
+
   routetoProductRegistration() {
     this.router.navigate(["productreg"]);
   }
@@ -293,30 +318,30 @@ export class SalesMainscreenComponent implements OnInit {
   discountOnSellingPrice() {
     this.discount = this.discount ? this.discount : 0;
     console.log(this.price)
-    if(this.discount < this.totalFieldInForm){
+    if (this.discount < this.totalFieldInForm) {
       this.totalFieldInForm = this.price - this.discount;
       this.showDiv = true;
     }
-    else{
+    else {
       this.showDiv = false;
     }
 
   }
 
-  addPrice(){  
-    this.totalFieldInForm = this.salesObj.totalSellingPrice; 
-   this.price=(this.totalFieldInForm)?this.totalFieldInForm:0
-   console.log(this.price)
+  addPrice() {
+    this.totalFieldInForm = this.salesObj.totalSellingPrice;
+    this.price = (this.totalFieldInForm) ? this.totalFieldInForm : 0
+    console.log(this.price)
   }
 
- 
 
-  restrictSellingPrice(){
-    if(this.salesObj.total>this.salesObj.totalSellingPrice){
-      return false;      
+
+  restrictSellingPrice() {
+    if (this.salesObj.total > this.salesObj.totalSellingPrice) {
+      return false;
     }
-    else{
-      return true;   
+    else {
+      return true;
     }
   }
 }

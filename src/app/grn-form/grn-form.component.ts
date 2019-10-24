@@ -64,7 +64,7 @@ export class GrnFormComponent implements OnInit {
   }
 
   submitGrn(data, myForm) {
-
+//let a = document.getElementById("");
     if (this.id) {
       this.service.updateGrnById(this.id, this.grn).subscribe((response) => {
         this.messageService.add({ severity: 'success', summary: 'Service Message', detail: response });

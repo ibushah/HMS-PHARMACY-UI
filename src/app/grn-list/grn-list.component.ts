@@ -34,8 +34,9 @@ export class GrnListComponent implements OnInit {
     this.grnData = [];
 
     this.service.getGrnList().subscribe((response) => {
-console.log(response);
+
       this.loader=false;
+      this.totalamount=0;
       response.map((grn) => {
         this.totalamount=this.totalamount+grn.productTotalAmount;
         var obj = {

@@ -34,4 +34,9 @@
     public getFilteredDates(salesListObj : any):Observable<any>{
       return this.http.post(environment.baseUrl + "api/sales/getfilteredsales",salesListObj);
     }
+
+    public getProductByQrCode(id:any):Observable<any>
+    {
+      return this.http.get(environment.baseUrl+"api/sales/product/"+id);
+    }
   }
