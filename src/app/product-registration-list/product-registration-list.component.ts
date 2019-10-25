@@ -119,6 +119,9 @@ this.router.navigate(['productreg/'+id]);
 
   }
 
- 
+  gotoDetails(id) {
+    console.log(id)
+     this.router.navigate(['productdetail/' + id])
+  }
 
 }

@@ -37,6 +37,7 @@ import { ToastServiceService } from './toast-service.service';
 import { QrcodeComponent } from './sales-mainscreen/qrcode/qrcode.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { RightUserBarComponent } from './right-user-bar/right-user-bar.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { RightUserBarComponent } from './right-user-bar/right-user-bar.component
     GrnDetailComponent,
     SalesListComponent,
     QrcodeComponent,
-    RightUserBarComponent
+    RightUserBarComponent,
+    ProductDetailsComponent
 
   ],
   imports: [

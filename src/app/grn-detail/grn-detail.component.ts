@@ -19,11 +19,8 @@ export class GrnDetailComponent implements OnInit {
   ngOnInit() {
     this.grn = new Grn();
     this.id = this.activateRoute.snapshot.params['id'];
-
-
     if (this.id)
       this.getGrn(this.id);
-    
   }
   getGrn(id) {
 

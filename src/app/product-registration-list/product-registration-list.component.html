@@ -44,8 +44,8 @@ color: 'green',
         </ng-template>  
 
         <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr [pSelectableRow]="rowData">
-                <td *ngFor="let col of columns" style="overflow: auto;">
+            <tr class="hoverGrn" [pSelectableRow]="rowData">
+                <td title="show Product details" (click)="gotoDetails(rowData['id'])" *ngFor="let col of columns"  style="overflow: auto;cursor: pointer;">
                     {{ rowData[col.field] }}
                 </td>
                 <td>
