@@ -25,6 +25,9 @@ export class ProductDetailsComponent implements OnInit {
 
     this.service.getbyid(id).subscribe((response) => {
       console.log(response)
+      this.product=response;
+      this.product.qrCode="data:image/png;base64,";
+      this.product.companyProd=response.companyProd.name;
       this.product.qrCode += response.qrcode;
       // this.grn = response;
 

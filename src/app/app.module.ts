@@ -38,6 +38,7 @@ import { QrcodeComponent } from './sales-mainscreen/qrcode/qrcode.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { RightUserBarComponent } from './right-user-bar/right-user-bar.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { PrintProductsComponent } from './print-products/print-products.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     SalesListComponent,
     QrcodeComponent,
     RightUserBarComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    PrintProductsComponent
 
   ],
   imports: [

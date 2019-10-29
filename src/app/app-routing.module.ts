@@ -15,7 +15,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthGuardService } from './guard/auth-guard.service';
 import { SalesListComponent } from './sales-list/sales-list.component';
 import {ProductDetailsComponent} from './product-details/product-details.component'
-
+import {PrintProductsComponent} from './print-products/print-products.component'
 
 
 const routes: Routes = [
@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: "grndetail/:id", canActivate: [AuthGuardService], component: GrnDetailComponent },
   { path: 'salesList', component: SalesListComponent },
   {path:'productdetail/:id',component:ProductDetailsComponent},
+  {path:'printproduct',component:PrintProductsComponent}
 
 ];
 
