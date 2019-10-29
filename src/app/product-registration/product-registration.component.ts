@@ -18,6 +18,7 @@ export class ProductRegistrationComponent implements OnInit {
   company: any[];
   productid: any;
   unitprice: any;
+  
   drugformation: any[];
   value1: Boolean = false;
   value2: Boolean = false;

@@ -10,5 +10,5 @@ export class productRegistration{
     companyProd:{};
     drugFormation:{};
     unitPrice:number;
-
+    qrCode="data:image/png;base64,";
 }

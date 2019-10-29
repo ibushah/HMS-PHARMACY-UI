@@ -12,6 +12,10 @@ vertical-align: middle;
 font-size:20px;
 }
 
+#nav_bar ul li a.active-page
+{
+  background-color:blue;
+}
 
 .main-menu:hover,nav.main-menu.expanded {
 width:250px;
