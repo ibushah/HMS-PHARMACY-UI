@@ -9,3 +9,7 @@
     font-weight: bold !important;
     
 }
+.hoverGrn:hover{
+    background-color:#479761 !important;
+    color: white;
+    }

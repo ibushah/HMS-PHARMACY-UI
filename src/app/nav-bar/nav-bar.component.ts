@@ -13,37 +13,26 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  routeToCompanylist() {
-    this.router.navigate(['/companylist']);
-  }
-  routetoproductregistrationlist() {
-    this.router.navigate(['/productregistrationlist']);
-  }
-  routetodrugformationList() {
-    this.router.navigate(['/drugformationlist']);
-  }
+  routeToCompanylist() { this.router.navigate(['/companylist']);}
 
-  routeToAddDrugs() {
-    this.router.navigate(['/addDrugs']);
-  }
-  routeToSalesList() {
-    this.router.navigate(['salesList'])
+  routetoproductregistrationlist() {this.router.navigate(['/productregistrationlist']); }
 
+  routetodrugformationList() { this.router.navigate(['/drugformationlist']);}
 
-  }
-  routeToDashboard() {
-    this.router.navigate(['dashboard']);
-  }
-  routeToGrn() {
-    this.router.navigate(['grnlist']);
-  }
+  routeToAddDrugs() { this.router.navigate(['/addDrugs']);}
+
+  routeToSalesList() {  this.router.navigate(['salesList']) }
+
+  routeToDashboard() { this.router.navigate(['dashboard']); }
+
+  routeToGrn() { this.router.navigate(['grnlist']); }
+
+  routeToPrintProducts(){ this.router.navigate(['printproduct']);}
 
   logout(){
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('userType');
-    // console.log(sessionStorage.getItem('token'));
-    // this.isHide = false;
-    this.router.navigate(['']);
+     this.router.navigate(['']);
   }
 }

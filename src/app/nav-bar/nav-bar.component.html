@@ -3,8 +3,8 @@
     <div class="navbar-header">
       <a class="navbar-brand" style="color:white;font-weight: bold;text-align: center;">BARKHIA HOSPITAL</a>
     </div>
-    
-        <app-right-user-bar></app-right-user-bar>
+
+    <app-right-user-bar></app-right-user-bar>
   </div>
 </nav>
 
@@ -22,7 +22,7 @@
         </span>
       </a>
     </li>
-   
+
 
     <li (click)="routetoproductregistrationlist()" style="margin-top: 13px !important;cursor: pointer;">
       <a>
@@ -35,6 +35,17 @@
         </span>
       </a>
     </li>
+    <!-- <li (click)="routeToPrintProducts()" style="margin-top: 13px !important;cursor: pointer;">
+        <a>
+  
+          <div style="width: 63px">
+            <img src="../../assets/print.png" class="imgClass" />
+          </div>
+          <span class="nav-text">
+             Print Products
+          </span>
+        </a>
+      </li> -->
     <li (click)="routeToGrn()" style="margin-top: 13px !important;cursor: pointer;">
       <a style="cursor: pointer">
         <div style="width: 63px">
@@ -58,9 +69,9 @@
         </span>
       </a>
     </li>
- 
+
     <li (click)="routeToSalesList()" style="margin-top: 13px !important;cursor: pointer;">
-      <a  class='active-page'>
+      <a class='active-page'>
         <div style="width: 63px">
           <img src="assets/icons8-us-dollar-100.png" class="imgClass" />
         </div>
@@ -69,23 +80,18 @@
         </span>
       </a>
     </li>
-      <li (click)="logout()"
-        style="margin-top: 13px !important;cursor: pointer;">
-        <a>
-          <div style="width: 63px">
-            <img src="assets/icons8-shutdown-48.png"
-              class="imgClass" />
-          </div>
-          <span class="nav-text">
-            Logout
-          </span>
-        </a>
-      </li>
+    
+
+    <li (click)="logout()" style="margin-top: 13px !important;cursor: pointer;">
+      <a>
+        <div style="width: 63px">
+          <img src="assets/icons8-shutdown-48.png" class="imgClass" />
+        </div>
+        <span class="nav-text">
+          Logout
+        </span>
+      </a>
+    </li>
   </ul>
 
 </nav>
-
-
-
-
-
