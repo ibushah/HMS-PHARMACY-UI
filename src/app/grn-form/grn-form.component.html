@@ -110,10 +110,10 @@
                                 style="color: red">*</i></span>
                         <input (input)="amountDetector()" (keypress)="numberOnly($event)"
                             style="width: 80%;text-indent:5px" [(ngModel)]="grn.discount" type="text" pInputText
-                            required placeholder=" Discount in %" name="discount" />
+                            required placeholder=" Discount" name="discount" />
                     </div>
                     <div style="padding:0px;margin-bottom:0px !important" *ngIf="disable" class="alert alert-danger">
-                        Discount cannot be more than 100%
+                        Discount cannot be more than product amount
                     </div>
 
                 </div>
