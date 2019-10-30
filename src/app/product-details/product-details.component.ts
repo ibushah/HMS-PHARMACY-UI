@@ -13,7 +13,7 @@ export class ProductDetailsComponent implements OnInit {
   id;
   product: productRegistration = new productRegistration();
 
-  constructor(private activateRoute: ActivatedRoute, private service: ProductRegistrationService, public _DomSanitizationService: DomSanitizer) { }
+  constructor(private route:Router,private activateRoute: ActivatedRoute, private service: ProductRegistrationService, public _DomSanitizationService: DomSanitizer) { }
 
   ngOnInit() {
 
@@ -33,6 +33,11 @@ export class ProductDetailsComponent implements OnInit {
 
 
     })
+  }
+
+  routeBack()
+  {
+    history.go(-1);
   }
 
 }

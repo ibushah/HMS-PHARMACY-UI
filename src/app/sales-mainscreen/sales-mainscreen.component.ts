@@ -242,7 +242,6 @@ export class SalesMainscreenComponent implements OnInit {
     this.salesservice.addMaxStocks(this.productObj).subscribe(d => {
       // console.log(d);
     });
-
     this.tableData.splice(val, 1);
     this.printData.splice(val, 1);
     this.neArray.splice(val, 1);

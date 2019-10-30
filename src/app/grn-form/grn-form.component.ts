@@ -52,13 +52,13 @@ export class GrnFormComponent implements OnInit {
   {
     this.grn.packing=this.grn.packing?this.grn.packing:0;
     this.grn.boxRate=this.grn.boxRate?this.grn.boxRate:0;
-    this.disable=this.grn.discount>100?true:false;
+    this.disable=this.grn.discount>this.grn.productTotalAmount?true:false;
     this.grn.discount=this.grn.discount?this.grn.discount:0;
    
    
     
     this.grn.productTotalAmount=this.grn.boxRate*this.grn.packing;
-    this.grn.discountedAmount=this.grn.productTotalAmount-((this.grn.discount/100)*this.grn.productTotalAmount);
+    this.grn.discountedAmount=this.grn.productTotalAmount-this.grn.discount;
   
    
   }
