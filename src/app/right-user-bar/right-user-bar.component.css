@@ -12,7 +12,7 @@ body {
     background-color:#479761;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 8px;
   }
   
   .sidenav a {
@@ -38,3 +38,5 @@ body {
 .sidenav:hover{
     width:250px;
 }
+
+

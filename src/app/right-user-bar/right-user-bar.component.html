@@ -1,44 +1,146 @@
 <div>
   <span
     style="font-size:20px;cursor:pointer;color: #ffffff;"
-    (click)="openNavBar()"
+    (click)="openNavBar(); getTotalCashInHand(); getGrnTotal()"
     >&#9776; User Details
   </span>
 </div>
 
 <div id="mySidenav" [style.width]="sideBarWidth" class="sidenav">
   <div style="text-align: left;margin-left: 5%; " (click)="closeNavBar()">
-    <p style="color: white;font-weight: bold">X</p>
+    <p style="color: #f1f0f0;font-weight: bold; cursor: pointer;">&#x2715;</p>
   </div>
-  <hr style="background-color: white; width: 86%; height:2px" />
-  <div class="ui-g" style="margin-left: 28%">
-    <div class="ui-lg-3 ui-md-3 ui-sm-12">
-      <img src="assets/icons8-user-100.png" class="imgClass" />
+  <!-- <hr style="background-color: #f1f0f0; width: 86%;" /> -->
+  <div *ngIf="userType=='ADMIN'">
+  <p-card
+    [style]="{
+      width: '90%',
+      'font-size': '15px',
+      'margin-left': '5%',
+      'margin-bottom': '2%',
+      'text-align': 'left',
+      'border-radius': '15px'
+    }"
+  >
+   
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <p-dropdown
+          [options]="dropDowndata"
+          name="email"
+          placeholder="Select Username"
+          pInputText
+          (onChange)="onSelect()"
+          [(ngModel)]="email"
+          [style]="{ 'margin-left': '1%', border: '1px solid black' }"
+          [filter]="true"
+        ></p-dropdown>
+      </div>
+      <div class="ui-g-12">
+        <input
+          type="date"
+          name="date"
+          [(ngModel)]="dateFilter"
+          style="width: 95%;margin-left:3%;border:1px solid black"
+          placeholder="Select Date"
+        />
+      </div>
+      <div class="ui-g-12">
+        <button
+          pButton
+          type="button"
+          class="ui-button-raised ui-button-rounded ui-button-warning"
+          (click)="filterByUsernameAndDate()"
+          style="width:60%;margin-left:22%;"
+          label="Filter"
+        ></button>
+      </div>
     </div>
-  </div>
-  <hr style="background-color: white; width: 86%; height:1px" />
+  </p-card>
+</div>
+  <!-- <br> -->
+  <!-- <hr style="background-color: #f1f0f0; width: 86%;" /> -->
+
+  <p-card
+    [style]="{
+      width: '90%',
+      'font-size': '15px',
+      'margin-left': '5%',
+      'margin-bottom': '2%',
+      'text-align': 'left',
+      'border-radius': '15px'
+    }"
+  >
+    <div class="ui-g" style="padding-bottom:0">
+      <div class="ui-g-5 ui-md-4">
+        <img src="assets/userSideBar.png" height="30px" width="30px" />
+      </div>
+      <div class="ui-g-7 ui-md-8" style="text-align: right">
+        <label style="font-size: 14px;color:#9a9a9a">Username </label>
+        <p style="font-size: 26px;color: #252422;">{{ username }}</p>
+      </div>
+    </div>
+    <div class="ui-g" style="padding-top:0;">
+      <hr style="background-color: transparent" width="100%" />
+      <div style="display: inline-block; color: #9a9a9a;font-size:12px">
+        <i class="pi pi-calendar-plus"></i>
+        Today
+      </div>
+    </div>
+  </p-card>
+  <!-- <br> -->
+  <p-card
+    [style]="{
+      width: '90%',
+      'font-size': '15px',
+      'margin-left': '5%',
+      'margin-bottom': '2%',
+      'text-align': 'left',
+      'border-radius': '15px'
+    }"
+  >
+    <div class="ui-g" style="padding-bottom:0">
+      <div class="ui-g-5 ui-md-4">
+        <img src="assets/cash.png" />
+      </div>
+      <div class="ui-g-7 ui-md-8" style="text-align: right">
+        <label style="font-size: 14px;color:#9a9a9a">Sales Amount </label>
+        <p style="font-size: 26px;color: #252422;">Rs. {{ totalCashInHand }}</p>
+      </div>
+    </div>
+    <div class="ui-g" style="padding-top:0;">
+      <hr style="background-color: transparent" width="100%" />
+      <div style="display: inline-block; color: #9a9a9a;font-size:12px">
+        <i class="pi pi-calendar-plus"></i>
+        Today
+      </div>
+    </div>
+  </p-card>
+
   <p-card
     [style]="{
       width: '90%',
       'font-size': '15px',
       'margin-left': '5%',
       'text-align': 'left',
-      color: 'green',
-      height: '200px'
+      'border-radius': '15px'
     }"
   >
-    <div class="ui-g">
-      <label style="text-align: left; font-weight: bold"
-        >Username:
-      </label>
-      <p style=" margin-left: 4%">{{ username }}</p>
-    </div>
-    <div class="ui-g">
-        <label style="text-align: left; font-weight: bold"
-          >Sales:
-        </label>
-        <p style=" margin-left: 4%">{{ username }}</p>
+    <div class="ui-g" style="padding-bottom:0">
+      <div class="ui-g-5 ui-md-4">
+        <img src="assets/giveGrn.png" height="30px" width="30px" />
       </div>
-  
+      <div class="ui-g-7 ui-md-8" style="text-align: right">
+        <label style="font-size: 14px;color:#9a9a9a">Grn Amount </label>
+        <p style="font-size: 26px;color: #252422;">Rs. {{ totalGrn }}</p>
+      </div>
+    </div>
+    <div class="ui-g" style="padding-top:0;">
+      <hr style="background-color: transparent" width="100%" />
+      <div style="display: inline-block; color: #9a9a9a;font-size:12px">
+        <i class="pi pi-calendar-plus"></i>
+        Today
+      </div>
+    </div>
   </p-card>
 </div>
