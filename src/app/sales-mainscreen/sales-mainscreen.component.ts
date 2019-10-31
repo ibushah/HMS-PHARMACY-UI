@@ -233,7 +233,8 @@ export class SalesMainscreenComponent implements OnInit {
       productQuantity: this.salesObj.productQuantity,
       productPrice: this.salesObj.productRegistration['unitPrice'],
       totalSellingPrice: this.totalFieldInForm,
-      costPrice: this.salesObj.total
+      costPrice: this.salesObj.total,
+      email:sessionStorage.getItem('email')
     });
 
     let updatedPrintSlipObj = this.printData.find(
