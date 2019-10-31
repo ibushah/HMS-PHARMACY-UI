@@ -34,4 +34,28 @@
     public getFilteredDates(salesListObj : any):Observable<any>{
       return this.http.post(environment.baseUrl + "api/sales/getfilteredsales",salesListObj);
     }
+
+    public getTotal(obj):Observable<any>{
+      return this.http.post(environment.baseUrl+"api/usertransactions/getsalestotal/",obj);
+    }
+
+    public getGrnTotal(obj):Observable<any>{
+      return this.http.post(environment.baseUrl+"api/usertransactions/getgrntotal/",obj);
+    }
+
+    public saveUserLoginInfo(obj:any):Observable<any>{
+      return this.http.post(environment.baseUrl+"api/userlogininfo/",obj)
+    }
+
+    public getUserLoginInfoByEmail(email):Observable<any>{
+      return this.http.get(environment.baseUrl+"api/userlogininfo/getuser/"+email)
+    }
+
+    public postUserTransactions(Obj:any):Observable<any>{
+      return this.http.post(environment.baseUrl+"api/usertransactions/",Obj);
+    }
+
+    public getUsers():Observable<any>{
+      return this.http.get(environment.baseUrl+"api/userlogininfo/getusers")
+    }
   }

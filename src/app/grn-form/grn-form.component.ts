@@ -4,6 +4,7 @@ import { CompanyServiceService } from '../Services/company-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Grn } from './Grn';
 import { MessageService } from 'primeng/api';
+import { SalesService } from '../Services/sales.service';
 
 @Component({
   selector: 'app-grn-form',
@@ -17,14 +18,16 @@ export class GrnFormComponent implements OnInit {
   companies = [];
   id: any;
   grn: Grn;
+  email: string;
 
-  constructor(private messageService: MessageService, private service: GrnService, private companyService: CompanyServiceService, private router: Router, private activateRoute: ActivatedRoute) { }
+
+  constructor(private messageService: MessageService, private service: GrnService, private companyService: CompanyServiceService, private router: Router, private activateRoute: ActivatedRoute,private salesservice: SalesService) { }
 
   ngOnInit() {
     this.grn = new Grn();
     this.id = this.activateRoute.snapshot.params['id'];
 
-
+    this.getUserLoginInfo();
     this.getCompanies();
     if (this.id)
       this.getGrn(this.id);
@@ -66,6 +69,8 @@ export class GrnFormComponent implements OnInit {
   submitGrn(data, myForm) {
 
     if (this.id) {
+      this.grn.transactionAmount = this.grn.discountedAmount;
+      this.grn.transactionType = 'GRN';
       this.service.updateGrnById(this.id, this.grn).subscribe((response) => {
         this.messageService.add({ severity: 'success', summary: 'Service Message', detail: response });
 
@@ -75,7 +80,8 @@ export class GrnFormComponent implements OnInit {
     }
     else {
       console.log(this.grn);
-
+      this.grn.transactionAmount = this.grn.discountedAmount;
+      this.grn.transactionType = 'GRN';
       this.service.postGrn(this.grn).subscribe((response) => {
         this.messageService.add({ severity: 'success', summary: 'Service Message', detail: response });
         myForm.reset();
@@ -84,6 +90,7 @@ export class GrnFormComponent implements OnInit {
       })
     }
 
+   
   }
 
   numberOnly(event): boolean {
@@ -98,4 +105,12 @@ export class GrnFormComponent implements OnInit {
     this.router.navigate(['grnlist'])
   }
 
+  getUserLoginInfo(){
+    this.email = sessionStorage.getItem('email');
+    this.salesservice.getUserLoginInfoByEmail(this.email).subscribe(data=>{
+      this.grn.userLoginInfo = data;
+    });
+  }
+
+  
 }

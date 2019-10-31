@@ -12,3 +12,9 @@ export class Products{
         productQuantity: number;
        
 }
+
+export class UserTransactions{
+    transactionAmount: number;
+    transactionType:String;
+    userLoginInfo:{};
+}
