@@ -6,10 +6,9 @@ export class productRegistration{
     minStock:number;
     maxStock:number;
     state:String="activeProduct"
-    // activeProduct:String="runningProduct";
-    // runningProduct:String="activeProduct";
+    sellingPrice:number=0;
     companyProd:{};
     drugFormation:{};
     unitPrice:number;
-
+    qrCode="data:image/png;base64,";
 }

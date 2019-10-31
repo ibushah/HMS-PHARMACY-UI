@@ -1,57 +1,55 @@
 <app-nav-bar></app-nav-bar>
 
-<h1 class="heading">SALES</h1>
+<!-- <h1 class="heading">SALES</h1> -->
 
-<hr
-  style="height: 1px; background-color: green; width: 80%; margin-left: 12%"
-/>
+<hr style="height: 1px; background-color: green; width: 80%; margin-left: 12%" />
 <p-toast [showTransitionOptions]="'4ms'"></p-toast>
 
-<div style="width: 100%" class="ui-g">
+<div style="width: 100%;margin-top:10px;" class="ui-g">
   <div class="ui-md-12 ui-lg-6 ui-sm-12">
-    <p-card
-      header=""
-      [style]="{
+    <p-card header="" [style]="{
         width: '80%',
         'font-size': '15px',
         'margin-left': '23.5%',
         'text-align': 'left',
         color: 'green'
-      }"
-    >
-      <h4 style="color: green; font-weight: bold">Point Of Sales Form :</h4>
-      <hr
-        style="height:2px;width:82%;background-color:green; margin-left: 1px;"
-      />
+      }">
+      <div class="ui-g">
+        <div class="ui-g-9" style="text-align: center;">
+          <h1
+            style="text-shadow: 3px 3px #479761;;color: rgb(9, 87, 13)#479761;margin-top:45px;font-weight: bold;">
+            POINT OF SALES</h1>
+        </div>
+        <div class="ui-g-3">
+
+          <p-card [style]="{padding:'5px',textAlign:'center'}">
+            <p style="font-size:12px;font-weight: bold;margin-bottom: 5px;color: #0a702c;">scan your qr code</p>
+
+            <app-qrcode (productEmitter)="productEmitter($event)"></app-qrcode>
+
+          </p-card>
+        </div>
+      </div>
+      <!-- <h4 style="color: green; font-weight: bold">Point Of Sales Form :</h4> -->
+
+      <hr style="height:2px;width:82%;background-color:green; margin-left: 1px;" />
+
 
       <div class="ui-g ui-fluid">
         <form style="width:100%;" #myForm="ngForm">
           <div class="ui-g">
             <!-- <div class="ui-md-1 ui-lg-1"></div> -->
             <div class="ui-md-12 ui-lg-10 ui-sm-12">
+
               <div class="ui-inputgroup">
-                <p-dropdown
-                  [options]="dropdownData"
-                  (onChange)="onProductChange()"
-                  [(ngModel)]="salesObj.productRegistration"
-                  name="testname"
-                  placeholder="Select Product"
-                  pInputText
-                  [style]="{ height: '40px' }"
-                  style="width: 100%"
-                  [filter]="true"
-                ></p-dropdown>
+                <p-dropdown [options]="dropdownData" (onChange)="onProductChange()"
+                  [(ngModel)]="salesObj.productRegistration" name="testname" placeholder="Select Product" pInputText
+                  [style]="{ height: '40px' }" style="width: 100%" [filter]="true"></p-dropdown>
               </div>
             </div>
             <div class=" ui-md-2 ui-lg-2 ui-sm-12">
-              <button
-                pButton
-                type="button"
-                class="backBtnStyle"
-                (click)="routetoProductRegistration()"
-                style="width:75%;background: #479761;; "
-                label="Add "
-              ></button>
+              <button pButton type="button" class="backBtnStyle" (click)="routetoProductRegistration()"
+                style="width:75%;background: #479761;; " label="Add "></button>
             </div>
           </div>
 
@@ -59,24 +57,12 @@
             <!-- <div class="ui-md-3 ui-lg-3"></div> -->
             <div class="ui-md-12 ui-lg-10 ui-sm-12">
               <div class="ui-inputgroup">
-                <span
-                  class="ui-inputgroup-addon"
-                  style="width: 50%;font-size:15px;"
-                  >Quantity: <i style="color: red">*</i></span
-                >
-                <input
-                  type="number"
-                  required
-                  (keypress)="numberOnly($event)"
-                  style="width: 100%"
-                  name="quantity"
-                  [disabled]="disableUnit()"
-                  (input)="
+                <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Quantity: <i
+                    style="color: red">*</i></span>
+                <input type="number" required (keypress)="numberOnly($event)" style="width: 100%" name="quantity"
+                  [disabled]="disableUnit()" (input)="
                     calculatePriceQuantityProduct(); getProductQuantity()
-                  "
-                  [(ngModel)]="salesObj.productQuantity"
-                  pInputText
-                />
+                  " [(ngModel)]="salesObj.productQuantity" pInputText />
               </div>
             </div>
           </div>
@@ -85,22 +71,11 @@
             <!-- <div class="ui-md-1 ui-lg-1"></div> -->
             <div class="ui-md-12 ui-lg-10 ui-sm-12">
               <div class="ui-inputgroup">
-                <span
-                  class="ui-inputgroup-addon"
-                  style="width:50%;font-size:15px;"
-                  >Cost Price: <i style="color: red">*</i></span
-                >
+                <span class="ui-inputgroup-addon" style="width:50%;font-size:15px;">Cost Price: <i
+                    style="color: red">*</i></span>
                 <!-- <input type="text" required [(ngModel)]="test.details" name="details" pInputText> -->
-                <input
-                  type="text"
-                  required
-                  (keypress)="numberOnly($event)"
-                  style="width: 100%"
-                  [disabled]="true"
-                  name="productPrice"
-                  [(ngModel)]="salesObj.total"
-                  pInputText
-                />
+                <input type="text" required (keypress)="numberOnly($event)" style="width: 100%" [disabled]="true"
+                  name="productPrice" [(ngModel)]="salesObj.total" pInputText />
               </div>
             </div>
           </div>
@@ -108,97 +83,51 @@
             <!-- <div class="ui-md-3 ui-lg-3"></div> -->
             <div class="ui-md-12 ui-lg-10 ui-sm-12">
               <div class="ui-inputgroup">
-                <span
-                  class="ui-inputgroup-addon"
-                  style="width: 50%;font-size:15px;"
-                  >Selling Price: <i style="color: red">*</i></span
-                >
-                <input
-                  type="number"
-                  min="0"
-                  required
-                  (keypress)="numberOnly($event)"
-                  style="width: 100%"
-                  name="sellingPrice"
-                  ngModel 
-                  #sale="ngModel"
-                  (input)="addPrice();restrictSellingPrice()"
-                  [disabled]="disableCost()"
-                  [(ngModel)]="salesObj.totalSellingPrice"
-                  pInputText
-                />
+                <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Selling Price: <i
+                    style="color: red">*</i></span>
+                <input type="number" min="0" required (keypress)="numberOnly($event)" style="width: 100%"
+                  name="sellingPrice" ngModel #sale="ngModel" (input)="addPrice();restrictSellingPrice()"
+                  [disabled]="disableCost()" [(ngModel)]="salesObj.totalSellingPrice" pInputText />
               </div>
-              <div style="padding:0px;margin-bottom:0px" [hidden]="restrictSellingPrice()"
-              class="alert alert-danger">
-            Sale price must be greater than cost price
-          </div>
+              <div style="padding:0px;margin-bottom:0px" [hidden]="restrictSellingPrice()" class="alert alert-danger">
+                Sale price must be greater than cost price
+              </div>
             </div>
           </div>
           <div class="ui-g">
-              <!-- <div class="ui-md-3 ui-lg-3"></div> -->
-              <div class="ui-md-12 ui-lg-10 ui-sm-12">
-                <div class="ui-inputgroup">
-                  <span
-                    class="ui-inputgroup-addon"
-                    style="width: 50%;font-size:15px;"
-                    >Discount: </span
-                  >
-                  <input
-                    type="text"
-                    (keypress)="numberOnly($event)"
-                    style="width: 100%"
-                    name="discount"
-                    ngModel 
-                    #disc="ngModel"
-                    (input)="discountOnSellingPrice()"
-                    [disabled]="disableDiscount()"
-                    [(ngModel)]="discount"
-                    pInputText
-                  />
-                </div>
-                <div style="padding:0px;margin-bottom:0px" [hidden]="showDiv"
-                class="alert alert-danger">
-               Discount can't more than selling price
-            </div>
-       
+            <!-- <div class="ui-md-3 ui-lg-3"></div> -->
+            <div class="ui-md-12 ui-lg-10 ui-sm-12">
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Discount: </span>
+                <input type="text" (keypress)="numberOnly($event)" style="width: 100%" name="discount" ngModel
+                  #disc="ngModel" (input)="discountOnSellingPrice()" [disabled]="disableDiscount()"
+                  [(ngModel)]="discount" pInputText />
               </div>
-            </div>
-            <div class="ui-g">
-                <!-- <div class="ui-md-1 ui-lg-1"></div> -->
-                <div class="ui-md-12 ui-lg-10 ui-sm-12">
-                  <div class="ui-inputgroup">
-                      <span
-                      class="ui-inputgroup-addon"
-                      style="width: 50%;font-size:15px;"
-                      >Total: </span
-                    >
-                  <input
-                  type="number"
-                  min="0"
-                  style="width: 100%;height: 36px;"
-                  name="totalSellingPrice"
-                  placeholder="Total Selling Price"
-                  [disabled]="true"
-                  [(ngModel)]="totalFieldInForm"
-                  pInputText
-                  />
-                  </div>
-                  
-                </div>
+              <div style="padding:0px;margin-bottom:0px" [hidden]="showDiv" class="alert alert-danger">
+                Discount can't more than selling price
               </div>
-    
+
+            </div>
+          </div>
+          <div class="ui-g">
+            <!-- <div class="ui-md-1 ui-lg-1"></div> -->
+            <div class="ui-md-12 ui-lg-10 ui-sm-12">
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Total: </span>
+                <input type="number" min="0" style="width: 100%;height: 36px;" name="totalSellingPrice"
+                  placeholder="Total Selling Price" [disabled]="true" [(ngModel)]="totalFieldInForm" pInputText />
+              </div>
+
+            </div>
+          </div>
+
 
           <div class="ui-g" style="margin-top:20px !important;">
             <div class="ui-md-3 ui-lg-3"></div>
             <div class="ui-md-5 ui-lg-5 ui-sm-12">
-              <button
-                pButton
-                type="submit"
-                label="Add to cart"
-                (click)="callForChangeInProductStocks(myForm)"
+              <button pButton type="submit" label="Add to cart" (click)="callForChangeInProductStocks(myForm)"
                 [disabled]="(myForm.form.invalid || salesObj.total == 0)"
-                style="margin-top: 0px; background-color:#479761;width:100%;"
-              ></button>
+                style="margin-top: 0px; background-color:#479761;width:100%;"></button>
             </div>
           </div>
         </form>
@@ -206,16 +135,13 @@
     </p-card>
   </div>
   <div class="ui-md-12 ui-lg-5 ui-sm-12">
-    <p-card
-      [style]="{
+    <p-card [style]="{
         width: '100%',
         'font-size': '15px',
         'margin-left': '3%',
         'text-align': 'left',
-        color: 'green',
-        height:'468px'
-      }"
-    >
+        height:'615px'
+      }">
       <div class="ui-g">
         <div class="ui-g-2">
           <h4 style="color: green; font-weight: bold">Cart:</h4>
@@ -225,41 +151,19 @@
         </div>
         <div class="ui-g-1"></div>
         <div class="ui-g-3">
-          <button
-            pButton
-            type="button"
-            printSectionId="print"
-            ngxPrint
-            label="Print"
-            (click)="emptyPrintDataArray()"
-            [disabled]="disablePrintButton"
-            style="margin-top: 0px; background-color:#479761;width:100%;"
-          ></button>
+          <button pButton type="button" printSectionId="print" ngxPrint label="Print" (click)="emptyPrintDataArray()"
+            [disabled]="disablePrintButton" style="margin-top: 0px; background-color:#479761;width:100%;"></button>
         </div>
         <div class="ui-g-3">
-          <button
-            pButton
-            type="button"
-            label="Save"
-            [disabled]="disablesavebutton"
-            (click)="saveSales()"
-            style="margin-top: 0px; background-color:#479761;width:100%;"
-          ></button>
+          <button pButton type="button" label="Save" [disabled]="disablesavebutton" (click)="saveSales()"
+            style="margin-top: 0px; background-color:#479761;width:100%;"></button>
         </div>
       </div>
-      <hr
-        style="height:2px;width:100%;background-color:green; margin-left: 1px;"
-      />
+      <hr style="height:2px;width:100%;background-color:green; margin-left: 1px;" />
 
       <!-- <p style="margin:10px" [hidden]="facilities.length">No Facility selected!</p> -->
-      <p-table
-        [ngStyle]="{ textAlign: 'center' }"
-        [totalRecords]="totalRecords"
-        #dt
-        [paginator]="true"
-        [rows]="3"
-        [value]="tableData"
-      >
+      <p-table [ngStyle]="{ textAlign: 'center' }" [totalRecords]="totalRecords" #dt [paginator]="true" [rows]="5"
+        [value]="tableData">
         <ng-template pTemplate="header">
           <tr>
             <th [ngStyle]="{ textAlign: 'center' }" *ngFor="let col of cols">
@@ -278,27 +182,20 @@
             <td>
               <div (click)="
               deleteProduct(tableData.indexOf(rowIndex), rowData['total'])">
-                <img src="assets/delete.png"  style="cursor: pointer"/>
+                <img src="assets/delete.png" style="cursor: pointer" />
               </div>
             </td>
           </tr>
         </ng-template>
       </p-table>
-      <!-- (click)="
-      deleteProduct(tableData.indexOf(rowIndex), rowData['total'])
-    " -->
-     
+
 
       <div class="ui-g" style="margin-top: 4%;">
-          <hr
-          style="height:1px;width:100%;background-color:black; margin-left: 1px !important"
-        />
+        <hr style="height:1px;width:100%;background-color:black; margin-left: 1px !important" />
         <div class="ui-g-4">
           <div class="ui-g">
             <h5 style="font-weight: bold;color: black">Total :</h5>
-            <h6
-              style="margin-top: 2%;margin-left: 6%;color: black;font-size: large"
-            >
+            <h6 style="margin-top: 2%;margin-left: 6%;color: black;font-size: large">
               {{ total }}
             </h6>
           </div>
@@ -309,8 +206,9 @@
 </div>
 <div id="print" target="blank" [hidden]="true">
   <!-- <div *ngIf="addEmergency.name !== undefined"> -->
+    <img style="width: 100%;height:120px;" src="../../assets/logo.jpg">
 
-  <h1 style="text-align: center; color:green;font-weight:bold;">
+  <h1 style="text-align: center; margin-top: 60px;;font-weight:bold;">
     Sales Slip
   </h1>
   <hr style="border: 2px solid black;" />
@@ -333,10 +231,8 @@
       </div>
       <div>
         <hr style="border:1px solid black;width:100%;" />
-        <span
-          ><b> Total: </b>
-          <span style="float:right;">{{ printTotal }}</span></span
-        >
+        <span><b> Total: </b>
+          <span style="float:right;">{{ printTotal }}</span></span>
         <hr style="border:1px solid black;width:100%;" />
       </div>
     </div>

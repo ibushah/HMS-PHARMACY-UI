@@ -1,0 +1,141 @@
+<app-nav-bar></app-nav-bar>
+<div class="ui-g">
+    <div class="ui-lg-6 ui-md-6 ui-sm-12">
+        <button pButton type="button" class="backBtnStyle" (click)="routeBack()"
+            style="width:45%;margin-left:30%;background: #479761;; " label="Back"></button>
+    </div>
+</div>
+
+<div class="ui-g">
+    <div class="ui-g-1"></div>
+    <div class="ui-g-10">
+
+            <p-card [style]="{marginTop:'40px'}">
+                    <div class="ui-g">
+                        
+                     
+                        <div class="ui-sm-10 ui-g-8 ui-lg-12 ">
+                            <div class="ui-g-2 ui-sm-6 ui-md-4 ui-lg-2 ui-g-offset-5">
+                                <img printSectionId="print" ngxPrint label="Print"
+                                    style="margin-left:15%;;width: 70% !important;margin:0px !important;"
+                                    [src]="_DomSanitizationService.bypassSecurityTrustUrl(product.qrCode)">
+                              
+                                <button class="ui-button-success"
+                                    style="margin-left: 10%;width:51%;height:24px;font-size:10px;line-height:30px;" pButton
+                                    printSectionId="print" ngxPrint label="Print"></button>
+                            </div>
+                        </div>
+                
+                       
+                
+                
+                        <div style="margin-top: 60px;" class="ui-g">
+                            <div class="ui-g-2"></div>
+                            <div class="ui-g-8">
+                                <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                                    <div class="ui-inputgroup">
+                                        <label style="margin-right: 20px;font-weight: bold;"> Product Name:
+                                        </label>
+                                        <span>{{product.productName}}</span>
+                
+                                    </div>
+                                </div>
+                                <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                                    <div class="ui-inputgroup">
+                                        <label style="margin-right: 20px;font-weight: bold;"> Formula:
+                                        </label>
+                                        <span>{{product.formula}}</span>
+                
+                                    </div>
+                                </div>
+                                <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                                    <div class="ui-inputgroup">
+                                        <label style="margin-right: 20px;font-weight: bold;"> Packing:
+                                        </label>
+                                        <span>{{product.packing}}</span>
+                
+                                    </div>
+                                </div>
+                                <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                                    <div class="ui-inputgroup">
+                                        <label style="margin-right: 20px;font-weight: bold;"> Box Rate:
+                                        </label>
+                                        <span>{{product.boxRate}}</span>
+                
+                                    </div>
+                                </div>
+                
+                                <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                                    <div class="ui-inputgroup">
+                                        <label style="margin-right: 20px;font-weight: bold;"> Min Stock:
+                                        </label>
+                                        <span>{{product.minStock}}</span>
+                
+                                    </div>
+                                </div>
+                                <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                                    <div class="ui-inputgroup">
+                                        <label style="margin-right: 20px;font-weight: bold;"> Max Stock:
+                                        </label>
+                                        <span>{{product.maxStock}}</span>
+                
+                                    </div>
+                                </div>
+                                <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                                    <div class="ui-inputgroup">
+                                        <label style="margin-right: 20px;font-weight: bold;"> State:
+                                        </label>
+                                        <span>{{product.state}}</span>
+                
+                                    </div>
+                                </div>
+                                <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                                    <div class="ui-inputgroup">
+                                        <label style="margin-right: 20px;font-weight: bold;"> Selling Price:
+                                        </label>
+                                        <span>{{product.sellingPrice}}</span>
+                
+                                    </div>
+                                </div>
+                                <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                                    <div class="ui-inputgroup">
+                                        <label style="margin-right: 20px;font-weight: bold;"> Company Product:
+                                        </label>
+                                        <span>{{product.companyProd}}</span>
+                
+                                    </div>
+                                </div>
+                                <!-- <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                            <div class="ui-inputgroup">
+                                <label style="margin-right: 20px;font-weight: bold;"> Drug Formation:
+                                </label>
+                                <span>{{product.drugFormation}}</span>
+                
+                            </div>
+                        </div> -->
+                                <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                                    <div class="ui-inputgroup">
+                                        <label style="margin-right: 20px;font-weight: bold;"> Unit Price:
+                                        </label>
+                                        <span>{{product.unitPrice}}</span>
+                
+                                    </div>
+                                </div>
+                                <!-- <div class="ui-g-6 ui-lg-4 ui-sm-12 ui-md-12">
+                            <div class="ui-inputgroup">
+                                <label style="margin-right: 20px;font-weight: bold;"> Unit Price:
+                                </label>
+                                <span>{{product.unitPrice}}</span>
+                
+                            </div>
+                        </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </p-card>
+                
+    </div>
+</div>
+<div id="print" target="blank" [hidden]="true" style="width: 100%;">
+    <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(product.qrCode)" style="width: 100%;">
+</div>

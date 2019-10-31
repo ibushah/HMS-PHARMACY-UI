@@ -35,6 +35,7 @@
       return this.http.post(environment.baseUrl + "api/sales/getfilteredsales",salesListObj);
     }
 
+
     public getTotal(obj):Observable<any>{
       return this.http.post(environment.baseUrl+"api/usertransactions/getsalestotal/",obj);
     }
@@ -57,5 +58,11 @@
 
     public getUsers():Observable<any>{
       return this.http.get(environment.baseUrl+"api/userlogininfo/getusers")
+
+    }
+    public getProductByQrCode(id:any):Observable<any>
+    {
+      return this.http.get(environment.baseUrl+"api/sales/product/"+id);
+
     }
   }
