@@ -24,6 +24,7 @@ export class QrcodeComponent {
        
         if (response)
         {
+       
           this.productEmitter.emit(response);
           audio.play();
         }

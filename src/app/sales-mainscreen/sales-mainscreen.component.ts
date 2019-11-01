@@ -295,9 +295,9 @@ export class SalesMainscreenComponent implements OnInit {
   }
   productEmitter(product) {
 
-    let selectedObj = this.obj.find((v) => v.id = product.id);
+    let selectedObj = this.obj.find((v) => v.id == product.id);
     this.salesObj.productRegistration = selectedObj;
-    this.productObj = product;
+    this.productObj = selectedObj;
     this.calculatePriceQuantityProduct();
     this.getProductQuantity()
 
