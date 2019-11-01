@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  tokenURL: 'https://192.168.1.120:8445/',
-  baseUrl: 'https://192.168.1.120:8443/',
-  opdUrl: 'https://192.168.1.120:8445/',
-  labUrl: 'http://192.168.1.120:8081/',
-  pharmacyUrl: 'https://192.168.1.120:8443/'
+  tokenURL: 'https://localhost:8444/',
+  baseUrl: 'https://localhost:8447/',
+  opdUrl: 'https://localhost:8444/',
+  labUrl: 'https://localhost:8086/',
+  pharmacyUrl: 'https://localhost:8447/'
   // tokenURL: 'http://localhost:8080/',
   // baseUrl: 'http://localhost:8081/',
   // opdUrl: 'http://localhost:4200/',
