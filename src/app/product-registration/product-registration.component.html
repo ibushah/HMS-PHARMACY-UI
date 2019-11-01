@@ -29,7 +29,11 @@
           <div *ngIf="productid" style="text-align: center;" class="ui-md-2 ui-lg-offset-5 ui-lg-2 ui-sm-12">
            
               <img style="margin-left:15%;;width: 70% !important;margin:0px !important;" [src]="_DomSanitizationService.bypassSecurityTrustUrl(qrCodeUrl)">
-           <div  style="cursor: pointer;font-size:11px;margin-top: 0px;color: red;">click to print</div>
+              <button class="ui-button-success"
+              style="margin-left: 0;width:45%;height:24px;font-size:10px;line-height:30px;" pButton
+              printSectionId="print" ngxPrint label="Print"></button>
+
+
           </div>
         </div>
         <h4 style="color: green; font-weight: bold">Register Product :</h4>
@@ -190,4 +194,8 @@
       </p-card>
     </div>
   </div>
+</div>
+
+<div id="print" target="blank" [hidden]="true" style="width: 100%;">
+  <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(qrCodeUrl)" style="width: 100%;">
 </div>
