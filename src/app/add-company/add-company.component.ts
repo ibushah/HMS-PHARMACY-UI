@@ -32,14 +32,23 @@ export class AddCompanyComponent implements OnInit {
     this.companyservice.postcompany(this.company).subscribe(
       data => {
         // this.msgService.succesMethod
-        // console.log(this.company);
+        if(data == "DUPLICATE"){
+        console.log(data);
+        this.messageService.add({
+          severity: "warn",
+          summary: "Already Saved",
+          detail: "company already exist!"
+        });
+      }    
+      else if(data=="Company successfully saved"){
         this.messageService.add({
           severity: "success",
           summary: "Succesfully",
           detail: "company successfully saved!"
         });
-        
+      }
       },
+      
       error => {
         // console.log(error);
         this.messageService.add({

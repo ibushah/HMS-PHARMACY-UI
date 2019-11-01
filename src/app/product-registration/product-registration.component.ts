@@ -144,6 +144,7 @@ export class ProductRegistrationComponent implements OnInit {
         .subscribe(
           data => {
             console.log(data)
+            if(data=="Product Registered successfully saved"){
             this.unitprice = 0;
             this.productRegistration.companyProd = "";
             // console.log(this.company);
@@ -152,6 +153,13 @@ export class ProductRegistrationComponent implements OnInit {
               summary: "Succesfully",
               detail: "company successfully saved!"
             });
+          }else if(data=="DUPLICATE"){
+            this.messageservice.add({
+              severity: "warn",
+              summary: "Already Exist",
+              detail: "company already exists!"
+            });
+          }
           },
           error => {
             // console.log(error);
