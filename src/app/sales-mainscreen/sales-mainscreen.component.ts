@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./sales-mainscreen.component.css"]
 })
 export class SalesMainscreenComponent implements OnInit {
+  currentDate = new Date();
   cols: any[];
   neArray: any[] = [];
   dropdownData: any[] = [];
@@ -130,6 +131,7 @@ export class SalesMainscreenComponent implements OnInit {
   
 
   getUserLoginInfo(){
+
     this.email = sessionStorage.getItem('email');
     this.salesservice.getUserLoginInfoByEmail(this.email).subscribe(data=>{
       this.userTransactionObj.userLoginInfo = data;
@@ -141,11 +143,18 @@ export class SalesMainscreenComponent implements OnInit {
   saveUserTransaction(){
     this.userTransactionObj.transactionAmount = this.totalTransaction;
     this.userTransactionObj.transactionType = 'POS';
+    // this.setDateInObject(this.currentDate);
     this.salesservice.postUserTransactions(this.userTransactionObj).subscribe();
     console.log("Objjjjj",this.userTransactionObj);
 
     
   }
+  // setDateInObject(date:Date){
+  //   let currentDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+  //   this.userTransactionObj.transactionDate = new Date(currentDate);
+  //   console.log(this.userTransactionObj.transactionDate)
+    
+  // }
 //user transaction work end ...........
 
 

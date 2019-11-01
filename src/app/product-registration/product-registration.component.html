@@ -101,7 +101,7 @@
                   <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Packing: <i
                       style="color: red">*</i></span>
                   <input type="text" required style="width: 100%" name="packing" pInputText
-                    (keypress)="numberOnly($event)" [(ngModel)]="productRegistration.packing" />
+                    (keypress)="numberOnly($event)" (input)="onchangeUnitPrice()" [(ngModel)]="productRegistration.packing" />
                 </div>
               </div>
               <div class="ui-md-5 ui-lg-5 ui-sm-12">

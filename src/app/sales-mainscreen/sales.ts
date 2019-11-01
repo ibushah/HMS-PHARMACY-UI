@@ -14,6 +14,7 @@ export class Products{
 }
 
 export class UserTransactions{
+    transactionDate:Date;
     transactionAmount: number;
     transactionType:String;
     userLoginInfo:{};
