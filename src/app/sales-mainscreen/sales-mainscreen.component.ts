@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from "@angular/core";
 import { SalesService } from "../Services/sales.service";
-import { Sales, Products } from "./sales";
+import { Sales, Products, UserTransactions } from "./sales";
 import { MessageService } from "primeng/api";
 import { Router } from "@angular/router";
 
@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./sales-mainscreen.component.css"]
 })
 export class SalesMainscreenComponent implements OnInit {
+  currentDate = new Date();
   cols: any[];
   neArray: any[] = [];
   dropdownData: any[] = [];
@@ -36,6 +37,9 @@ export class SalesMainscreenComponent implements OnInit {
   price: number = 0;
   showDiv: boolean = true;
   totalFieldInForm: number = 0;
+  userTransactionObj: UserTransactions = new UserTransactions();
+  email: String;
+  totalTransaction = 0;
 
   constructor(
     private salesservice: SalesService,
@@ -48,6 +52,11 @@ export class SalesMainscreenComponent implements OnInit {
 
     this.getProductsIndropdown();
     this.salesObj.productQuantity = 1;
+
+
+    this.getUserLoginInfo();
+
+    // console.log("table data =>", this.tableData);
 
   }
 
@@ -99,7 +108,7 @@ export class SalesMainscreenComponent implements OnInit {
         this.disablePrintButton = false;
         this.disableSaveButton();
         this.disableAddToCartButton = true;
-
+        this.saveUserTransaction();
         this.neArray = [];
         this.mesgService.add({
           severity: "success",
@@ -115,7 +124,38 @@ export class SalesMainscreenComponent implements OnInit {
         });
       }
     );
+
+   
   }
+  //user transactions work.........
+  
+
+  getUserLoginInfo(){
+
+    this.email = sessionStorage.getItem('email');
+    this.salesservice.getUserLoginInfoByEmail(this.email).subscribe(data=>{
+      this.userTransactionObj.userLoginInfo = data;
+    });
+
+
+  }
+
+  saveUserTransaction(){
+    this.userTransactionObj.transactionAmount = this.totalTransaction;
+    this.userTransactionObj.transactionType = 'POS';
+    // this.setDateInObject(this.currentDate);
+    this.salesservice.postUserTransactions(this.userTransactionObj).subscribe();
+    console.log("Objjjjj",this.userTransactionObj);
+
+    
+  }
+  // setDateInObject(date:Date){
+  //   let currentDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+  //   this.userTransactionObj.transactionDate = new Date(currentDate);
+  //   console.log(this.userTransactionObj.transactionDate)
+    
+  // }
+//user transaction work end ...........
 
 
   emptyPrintDataArray() {
@@ -169,6 +209,9 @@ export class SalesMainscreenComponent implements OnInit {
     this.printTotal = this.total;
     this.disablesavebutton = false;
 
+    this.totalTransaction = this.total;
+   
+
     let updatedObj = this.tableData.find(
       d => d.name == this.salesObj.productRegistration["productName"]
     );
@@ -199,7 +242,8 @@ export class SalesMainscreenComponent implements OnInit {
       productQuantity: this.salesObj.productQuantity,
       productPrice: this.salesObj.productRegistration['unitPrice'],
       totalSellingPrice: this.totalFieldInForm,
-      costPrice: this.salesObj.total
+      costPrice: this.salesObj.total,
+      email:sessionStorage.getItem('email')
     });
 
     let updatedPrintSlipObj = this.printData.find(

@@ -13,4 +13,8 @@ export class Grn {
     company:Object={
         name:String
     };
+    transactionAmount: number;
+    transactionType:String;
+    userLoginInfo:{};
 }
+

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { MyServiceService } from '../my-service.service';
+import { SalesService } from '../Services/sales.service';
+import { UserInfo } from './UserInfo';
 
 @Component({
   selector: 'app-login-page',
@@ -21,11 +23,15 @@ export class LoginPageComponent implements OnInit {
   getType
   showErrorMessage: Boolean = false;
   email;
+  userLoginInfoObj : UserInfo = new UserInfo();
+  
+  
   constructor(
     private router: Router,
     private messageService: MessageService,
     private _location: Location,
-    private service:MyServiceService
+    private service:MyServiceService,
+    private salesService:SalesService
   ) { }
 
   ngOnInit() {
@@ -54,6 +60,7 @@ export class LoginPageComponent implements OnInit {
           this.succesMethod();
           this.showErrorMessage = false;
           this.goToPharmacy();
+          this.saveUserLoginInfo(res);
         }
 
         else {
@@ -68,7 +75,11 @@ export class LoginPageComponent implements OnInit {
         this.errorMethod("Not Authorized")
       }
     );
+   
+    
   }
+
+  
 
 
   credentials(res) {
@@ -78,6 +89,13 @@ export class LoginPageComponent implements OnInit {
     this.userType = sessionStorage.setItem('userType', res.result.userType);
     this.getType = sessionStorage.getItem('userType').toUpperCase();
 
+  }
+
+  saveUserLoginInfo(res){
+    this.userLoginInfoObj.email = res.result.email;
+    this.userLoginInfoObj.username = res.result.username;
+    console.log(this.userLoginInfoObj);
+    this.salesService.saveUserLoginInfo(this.userLoginInfoObj).subscribe()
   }
 
   succesMethod() {
