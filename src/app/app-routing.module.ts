@@ -16,6 +16,8 @@ import { AuthGuardService } from './guard/auth-guard.service';
 import { SalesListComponent } from './sales-list/sales-list.component';
 import {ProductDetailsComponent} from './product-details/product-details.component'
 import {PrintProductsComponent} from './print-products/print-products.component'
+import { FusionChartComponent } from './fusion-chart/fusion-chart.component';
+
 import { DispensaryComponent } from './dispensary/dispensary.component';
 import { AdddispensaryComponent } from './adddispensary/adddispensary.component';
 
@@ -43,7 +45,9 @@ const routes: Routes = [
   { path: "dispensary/:id", canActivate: [AuthGuardService], component: AdddispensaryComponent },
   { path: 'salesList', component: SalesListComponent },
   {path:'productdetail/:id',component:ProductDetailsComponent},
-  {path:'printproduct',component:PrintProductsComponent}
+  {path:'printproduct',component:PrintProductsComponent},
+  {path:'fusion',component:FusionChartComponent}
+  
 
 ];
 

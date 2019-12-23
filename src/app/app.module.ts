@@ -7,7 +7,7 @@ import {ButtonModule} from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {RadioButtonModule} from 'primeng/radiobutton';
-
+import { OnDestroy } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SalesMainscreenComponent } from './sales-mainscreen/sales-mainscreen.component';
@@ -39,9 +39,15 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { RightUserBarComponent } from './right-user-bar/right-user-bar.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { PrintProductsComponent } from './print-products/print-products.component';
+import { FusionChartComponent } from './fusion-chart/fusion-chart.component';
+import { FusionChartsModule } from "angular-fusioncharts";
+import * as FusionCharts from "fusioncharts";
+import * as Charts from "fusioncharts/fusioncharts.charts";
+import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+
 import { DispensaryComponent } from './dispensary/dispensary.component';
 import { AdddispensaryComponent } from './adddispensary/adddispensary.component';
-
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
 @NgModule({
   declarations: [
@@ -68,6 +74,7 @@ import { AdddispensaryComponent } from './adddispensary/adddispensary.component'
     RightUserBarComponent,
     ProductDetailsComponent,
     PrintProductsComponent,
+    FusionChartComponent,
     DispensaryComponent,
     AdddispensaryComponent
 
@@ -91,6 +98,8 @@ import { AdddispensaryComponent } from './adddispensary/adddispensary.component'
     ProgressSpinnerModule, 
     ToastModule,
     HttpClientModule,
+    FusionChartsModule,
+
 
     // HttpClientXsrfModule,
 

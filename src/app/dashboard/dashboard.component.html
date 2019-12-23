@@ -1,8 +1,44 @@
+<div class="ui-g-12">
+    <div class="ui-lg-5 ui-md-5 ui-sm-12">
+      <button
+        pButton
+        type="button"
+        class="backBtnStyle"
+        (click)="backToMonitor()"
+        style="width:45%;margin-left:30% "
+        label="Back"
+      ></button>
+    </div>
+
+    <div class="ui-g-12 ">
+        <p-toast></p-toast>
+        <p-card
+          header="Dashboard"
+          [style]="{
+            width: '100%',
+            height: '310px',
+            'font-size': '20px',
+            'text-align': 'center',
+            color: 'green',
+            'padding-bottom': '20px'
+          }"
+        >
+          <hr style="height:2px;width:100%;background-color:green" />
+          <div class="ui-g ">
+            <div class="ui-g-3 ui-sm-12  ui-md-4   ui-lg-4">
+              <label style="font-size: 25px !important "> Today: </label>
+              <label
+                style="font-size:22px !important;color:black;margin-left:10px; text-decoration:underline  "
+              >
+                {{ showdate }}</label
+              >
+            </div>
+
 <div style="margin-left:10%;width:80%;">
     <div class="ui-g">
 
 
-        <div class="ui-g-12">
+        <!-- <div class="ui-g-12">
             <p-toast></p-toast>
             <p-card header="Dashboard" [style]="{
           width: '100%',
@@ -18,7 +54,7 @@
                             <label style="font-size: 25px !important "> Today: </label>
                             <label
                                 style="font-size:22px !important;color:black;margin-left:10px; text-decoration:underline  ">
-                                {{ showdate }}</label>
+                                {{ date | date: "dd/MM/yyyy" }}</label>
                         </div>
                         <div class="ui-g-9 ui-sm-12  ui-md-8   ui-lg-8"></div>
 
@@ -27,14 +63,14 @@
                             <div class="ui-g-1 ui-sm-12  ui-md-1   ui-lg-1"></div>
                             <div class="ui-g-5 ui-sm-12  ui-md-5   ui-lg-5">
                                 <span class="ui-inputgroup-addon " style="font-size:14px">From </span>
-                                <p-calendar name="filterByDate" required [monthNavigator]="true" [yearNavigator]="true"
+                                <p-calendar name="filterByDate" required [(ngModel)]="dashboarddates.from"  [monthNavigator]="true" [yearNavigator]="true"
                                     yearRange="1947:2090" showButtonBar="true" placeholder="Select Date">
                                 </p-calendar>
                             </div>
                             <div class="ui-g-1 ui-sm-12  ui-md-1   ui-lg-1"></div>
                             <div class="ui-g-5 ui-sm-12  ui-md-5   ui-lg-5">
                                 <span class="ui-inputgroup-addon " style="font-size:14px;padding-right:20px">Till  </span>
-                                <p-calendar name="filterByDate" required [monthNavigator]="true" [yearNavigator]="true"
+                                <p-calendar name="filterByDate" required [(ngModel)]="dashboarddates.Till" [monthNavigator]="true" [yearNavigator]="true"
                                     yearRange="1947:2090" showButtonBar="true" placeholder="Select Date">
                                 </p-calendar>
                             </div>
@@ -43,14 +79,65 @@
                         <div style="width: 100%" class="ui-g">
                             <div class="ui-g-3 ui-sm-12  ui-md-3   ui-lg-4"></div>
                             <div class="ui-g-3 ui-sm-12  ui-md-6   ui-lg-4">
-                                <button pButton type="button" class="backBtnStyle"
+                                <button pButton type="button" class="backBtnStyle" (click)="onFilter()"
                                     style="width:90%;margin-left:5%;  height:40px;" label="Filter"></button>
                             </div>
                         </div>
                     </div>
                 </div>
             </p-card>
-        </div>
+        </div> -->
+
+
+        <div class="ui-g ui-g-12 ui-inputgroup ">
+            <div class="ui-g-3 ui-sm-12  ui-md-3   ui-lg-3"></div>
+            <div class=" ui-g-3 ui-sm-12  ui-md-3   ui-lg-3  ">
+              <span class="ui-inputgroup-addon " style="font-size:14px">Date From</span>
+              <p-calendar
+                name="filterByDate"
+                required
+                [(ngModel)]="dateFrom"
+                [monthNavigator]="true"
+                [yearNavigator]="true"
+                yearRange="1947:2090"
+                showButtonBar="true"
+                placeholder="Select Date"
+              >
+              </p-calendar>
+            </div>
+  
+            <div class="ui-g-3 ui-sm-12  ui-md-3   ui-lg-3 ">
+              <span class="ui-inputgroup-addon " style="font-size:14px">Date Till</span>
+              <p-calendar
+                name="filterByDate"
+                required
+                [(ngModel)]="dateTill"
+                [monthNavigator]="true"
+                [yearNavigator]="true"
+                yearRange="1947:2090"
+                showButtonBar="true"
+                placeholder="Select Date"
+              >
+              </p-calendar>
+            </div>
+          </div>
+
+
+          <div class="ui-g ui-g-12 ">
+            <div class="ui-g-3 ui-sm-12  ui-md-5   ui-lg-5"></div>
+            <div class="ui-g-3 ui-sm-12  ui-md-2   ui-lg-2">
+              <button
+                pButton
+                type="button"
+                class="backBtnStyle"
+                (click)="onFilter()"
+                style="width:100%;margin-left:10%;  height:40px;"
+                label="Filter"
+              ></button>
+            </div>
+          </div>
+
+
 
         <div class="ui-g-12">
             <p-card [style]="{
@@ -62,24 +149,24 @@
                     <div class="col-xl-4 col-sm-6 py-2">
                         <div class="card bg-success text-white h-100">
                             <div class="card-body bg-success">
-                                <h6 class="text-uppercase">Total Sales:</h6>
-                                <h1 class="display-4">{{ 343223 }}</h1>
+                                <h6 class="text-uppercase">Total Products</h6>
+                                <h1 class="display-4">{{ productCount }}</h1>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-4 col-sm-6 py-2">
                         <div class="card text-white bg-success h-100">
                             <div class="card-body bg-danger">
-                                <h6 class="text-uppercase">Out of stock Products:</h6>
-                                <h1 class="display-4">{{ 12 }}</h1>
+                                <h6 class="text-uppercase">Total Inventory Amount:</h6>
+                                <h1 class="display-4">{{ totalProductprice }}</h1>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-4 col-sm-6 py-2">
                         <div class="card text-white bg-info h-100">
                             <div class="card-body">
-                                <h6 class="text-uppercase">Running Products:</h6>
-                                <h1 class="display-4">{{ 34 }}</h1>
+                                <h6 class="text-uppercase">Total Profit:</h6>
+                                <h1 class="display-4">{{ salesTotalProfit }}</h1>
                             </div>
                         </div>
                     </div>
