@@ -23,11 +23,13 @@ export class NavBarComponent implements OnInit {
 
   routeToSalesList() {  this.router.navigate(['salesList']) }
 
-  routeToDashboard() { this.router.navigate(['dashboard']); }
+  routeToDashboard() { this.router.navigate(['/dashboard']); }
 
   routeToGrn() { this.router.navigate(['grnlist']); }
 
   routeToPrintProducts(){ this.router.navigate(['printproduct']);}
+
+  
 
   logout(){
     sessionStorage.removeItem('token');
