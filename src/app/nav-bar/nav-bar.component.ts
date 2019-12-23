@@ -21,6 +21,8 @@ export class NavBarComponent implements OnInit {
 
   routeToAddDrugs() { this.router.navigate(['/addDrugs']);}
 
+  routeTodispensary() { this.router.navigate(['/dispensary']);}
+
   routeToSalesList() {  this.router.navigate(['salesList']) }
 
   routeToDashboard() { this.router.navigate(['/dashboard']); }

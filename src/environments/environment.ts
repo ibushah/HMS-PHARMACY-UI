@@ -7,9 +7,8 @@ export const environment = {
   tokenURL: 'https://localhost:8444/',
   baseUrl: 'https://localhost:8447/',
   opdUrl: 'https://localhost:8444/',
-  labUrl: 'https://localhost:8086/',
+  labUrl: 'https://localhost:8446/',
   pharmacyUrl: 'https://localhost:8447/'
-
 };
 
 /*

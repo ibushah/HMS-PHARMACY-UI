@@ -15,6 +15,8 @@ private getallproductregistrationURL=environment.baseUrl+"api/productRegistratio
 private deleteproductregistrationbyidURL=environment.baseUrl+"api/productRegistration/delete/";
 private updateproductregistrationURL=environment.baseUrl+"api/productRegistration/update/";
 private getbyidURL=environment.baseUrl+"api/productRegistration/getOne/";
+
+
 public postproductregistration(productregistration:any):Observable<any>{
   return this.http.post(this.postproductregistrationURL,productregistration);
 

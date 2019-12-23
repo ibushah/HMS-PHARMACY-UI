@@ -1,0 +1,127 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="ui-g-12 ui-g">
+  <div class="ui-lg-6 ui-md-6 ui-sm-12">
+      <button pButton type="button" class="backBtnStyle" (click)="goBack()" style="width:45%;margin-left:30%;background: #479761;; "
+          label="Back"></button>
+  </div>
+  </div>
+  
+  <div class="row">
+      </div>
+  
+  <h1 class="heading"> Dispensary</h1>
+  
+  <hr
+    style="height: 1px; background-color: green; width: 80%; margin-left: 12%"
+  />
+  <div class="container">
+  <div class="ui-g">
+      <div class="ui-md-12 ui-lg-12 ui-sm-12">
+        <p-card
+          header=""
+          [style]="{
+            width: '95%',
+            'font-size': '15px',
+            'margin-left': '5.5%',
+            'text-align': 'left',
+            color: 'green'
+          }"
+        >
+        <p-toast></p-toast>
+          <h4 style="color: green; font-weight: bold">Add new Dispensary:</h4>
+          <hr
+            style="height:2px;width:100%;background-color:green; margin-left: 1px;"
+          />
+          <div class="ui-g ui-fluid">
+                  <form
+                    style="width:100%;"
+                    #myForm="ngForm"
+                    (ngSubmit)="submitdispensary(); myForm.reset()"
+                  >
+                  <div class="ui-g">
+                          <!-- <div class="ui-md-3 ui-lg-3"></div> -->
+                          <div class="ui-md-12 ui-lg-12 ui-sm-12">
+                            <div class="ui-inputgroup">
+                              <span
+                                class="ui-inputgroup-addon"
+                                style="width: 50%;font-size:15px;"
+                                >Name<i style="color: red">*</i></span
+                              >
+                              <input
+                                type="text"
+                                required
+                                style="width: 100%"
+                                 name="name"
+                                pInputText
+                                 [(ngModel)]="adddispensary.name" 
+                                
+                              />
+                            </div>
+                          </div>
+
+
+                          <div class="ui-md-12 ui-lg-12 ui-sm-12">
+                            <div class="ui-inputgroup">
+                              <span
+                                class="ui-inputgroup-addon"
+                                style="width: 50%;font-size:15px;"
+                                >Stock<i style="color: red">*</i></span
+                              >
+                              <input
+                                type="text"
+                                required
+                                style="width: 100%"
+                                 name="stock"
+                                pInputText
+                                 [(ngModel)]="adddispensary.stock" 
+                                
+                              />
+                            </div>
+                          </div>
+
+                          <div class="ui-md-12 ui-lg-12 ui-sm-12">
+                            <div class="ui-inputgroup">
+                              <span
+                                class="ui-inputgroup-addon"
+                                style="width: 50%;font-size:15px;"
+                                >Price<i style="color: red">*</i></span
+                              >
+                              <input
+                                type="text"
+                                required
+                                style="width: 100%"
+                                 name="price"
+                                pInputText
+                                 [(ngModel)]="adddispensary.price" 
+                                
+                              />
+                            </div>
+                          </div>
+                          
+                        
+                                
+                                      <div class="ui-md-3 ui-lg-3 ui-sm-12"></div>
+                                      <div class="ui-md-6 ui-lg-6 ui-sm-12">
+  
+                                              <button
+                                              pButton
+                                              type="submit"
+                                              label="Save"
+                                              [disabled]="myForm.form.invalid"
+                                              style="margin-top: 0px; background-color:#479761;width:100%;"
+                                              class="colorSetAllButtons"
+                                            ></button>
+  
+                                          </div>
+                                          <div class="ui-md-3 ui-lg-3 ui-sm-12"></div>
+                                  
+                                
+  </div>
+  </form>
+  </div>
+  
+</p-card>
+          </div>
+          </div>
+  </div>
