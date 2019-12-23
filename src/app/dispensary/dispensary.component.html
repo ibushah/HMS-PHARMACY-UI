@@ -1,0 +1,65 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="ui-g">
+    <div class="ui-g-12 ui-g">
+
+        <div class="ui-lg-6 ui-md-6 ui-sm-12">
+            <button pButton type="button" class="backBtnStyle" [routerLink]="'/adddispensary'"
+                style="width:45%;margin-left:30%;background: #479761;; " label="Add new Dispensary"></button>
+        </div>
+        <!-- <div class="ui-lg-6 ui-md-6 ui-sm-12">
+            <button pButton type="button" class="backBtnStyle ui-button-success" printSectionId="print" ngxPrint
+                label="Print" style="width:45%;margin-left:30%;background: #dd2f2f; " label="Print Dispensary"></button>
+        </div> -->
+    </div>
+</div>
+<p-card header="" [style]="{  width: '90%',
+'font-size': '20px',
+'text-align': 'center',
+color: 'green',
+'margin-left':'5.5%',
+'margin-right':'5.5%'
+}">
+    <p-toast> </p-toast>
+
+    <p-table #dt [columns]="cols" [value]="dispensarydata" [paginator]="true" [rows]="4" [totalRecords]="totalRecords">
+        <ng-template pTemplate="caption">
+                <div class="ui-g-12">
+                        <h2 style="font-weight:bold;color: green;">Dispensary List</h2>
+                        <hr style="background-color:rgb(11, 92, 58);height:3px;" />
+                    </div>
+            <div style="text-align: right">
+                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto" />
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{ col.header }}
+                </th>
+                <th style="text-align: center;">
+                    Actions
+                </th>
+            </tr>
+          
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns" style="overflow: auto;">
+                    {{ rowData[col.field] }}
+                </td>
+                <td>
+                        <button pButton  [ngStyle]="{width:'100px',margin:'8px'}" type="button" label="InActive" class="ui-button-danger" *ngIf="rowData['status']=='ACTIVE'" (click)="deletedispensarybyid(rowData['id'])"></button>
+                        <button pButton [ngStyle]="{width:'100px',margin:'8px'}" type="button" label="Active" class="ui-button-danger" *ngIf="rowData['status']=='INACTIVE'"  (click)="activeDispensarybyId(rowData['id'])"></button>
+                        <button pButton [ngStyle]="{width:'100px',margin:'8px'}" type="button" label="Edit" class="ui-button-danger"  (click)="updatedispensarybyid(rowData['id'])"></button>
+                        
+                    <!-- <button pButton type="button" (click)="deletePanelByID(rowData['id'])" class="ui-button-danger" style="width:20%;height: 50px; margin-left: 40%; "> -->
+         
+          <!-- </button> -->
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>

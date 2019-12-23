@@ -11,7 +11,7 @@
 </nav>
 
 
-<nav class="main-menu" style="margin-top: 60px;height: 100% !important;">
+<nav class="main-menu" style="margin-top: 60px;height: 100% ;">
   <ul>
 
     <li style="margin-top: 50px;cursor: pointer;" (click)="routeToCompanylist()">
@@ -68,6 +68,16 @@
         </div>
         <span class="nav-text">
           Sales
+        </span>
+      </a>
+    </li>
+    <li [routerLink]="'/dispensary'" style="margin-top: 13px !important;cursor: pointer;">
+      <a  class='active-page'>
+        <div style="width: 63px">
+          <img src="assets/dispensary.png" class="imgClass" />
+        </div>
+        <span class="nav-text">
+          Dispensary
         </span>
       </a>
     </li>

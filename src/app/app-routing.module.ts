@@ -16,6 +16,9 @@ import { AuthGuardService } from './guard/auth-guard.service';
 import { SalesListComponent } from './sales-list/sales-list.component';
 import {ProductDetailsComponent} from './product-details/product-details.component'
 import {PrintProductsComponent} from './print-products/print-products.component'
+import { DispensaryComponent } from './dispensary/dispensary.component';
+import { AdddispensaryComponent } from './adddispensary/adddispensary.component';
+
 
 
 const routes: Routes = [
@@ -30,11 +33,14 @@ const routes: Routes = [
   { path: "drugformation", canActivate: [AuthGuardService], component: DrugFormationComponent },
   { path: "drugformationlist", canActivate: [AuthGuardService], component: DrugFormationListComponent },
   { path: "addDrugs", canActivate: [AuthGuardService], component: DrugFormationComponent},
+  { path: 'dispensary',canActivate: [AuthGuardService],  component: DispensaryComponent },
+  { path: 'adddispensary',canActivate: [AuthGuardService],  component: AdddispensaryComponent },
   { path: "dashboard", canActivate: [AuthGuardService], component: DashboardComponent },
   { path: "grn/:id", canActivate: [AuthGuardService], component: GrnFormComponent },
   { path: "grn", canActivate: [AuthGuardService], component: GrnFormComponent },
   { path: "grnlist", canActivate: [AuthGuardService], component: GrnListComponent },
   { path: "grndetail/:id", canActivate: [AuthGuardService], component: GrnDetailComponent },
+  { path: "dispensary/:id", canActivate: [AuthGuardService], component: AdddispensaryComponent },
   { path: 'salesList', component: SalesListComponent },
   {path:'productdetail/:id',component:ProductDetailsComponent},
   {path:'printproduct',component:PrintProductsComponent}
