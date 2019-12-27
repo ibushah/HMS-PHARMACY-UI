@@ -92,13 +92,17 @@
               <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon" style="width: 50%;font-size:15px;">Selling Price: <i
                     style="color: red">*</i></span>
-                <input type="number" min="0" required (keypress)="numberOnly($event)" style="width: 100%"
+                    <!-- <input type="number" required (keypress)="numberOnly($event)" style="width: 100%" [disabled]="true"
+                  name="sellingPrice"  [(ngModel)]="salesObj.totalSellingPrice" pInputText /> -->
+
+                  <input type="number" min="0" required (keypress)="numberOnly($event)" style="width: 100%"
                   name="sellingPrice" ngModel #sale="ngModel" (input)="addPrice();restrictSellingPrice()"
                   [disabled]="disableCost()" [(ngModel)]="salesObj.totalSellingPrice" pInputText />
-              </div>
-              <div style="padding:0px;margin-bottom:0px" [hidden]="restrictSellingPrice()" class="alert alert-danger">
-                Sale price must be greater than cost price
-              </div>
+
+                  <div style="padding:0px;margin-bottom:0px" [hidden]="restrictSellingPrice()" class="alert alert-danger">
+                    Sale price must be greater than cost price
+                  </div>                 
+                </div>  
             </div>
           </div>
           <div class="ui-g">
