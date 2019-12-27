@@ -17,7 +17,7 @@ export class SalesMainscreenComponent implements OnInit {
   salesObj: Sales = new Sales();
   tableData: any[] = [];
   productArray: any[] = [];
-  output = [{ productName: String, unitPrice: Number }];
+  output = [{ productName: String, unitPrice: Number, sellingPrice:Number }];
   printData: any[] = [];
   totalRecords;
   priceIntoQuantity = 1;
@@ -169,28 +169,35 @@ export class SalesMainscreenComponent implements OnInit {
   getProductsIndropdown() {
     this.obj = [];
     this.salesservice.getProductRegistrations().subscribe(data => {
+      console.log(data)
       data.map(d => {
         this.dropdownData.push({
           label: d.productName,
-          value: d
+          value: d,
+          
         });
-        this.obj.push(d);
+        this.obj = data;
+       
       });
+      console.log("i am object", this.obj);
     });
 
-    // console.log("i am object", this.obj);
+    
   }
   onProductChange() {
     this.output = [];
+   // console.log(this.obj);
     Object.values(this.obj).map(d => {
       this.output.push({
         productName: d["productName"],
-        unitPrice: d["unitPrice"]
+        unitPrice: d["unitPrice"],
+        sellingPrice: d["sellingPrice"]
       });
     });
-
+    console.log(this.output)
     this.productObj.id = this.salesObj.productRegistration["id"];
     this.productObj.maxStock = this.salesObj.productRegistration["maxStock"];
+    
     this.calculatePriceQuantityProduct();
     this.getProductQuantity()
   }
@@ -207,6 +214,7 @@ export class SalesMainscreenComponent implements OnInit {
     this.output = [];
     this.total = this.total + this.totalFieldInForm;
     this.printTotal = this.total;
+    
     this.disablesavebutton = false;
 
     this.totalTransaction = this.total;
@@ -273,12 +281,15 @@ export class SalesMainscreenComponent implements OnInit {
   calculatePriceQuantityProduct() {
     this.priceIntoQuantity = parseFloat(
       (
-        this.salesObj.productRegistration["unitPrice"] *
-        this.salesObj.productQuantity
+        this.salesObj.productRegistration["unitPrice"] *this.salesObj.productQuantity
+        
+        
       ).toFixed(2)
     );
     // console.log(this.priceIntoQuantity);
     this.salesObj.total = parseFloat(this.priceIntoQuantity.toFixed(2));
+    this.salesObj.totalSellingPrice = this.salesObj.productRegistration["sellingPrice"];
+    this.addPrice();
   }
 
   deleteProduct(val: any, price: any) {
